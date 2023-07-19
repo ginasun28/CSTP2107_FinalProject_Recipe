@@ -32,28 +32,30 @@
 import {useRoutes} from 'react-router-dom';
 import './App.css'
 import SignInPage from './pages/Signin';
-import useLocalStorage from './hooks/useLocalStorage';
+// import useLocalStorage from './hooks/useLocalStorage';
 import SignupPage from './pages/signup';
 import ProfilePage from "@/pages/ProfilePage.jsx";
-import Home from "@/pages/Home.jsx";
-import CreateRecipe from "@/pages/CreateRecipe.jsx";
-import RecipeDetailPage from "@/pages/RecipeDetailPage.jsx";
-import Recipes from "@/pages/Recipes.jsx";
-import MyCollectionsPage from "@/pages/MyCollectionsPage.jsx";
-import CollectionDetailPage from "@/pages/CollectionDetailPage.jsx";
-import History from "@/pages/History.jsx";
+//import Home from "@/pages/Home.jsx";
+//import CreateRecipe from "@/pages/CreateRecipe.jsx";
+//import RecipeDetailPage from "@/pages/RecipeDetailPage.jsx";
+//import Recipes from "@/pages/Recipes.jsx";
+//import MyCollectionsPage from "@/pages/MyCollectionsPage.jsx";
+//import CollectionDetailPage from "@/pages/CollectionDetailPage.jsx";
+//import History from "@/pages/History.jsx";
+
+
 
 function App() {
 
     return useRoutes([
-        {
-            path: '/',
-            element: <Home/>
-        },
-        {
-            path: '/home',
-            element: <Home/>
-        },
+        // {
+        //     path: '/',
+        //     element: <Home/>
+        // },
+        // {
+        //     path: '/home',
+        //     element: <Home/>
+        // },
         {
             path: '/signup',
             element: <SignupPage/>
@@ -66,30 +68,30 @@ function App() {
             path: '/profile',
             element: <ProfilePage/>
         },
-        {
-            path: '/createRecipe',
-            element: <CreateRecipe/>
-        },
-        {
-            path: '/recipes/:recipeId',
-            element: <RecipeDetailPage/>
-        },
-        {
-            path: '/recipes',
-            element: <Recipes/>
-        },
-        {
-            path: '/favorite',
-            element: <MyCollectionsPage/>
-        },
-        {
-            path: '/collectionDetail/:id',
-            element: <CollectionDetailPage/>
-        },
-        {
-            path: '/history',
-            element: <History/>
-        },
+        // {
+        //     path: '/createRecipe',
+        //     element: <CreateRecipe/>
+        // },
+        // {
+        //     path: '/recipes/:recipeId',
+        //     element: <RecipeDetailPage/>
+        // },
+        // {
+        //     path: '/recipes',
+        //     element: <Recipes/>
+        // },
+        // {
+        //     path: '/favorite',
+        //     element: <MyCollectionsPage/>
+        // },
+        // {
+        //     path: '/collectionDetail/:id',
+        //     element: <CollectionDetailPage/>
+        // },
+        // {
+        //     path: '/history',
+        //     element: <History/>
+        // },
     ]);
 }
 
