@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 const multer = require("multer");
-const recipesController = require("../controllers/recipesController");
-const collectionsController = require("../controllers/collectionsController");
-const commentsController = require('../controllers/commentsController');
+//const recipesController = require("../controllers/recipesController");
+//const collectionsController = require("../controllers/collectionsController");
+//const commentsController = require('../controllers/commentsController');
 const cloudinary = require('cloudinary').v2;
 const upload = multer({dest: 'uploads/'});
 
@@ -21,36 +21,36 @@ let routes = app => {
     router.post("/register", userController.addUser);
     router.post("/user", userController.getUser);
     router.put('/user/:id', userController.updateUser);
-    app.post('/recipes', recipesController.addRecipe)
-    app.get('/recipes', recipesController.getRecipe)
-    app.get('/getAllRecipe', recipesController.getAllRecipe)
-    app.get('/getUserRecipes/:userId', recipesController.getUserRecipes)
-    app.get('/recipes/:id', recipesController.getRecipeById)
-    app.post('/search', recipesController.search)
-    app.delete('/recipes/:id', recipesController.deleteRecipe);
+    // app.post('/recipes', recipesController.addRecipe)
+    // app.get('/recipes', recipesController.getRecipe)
+    // app.get('/getAllRecipe', recipesController.getAllRecipe)
+    // app.get('/getUserRecipes/:userId', recipesController.getUserRecipes)
+    // app.get('/recipes/:id', recipesController.getRecipeById)
+    // app.post('/search', recipesController.search)
+    // app.delete('/recipes/:id', recipesController.deleteRecipe);
 
-    app.post('/collections', collectionsController.createCollection);
+    // app.post('/collections', collectionsController.createCollection);
 
-    app.get('/collections/:userId', collectionsController.getUserCollections);
+    // app.get('/collections/:userId', collectionsController.getUserCollections);
 
-    app.get('/collections/:collectionId/recipes', collectionsController.getCollectionRecipes);
+    // app.get('/collections/:collectionId/recipes', collectionsController.getCollectionRecipes);
 
-    app.delete('/collections/:collectionId', collectionsController.deleteCollection);
+    // app.delete('/collections/:collectionId', collectionsController.deleteCollection);
 
-    app.post('/favorites', collectionsController.addFavorite);
+    // app.post('/favorites', collectionsController.addFavorite);
 
-    app.delete('/favorites/:recipeId/:userId', collectionsController.removeFavorite);
+    // app.delete('/favorites/:recipeId/:userId', collectionsController.removeFavorite);
 
-    app.post('/checkFavorite', collectionsController.checkFavorite);
+    // app.post('/checkFavorite', collectionsController.checkFavorite);
 
 
-    router.post('/comment/:recipeId/comments', commentsController.addComment);
+    // router.post('/comment/:recipeId/comments', commentsController.addComment);
 
-    router.post('/comment/:recipeId/ratings', commentsController.addRating);
+    // router.post('/comment/:recipeId/ratings', commentsController.addRating);
 
-    router.get('/comment/:recipeId/comments', commentsController.getCommentsByRecipeId);
+    // router.get('/comment/:recipeId/comments', commentsController.getCommentsByRecipeId);
 
-    router.get('/recipes/:recipeId/ratings/:userId', commentsController.getUserRatingByRecipeId);
+    // router.get('/recipes/:recipeId/ratings/:userId', commentsController.getUserRatingByRecipeId);
 
     // simple routing
     router.get("/", (req, res) => {
