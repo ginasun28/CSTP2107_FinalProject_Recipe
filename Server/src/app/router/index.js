@@ -72,6 +72,8 @@ let routes = app => {
         });
     });
     return app.use("/", router);
+
+    // delete uploads folder
 };
 
 module.exports = routes;

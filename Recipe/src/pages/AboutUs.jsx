@@ -1,10 +1,10 @@
-import Header from "../component/Header";
+import NavBar from '../components/Navbar'
 
 const AboutUs = () => {
 
     return (
         <>
-            <Header />
+            <NavBar />
         </>
     )
 }

@@ -29,16 +29,19 @@
 //     </>
 //   );
 // }
+
 import {useRoutes} from 'react-router-dom';
 import './App.css'
 import SignInPage from './pages/Signin';
 // import useLocalStorage from './hooks/useLocalStorage';
 import SignupPage from './pages/signup';
 import ProfilePage from "@/pages/ProfilePage.jsx";
+import Home from './pages/Home.jsx'
 //import Home from "@/pages/Home.jsx";
 //import CreateRecipe from "@/pages/CreateRecipe.jsx";
 //import RecipeDetailPage from "@/pages/RecipeDetailPage.jsx";
-//import Recipes from "@/pages/Recipes.jsx";
+import RecipesList from './pages/RecipesList'
+import AboutUs from './pages/AboutUs';
 //import MyCollectionsPage from "@/pages/MyCollectionsPage.jsx";
 //import CollectionDetailPage from "@/pages/CollectionDetailPage.jsx";
 //import History from "@/pages/History.jsx";
@@ -48,14 +51,10 @@ import ProfilePage from "@/pages/ProfilePage.jsx";
 function App() {
 
     return useRoutes([
-        // {
-        //     path: '/',
-        //     element: <Home/>
-        // },
-        // {
-        //     path: '/home',
-        //     element: <Home/>
-        // },
+        {
+            path: '/',
+            element: <Home/>
+        },
         {
             path: '/signup',
             element: <SignupPage/>
@@ -76,10 +75,14 @@ function App() {
         //     path: '/recipes/:recipeId',
         //     element: <RecipeDetailPage/>
         // },
-        // {
-        //     path: '/recipes',
-        //     element: <Recipes/>
-        // },
+        {
+            path: '/recipes',
+            element: <RecipesList/>
+        },
+        {
+            path: '/about_us',
+            element: <AboutUs/>
+        },
         // {
         //     path: '/favorite',
         //     element: <MyCollectionsPage/>
