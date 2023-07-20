@@ -30,5 +30,21 @@
     display: flex;
     align-items: left;
     gap: 8px;
-  }
+}
 
+/* RecipesList.css (or your existing CSS file) */
+.custom-icon-button {
+    background-color: transparent !important;
+}
+
+.custom-icon-button:hover {
+    background-color: transparent !important;
+}
+
+.custom-icon-button:focus {
+    background-color: transparent !important;
+}
+
+.custom-icon-button:after {
+    background-color: transparent !important;
+}

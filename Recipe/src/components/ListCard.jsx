@@ -7,7 +7,7 @@ import {
 	CardMedia,
 	Button,
 } from "@mui/material";
-import '../components/styles/ListCard.css'
+import '../components/styles/ListCard'
 
 export default function LIstCard({data}) {
 	return (

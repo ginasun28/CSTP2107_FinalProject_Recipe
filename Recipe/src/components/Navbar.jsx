@@ -184,9 +184,10 @@ function ResponsiveAppBar() {
 											backgroundColor: "transparent",
 										},
 									}}
+									disableRipple
 								>
 									<Avatar alt="Remy Sharp" src={user?.avatar} />
-									<Typography sx={{padding: "10px"}}>UserName</Typography>
+									<Typography sx={{padding: "10px"}}>{user.username}</Typography>
 								</IconButton>
 							</Tooltip>
 							<Menu
