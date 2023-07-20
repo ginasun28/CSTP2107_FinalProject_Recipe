@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 const multer = require("multer");
-//const recipesController = require("../controllers/recipesController");
-//const collectionsController = require("../controllers/collectionsController");
-//const commentsController = require('../controllers/commentsController');
+const recipesController = require("../controllers/recipesController");
+// const collectionsController = require("../controllers/collectionsController");
+// const commentsController = require('../controllers/commentsController');
 const cloudinary = require('cloudinary').v2;
 const upload = multer({dest: 'uploads/'});
 
@@ -21,13 +21,13 @@ let routes = app => {
     router.post("/register", userController.addUser);
     router.post("/user", userController.getUser);
     router.put('/user/:id', userController.updateUser);
-    // app.post('/recipes', recipesController.addRecipe)
-    // app.get('/recipes', recipesController.getRecipe)
-    // app.get('/getAllRecipe', recipesController.getAllRecipe)
-    // app.get('/getUserRecipes/:userId', recipesController.getUserRecipes)
-    // app.get('/recipes/:id', recipesController.getRecipeById)
-    // app.post('/search', recipesController.search)
-    // app.delete('/recipes/:id', recipesController.deleteRecipe);
+    app.post('/recipes', recipesController.addRecipe)
+    app.get('/recipes', recipesController.getRecipe)
+    app.get('/getAllRecipe', recipesController.getAllRecipe)
+    app.get('/getUserRecipes/:userId', recipesController.getUserRecipes)
+    app.get('/recipes/:id', recipesController.getRecipeById)
+    app.post('/search', recipesController.search)
+    app.delete('/recipes/:id', recipesController.deleteRecipe);
 
     // app.post('/collections', collectionsController.createCollection);
 

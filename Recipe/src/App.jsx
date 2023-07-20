@@ -36,11 +36,12 @@ import SignInPage from './pages/Signin';
 // import useLocalStorage from './hooks/useLocalStorage';
 import SignupPage from './pages/signup';
 import ProfilePage from "@/pages/ProfilePage.jsx";
-import Home from './pages/Home.jsx'
-//import Home from "@/pages/Home.jsx";
+// import Home from './pages/Home.jsx'
+import Home from "@/pages/Home.jsx";
 //import CreateRecipe from "@/pages/CreateRecipe.jsx";
 //import RecipeDetailPage from "@/pages/RecipeDetailPage.jsx";
-import RecipesList from './pages/RecipesList'
+//import RecipesList from './pages/RecipesList'
+import Recipes from "@/pages/Recipes.jsx";
 import AboutUs from './pages/AboutUs';
 //import MyCollectionsPage from "@/pages/MyCollectionsPage.jsx";
 //import CollectionDetailPage from "@/pages/CollectionDetailPage.jsx";
@@ -77,8 +78,12 @@ function App() {
         // },
         {
             path: '/recipes',
-            element: <RecipesList/>
+            element: <Recipes/>
         },
+        // {
+        //     path: '/recipes',
+        //     element: <RecipesList/>
+        // },
         {
             path: '/about_us',
             element: <AboutUs/>
