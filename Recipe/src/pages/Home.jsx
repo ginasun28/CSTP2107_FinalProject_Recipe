@@ -1,4 +1,4 @@
-import "../component/styles/styles.css";
+import '../components/styles/styles.css'
 import {
 	Button,
 	Menu,
@@ -12,10 +12,12 @@ import {
 	Avatar,
 	Tooltip,
 } from "@mui/material";
+import {Link as RouterLink} from "react-router-dom";
 import {useState} from "react";
 
 const pages = ["Home", "+Create Recipe", "Recipes", "About"];
 const settings = ["Edit Profile", "History", "Favourite", "Logout"];
+const link = ["/", "/create_recipe", "/recipes", "/about_us"];
 
 export default function Home() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -88,17 +90,21 @@ export default function Home() {
 									display: {xs: "block", md: "none"},
 								}}
 							>
-								{pages.map(page => (
+								{pages.map((page, index) => (
 									<MenuItem key={page} onClick={handleCloseNavMenu}>
-										<Typography textAlign="center">{page}</Typography>
+										<RouterLink to={link[index]} className="nav-link">
+											{page}
+										</RouterLink>
 									</MenuItem>
 								))}
 							</Menu>
 						</Box>
 						<Box sx={{flexGrow: 1, display: {xs: "none", md: "flex"}}}>
-							{pages.map(page => (
+							{pages.map((page, index) => (
 								<Button
 									key={page}
+									component={RouterLink}
+									to={link[index]}
 									onClick={handleCloseNavMenu}
 									sx={{my: 2, color: "white", display: "block"}}
 								>
