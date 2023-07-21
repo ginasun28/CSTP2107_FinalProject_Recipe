@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {Card, CardContent, CardMedia, IconButton, Link, Rating, Typography} from '@mui/material';
 import {BookmarkBorder, Delete as DeleteIcon, Edit as EditIcon} from '@mui/icons-material';
 import useLocalStorage from "@/hooks/useLocalStorage.js";
