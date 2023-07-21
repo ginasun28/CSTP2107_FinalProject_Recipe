@@ -38,7 +38,7 @@ import SignupPage from './pages/signup';
 import ProfilePage from "@/pages/ProfilePage.jsx";
 // import Home from './pages/Home.jsx'
 import Home from "@/pages/Home.jsx";
-//import CreateRecipe from "@/pages/CreateRecipe.jsx";
+import CreateRecipe from "@/pages/CreateRecipe.jsx";
 //import RecipeDetailPage from "@/pages/RecipeDetailPage.jsx";
 //import RecipesList from './pages/RecipesList'
 import Recipes from "@/pages/Recipes.jsx";
@@ -68,10 +68,10 @@ function App() {
             path: '/profile',
             element: <ProfilePage/>
         },
-        // {
-        //     path: '/createRecipe',
-        //     element: <CreateRecipe/>
-        // },
+        {
+            path: '/create_recipe',
+            element: <CreateRecipe/>
+        },
         // {
         //     path: '/recipes/:recipeId',
         //     element: <RecipeDetailPage/>
