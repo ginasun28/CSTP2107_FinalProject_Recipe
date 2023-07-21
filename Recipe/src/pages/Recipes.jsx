@@ -1,9 +1,8 @@
 import {useEffect, useState} from "react";
 import Navbar from "@/components/Navbar";
+import RecipesList from "@/components/RecipesList.jsx";
 import "../components/styles/RecipesList.css";
 import {
-	// FormControl,
-	// Select,
 	Box,
 	Container,
 	Grid,
@@ -14,10 +13,11 @@ import {
 	Menu,
 	MenuItem,
 	Tooltip,
+	// FormControl,
+	// Select,
 } from "@mui/material";
 import {Search as SearchIcon} from "@mui/icons-material";
 import api from "@/api/index.js";
-import ListCard from "../components/ListCard";
 
 const types = [
 	"All",
@@ -32,11 +32,10 @@ const types = [
 ];
 
 const Recipes = () => {
-	const [anchorEl, setAnchorEl] = useState(null);
 	const [products, setProducts] = useState([]);
 	const [searchText, setSearchText] = useState("");
-	const [selectedFilter, setSelectedFilter] = useState("");
-	const [filteredRecipes, setFilteredRecipes] = useState([]);
+	const [filterType, setFilterType] = useState("");
+	const [anchorEl, setAnchorEl] = useState(null);
 
 	useEffect(() => {
 		//Get the latest recipe list
@@ -50,11 +49,29 @@ const Recipes = () => {
 		setSearchText(event.target.value);
 	};
 
+	const handleFilterClick = event => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleCloseFilter = () => {
+		setAnchorEl(null);
+	};
+	// Handle filter type change event
+	const handleFilterTypeChange = filter => {
+		setFilterType(filter);
+		handleCloseFilter();
+		// Add any additional logic here if you want to perform filtering based on the selected value.
+	};
+
+	// Filter based on search text and filter type
+	const filteredProducts = products.filter(product => {
+		return filterType === "" || product.type === filterType;
+	});
+
 	// Handle the search button click event
 	const handleSearchButtonClick = () => {
-		api.search({keyword: searchText, filterType: selectedFilter}).then(res => {
+		api.search({keyword: searchText, filterType: filterType}).then(res => {
 			setProducts(res);
-            console.log(res);
 		});
 	};
 
@@ -65,32 +82,9 @@ const Recipes = () => {
 		}
 	};
 
-    // filter icon function
-	const handleFilterClick = event => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleCloseFilter = () => {
-		setAnchorEl(null);
-	};
-
-	const handleFilterSelection = filter => {
-		setSelectedFilter(filter);
-
-		// Filter the recipes based on the selected filter
-		const filteredRecipes = products.filter(recipe =>
-			filter === "All" ? true : recipe.type.includes(filter)
-		);
-
-		setFilteredRecipes(filteredRecipes);
-		setAnchorEl(null);
-	};
-    // End of filter icon function
-
 	return (
 		<>
 			<Navbar />
-			{/* recipe list */}
 			<Container maxWidth="xl">
 				<Box sx={{padding: "45px 0px 0px 30px"}}>
 					<Grid>
@@ -124,6 +118,7 @@ const Recipes = () => {
 											),
 										}}
 									/>
+									{/* filter dropdown list V2 */}
 									<Box>
 										<Tooltip title="Find tags">
 											<IconButton
@@ -150,40 +145,24 @@ const Recipes = () => {
 												{types.map(filter => (
 													<MenuItem
 														key={filter}
-														onClick={() => handleFilterSelection(filter)}
+														onClick={() => handleFilterTypeChange(filter)}
 														className="filter-icon"
+														value={filter}
 													>
-														<Typography textAlign="center" value={filter}>
-															{filter}
-														</Typography>
+														<Typography textAlign="center">{filter}</Typography>
 													</MenuItem>
 												))}
 											</Menu>
 										</Box>
 									</Box>
+									{/* End of filter dropdown list V2 */}
 								</Grid>
 							</Grid>
 						</Grid>
 					</Grid>
 				</Box>
 				<Grid container>
-					<Grid item xs={6} sm={3} md={11} className="content">
-						<Grid container spacing={2}>
-							{filteredRecipes.length > 0
-								? filteredRecipes.map(recipe => (
-										<Grid item xs={4} sm={6} md={6} key={recipe.id}>
-											{/* Pass individual recipe as a prop to ListCard */}
-											<ListCard product={recipe} />
-										</Grid>
-								))
-								: products.map(recipe => (
-										<Grid item xs={4} sm={6} md={6} key={recipe.id}>
-											{/* Pass individual recipe as a prop to ListCard */}
-											<ListCard product={recipe} />
-										</Grid>
-								))}
-						</Grid>
-					</Grid>
+					<RecipesList products={filteredProducts} />
 					<Grid item xs={12} sm={6} className="half-trapezoid"></Grid>
 				</Grid>
 			</Container>
@@ -192,8 +171,3 @@ const Recipes = () => {
 };
 
 export default Recipes;
-
-
-
-
-
