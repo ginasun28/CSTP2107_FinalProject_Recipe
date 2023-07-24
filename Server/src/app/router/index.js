@@ -4,7 +4,7 @@ const userController = require("../controllers/userController");
 const multer = require("multer");
 const recipesController = require("../controllers/recipesController");
 // const collectionsController = require("../controllers/collectionsController");
-// const commentsController = require('../controllers/commentsController');
+const commentsController = require('../controllers/commentsController');
 const cloudinary = require('cloudinary').v2;
 const upload = multer({dest: 'uploads/'});
 
@@ -44,13 +44,13 @@ let routes = app => {
     // app.post('/checkFavorite', collectionsController.checkFavorite);
 
 
-    // router.post('/comment/:recipeId/comments', commentsController.addComment);
+    router.post('/comment/:recipeId/comments', commentsController.addComment);
 
-    // router.post('/comment/:recipeId/ratings', commentsController.addRating);
+    router.post('/comment/:recipeId/ratings', commentsController.addRating);
 
-    // router.get('/comment/:recipeId/comments', commentsController.getCommentsByRecipeId);
+    router.get('/comment/:recipeId/comments', commentsController.getCommentsByRecipeId);
 
-    // router.get('/recipes/:recipeId/ratings/:userId', commentsController.getUserRatingByRecipeId);
+    router.get('/recipes/:recipeId/ratings/:userId', commentsController.getUserRatingByRecipeId);
 
     // simple routing
     router.get("/", (req, res) => {
