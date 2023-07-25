@@ -165,18 +165,18 @@ const PublishProductPage = () => {
                     <Divider sx={{ borderBottomWidth: 3, backgroundColor: '#E38B29'}}/>
 
                     <form onSubmit={handlePublishProduct} style={{marginTop: '20px'}}>
-                        <div className='form-font' style={{display: 'flex', flexDirection: 'row'}}>
-                            <div style={{width: '50%', display: 'flex', flexDirection: 'column'}}>
+                        <div className='form-font form-resize'>
+                            <div className='first-part-resize' style={{display: 'flex', flexDirection: 'column'}}>
 
                                 <div style={{display: 'flex', flexDirection: 'column'}}>
                                     <label htmlFor="">Recipe Name</label>
                                     <TextField 
                                         id='' 
                                         name='recipeName'
+                                        className='recipe-txt'
                                         value={productInfo.recipeName}
                                         onChange={handleInputChange}
                                         variant='standard' 
-                                        style={{width: '90%'}}
                                         required
                                     />
                                 </div>
@@ -186,10 +186,11 @@ const PublishProductPage = () => {
                                     <TextField 
                                         id='' 
                                         name='servings'
+                                        className='recipe-txt'
                                         value={productInfo.servings}
                                         onChange={handleInputChange}
                                         variant='standard' 
-                                        style={{width: '90%'}}
+                                        
                                     />
                                 </div>
 
@@ -198,10 +199,11 @@ const PublishProductPage = () => {
 									<TextField 
                                         id='' 
                                         name='cookingTime'
+                                        className='recipe-txt'
                                         value={productInfo.cookingTime}
                                         onChange={handleInputChange}
                                         variant='standard' 
-                                        style={{width: '90%'}}
+                                        
                                     />
 								</div>
 
@@ -210,11 +212,12 @@ const PublishProductPage = () => {
 									<TextField 
                                         id='' 
                                         name='cuisine'
+                                        className='recipe-txt'
                                         value={productInfo.cuisine}
                                         onChange={handleInputChange}
                                         variant='outlined' 
                                         size='small' 
-                                        style={{backgroundColor: 'white', width: '90%'}}
+                                        style={{backgroundColor: 'white'}}
                                     />
 								</div>
 
@@ -223,10 +226,11 @@ const PublishProductPage = () => {
 									<Select
                                         name="type"
                                         value={productInfo.type}
+                                        className='recipe-txt'
                                         onChange={handleInputChange}
                                         sx={{mb: 2, backgroundColor: 'white'}}
                                         size='small'
-                                        style={{width: '90%'}}
+                                        
                                     >
                                         <MenuItem value="Breakfast">Appetizers</MenuItem>
                                         <MenuItem value="Lunch">Mains</MenuItem>
@@ -241,17 +245,18 @@ const PublishProductPage = () => {
 									<TextField 
                                         id='' 
                                         name='instructions'
+                                        className='recipe-txt'
                                         value={productInfo.instructions}
                                         onChange={handleInputChange}
                                         variant='outlined' 
                                         multiline
                                         rows={10}
-                                        style={{backgroundColor: '#F9F3DF', width: '90%'}}
+                                        style={{backgroundColor: '#F9F3DF'}}
 									/>
 								</div>
                             </div>
 
-                            <div style={{width: '50%', display: 'flex', flexDirection: 'column'}}>
+                            <div className='second-part-resize' style={{display: 'flex', flexDirection: 'column'}}>
 
                                 <div style={{display: 'flex', flexDirection: 'column'}}>
                                     <label htmlFor="">Ingredients</label>   
@@ -352,8 +357,8 @@ const PublishProductPage = () => {
                                     </div>
                                 </div>
 
-                                <div style={{display: 'flex', flexDirection: 'row', width: '100%', marginTop: '40px'}}>
-                                    <div style={{width: '50%', display: 'flex', flexDirection: 'column'}}>
+                                <div className='photo-btn-resize'>
+                                    <div className='photo-resize' style={{width: '50%', display: 'flex', flexDirection: 'column'}}>
                                         <label htmlFor="">Photo</label>
 
                                         <div style={{marginTop: 20, width: '200px', height: '200px'}}>
@@ -386,7 +391,7 @@ const PublishProductPage = () => {
                                         </div>
                                     </div>
 
-                                    <div style={{width: '50%', display: 'flex', flexDirection: 'row', marginTop: '30%', justifyContent: 'flex-end'}}>
+                                    <div className='submit-btns' style={{width: '50%'}}>
 										<Button type='submit' sx={{'&:hover': {backgroundColor: '#C4DFAA', borderRadius: '50%'}}} style={{borderRadius: '50%', marginRight: '20px'}}>
 											<img src="./src/assets/icons8-save-96 (5).png" 
 												alt="Save icon" 

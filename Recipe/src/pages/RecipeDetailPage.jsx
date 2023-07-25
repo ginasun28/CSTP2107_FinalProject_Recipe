@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import {Box, Button, Grid, Paper, Rating, TextField, Typography} from '@mui/material';
 import api from "@/api/index.js";
 import RecipeDetailTable from "@/components/RecipeDetailTable.jsx";
@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import FavoriteModal from "@/components/FavoriteModa.jsx";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 import Comment from "@/components/Comment.jsx"
+import '../components/styles/RecipeDetailsPage.css'
 
 const RecipeDetailPage = () => {
     const {recipeId} = useParams();
@@ -163,15 +164,30 @@ const RecipeDetailPage = () => {
 
     return (<>
             <Navbar/>
-            <Box m={3}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} md={6}>
-                        <Paper>
-                            <img src={image} alt={recipeName} style={{width: '100%', height: 'auto'}}/>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Paper>
+            <div style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
+                <div style={{width: '45%', height: '100vh'}}>
+                    <Link to={'/recipes'}>
+                        <img src="../src/assets/icons8-back-96 (1).png" alt="Back btn" style={{width: '50px', height: '50px', position: 'absolute', margin: '10px 20px 0px 20px'}}/>
+                    </Link>
+                    <img src={image} alt={recipeName} style={{width: '100%', height: '100%', objectFit: 'cover'}}/>
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <Typography variant="h6" className='poppins-font' style={{fontSize: '18px', marginRight: '10px', fontWeight: '700'}}>
+                            Recipe rate 
+                        </Typography>
+
+                        <Rating
+                            name="user-rating"
+                            value={userRating}
+                            onChange={handleRatingChange}
+                        />
+                        <Button variant="text" onClick={handleRatingSubmit}>
+                            Save
+                        </Button>
+                    </div>
+                </div>
+                
+                <div style={{width: '55%', display: 'flex', flexDirection: 'column', marginTop: '10px'}}>
+                    <div className='poppins-font' style={{display: 'flex', flexDirection: 'row', marginLeft: '20px'}}>
                             <Box sx={{display: 'flex', alignItems: 'center'}}
                                  onClick={() => {
                                      navigate('/history?id=' + recipeData.user.id)
@@ -180,19 +196,81 @@ const RecipeDetailPage = () => {
                                      style={{width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px'}}/>
                                 <Typography variant="h5">{recipeData.user?.username}</Typography>
                             </Box>
-                            <Typography variant="subtitle1">{recipeName}</Typography>
+                    </div>
+
+                    <div className='poppins-font' style={{display: 'flex', flexDirection: 'row', fontSize: '14px', justifyContent: 'center', marginTop: '20px'}}>
+                        <div className='preparation-style'>
+                            <h3 className='txt-center'>Recipe Name</h3>
+                            <h4 className='body-font txt-center'>{recipeName}</h4>
+                        </div>
+
+                        <div className='preparation-style'>
+                            <h3 className='txt-center'>Servings</h3>
+                            <h4 className='body-font txt-center'>{servings}</h4>
+                        </div>
+
+                        <div className='preparation-style'>
+                            <h3 className='txt-center'>Cooking time</h3>
+                            <h4 className='body-font txt-center'>{cookingTime} minutes</h4>
+                        </div>
+
+                        <div className='preparation-style'>
+                            <h3 className='txt-center'>Cuisine</h3>
+                            <h4 className='body-font txt-center'>{cuisine} {type}</h4>
+                        </div>
+                    </div>
+
+                    <div style={{marginLeft: '30px', marginTop: '20px'}}>
+                        <h3 className='poppins-font'>INGREDIENTS</h3>
+                        <RecipeDetailTable ingredients={ingredients}/>
+                    </div>
+                    
+                    <div style={{marginLeft: '30px', marginTop: '20px'}}>
+                        <h3 className='poppins-font'>INSTRUCTIONS</h3>
+                        <h4 className='body-font'>
+                            {instructions}
+                        </h4>
+                    </div>
+
+                    <div style={{marginLeft: '30px', marginTop: '20px', display: 'flex', justifyContent: 'flex-end', marginRight: '20px', height: '100%', alignItems: 'flex-end'}}>
+                        <Button onClick={handleFavoriteClick} sx={{'&:hover': {backgroundColor: 'transparent'}}} disableRipple>
+                            <img src="../src/assets/icons8-save-96.png" alt="Save icon" style={{width: '40px', height: '40px', borderRadius: '15px'}}/>
+                        </Button>
+                    </div>
+                </div>
+            </div>
+
+            {/* OG CODE */}
+            <Box m={3} style={{marginTop: '50px'}}>
+                {/* <Grid container spacing={3}> */}
+                    {/* <Grid item xs={12} md={6}>
+                        <Paper>
+                            <img src={image} alt={recipeName} style={{width: '100%', height: 'auto'}}/>
+                        </Paper>
+                    </Grid> */}
+                    {/* <Grid item xs={12} md={6}> */}
+                        {/* <Paper> */}
+                            {/* <Box sx={{display: 'flex', alignItems: 'center'}}
+                                 onClick={() => {
+                                     navigate('/history?id=' + recipeData.user.id)
+                                 }}>
+                                <img src={recipeData.user?.avatar} alt={recipeData.user?.username}
+                                     style={{width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px'}}/>
+                                <Typography variant="h5">{recipeData.user?.username}</Typography>
+                            </Box> */}
+                            {/* <Typography variant="subtitle1">{recipeName}</Typography>
                             <Typography variant="subtitle1">Type: {type}</Typography>
                             <Typography variant="subtitle1">Cooking Time: {cookingTime} minutes</Typography>
                             <Typography variant="subtitle1">Servings: {servings}</Typography>
-                            <Typography variant="subtitle1">Cuisine: {cuisine}</Typography>
-                            <RecipeDetailTable ingredients={ingredients}/>
-                            <Typography variant="h6">Instructions:</Typography>
-                            <Typography>{instructions}</Typography>
-                            <Button variant="contained" onClick={handleFavoriteClick}>Favorite</Button>
-                        </Paper>
-                    </Grid>
-                </Grid>
-                <Box mt={2}>
+                            <Typography variant="subtitle1">Cuisine: {cuisine}</Typography> */}
+                            {/* <RecipeDetailTable ingredients={ingredients}/> */}
+                            {/* <Typography variant="h6">Instructions:</Typography>
+                            <Typography>{instructions}</Typography> */}
+                            {/* <Button variant="contained" onClick={handleFavoriteClick}>Favorite</Button> */}
+                        {/* </Paper> */}
+                    {/* </Grid> */}
+                {/* </Grid> */}
+                {/* <Box mt={2}>
                     <Typography variant="h6">Rating：</Typography>
                     <Rating
                         name="user-rating"
@@ -202,7 +280,7 @@ const RecipeDetailPage = () => {
                     <Button variant="contained" onClick={handleRatingSubmit}>
                         submit Rating
                     </Button>
-                </Box>
+                </Box> */}
                 <Box mt={2}>
                     <Typography variant="h6">Comments:</Typography>
                     <TextField
