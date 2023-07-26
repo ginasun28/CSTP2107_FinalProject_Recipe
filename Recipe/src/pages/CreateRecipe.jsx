@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Button, Divider, Grid, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography} from '@mui/material';
+import {Button, Divider, Grid, ListSubheader, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography} from '@mui/material';
 import Navbar from "@/components/Navbar";
 import FormControl from "@mui/material/FormControl";
 import api from "@/api/index.js";
@@ -145,6 +145,16 @@ const PublishProductPage = () => {
         }
     ]
 
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            },
+        },
+    };
+
     return (<>
             <Navbar/>
             <div style={{width: '100%', paddingBottom: '5%'}}>
@@ -272,6 +282,7 @@ const PublishProductPage = () => {
                                                                     onChange={(e) => handleIngredientChange(index, 'qt', e.target.value)}
                                                                     fullWidth
                                                                     size='small'
+                                                                    InputProps={{style: {borderRadius: '10px', backgroundColor: 'white'}}}
                                                                 />
                                                             </TableCell>
                                                             <TableCell>
@@ -279,13 +290,34 @@ const PublishProductPage = () => {
                                                                     <Select
                                                                         value={ingredient.measurement}
                                                                         onChange={(e) => handleIngredientChange(index, 'measurement', e.target.value)}
-                                                                        fullWidth
+                                                                        MenuProps={MenuProps}
                                                                         size='small'
+                                                                        sx={{backgroundColor: 'white', borderRadius: '10px'}}
                                                                     >
+                                                                        <ListSubheader>Dry or Liquid</ListSubheader>
                                                                         <MenuItem value="cup">Cup</MenuItem>
                                                                         <MenuItem value="teaspoon">Teaspoon</MenuItem>
                                                                         <MenuItem value="tablespoon">Tablespoon</MenuItem>
+                                                                        <MenuItem value="">Ounces</MenuItem>
+
+                                                                        <ListSubheader>Dry</ListSubheader>
+                                                                        <MenuItem value="dashes">Dashes</MenuItem>
+                                                                        <MenuItem value="pinches">Pinches</MenuItem>
+                                                                        <MenuItem value="pounds">Pounds</MenuItem>
+                                                                        <MenuItem value="pieces">Pieces of</MenuItem>
+
+                                                                        <ListSubheader>Liquids</ListSubheader>
+                                                                        <MenuItem value="gallon">Gallons</MenuItem>
+                                                                        <MenuItem value="pint">Pints</MenuItem>
+                                                                        <MenuItem value="quart">Quarts</MenuItem>
+
+                                                                        <ListSubheader>Units</ListSubheader>
+                                                                        <MenuItem value="milligrams">Milligram</MenuItem>
                                                                         <MenuItem value="gram">Gram</MenuItem>
+                                                                        <MenuItem value="kilogram">Kilogram</MenuItem>
+                                                                        <MenuItem value="milliliter">Milliliter</MenuItem>
+                                                                        <MenuItem value="liter">Liter</MenuItem>
+                                                                        <MenuItem value="kiloliter">Kiloliter</MenuItem>
                                                                     </Select>
                                                                 </FormControl>
                                                             </TableCell>
@@ -295,6 +327,7 @@ const PublishProductPage = () => {
                                                                     onChange={(e) => handleIngredientChange(index, 'ingredient', e.target.value)}
                                                                     fullWidth
                                                                     size='small'
+                                                                    InputProps={{style: {borderRadius: '10px', backgroundColor: 'white'}}}
                                                                 />
                                                             </TableCell>
                                                             <TableCell>
