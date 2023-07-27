@@ -17,6 +17,11 @@ h2, h3, h4 {
     font-family: 'Poppins', sans-serif;
 }
 
+.poppins-font-orange {
+    color: #FF7F3F;
+    font-family: 'Poppins', sans-serif;
+}
+
 .header-label {
     text-align: center;
     font-family: 'Poppins', sans-serif;

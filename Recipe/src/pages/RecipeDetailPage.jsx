@@ -170,23 +170,10 @@ const RecipeDetailPage = () => {
                         <img src="../src/assets/icons8-back-96 (1).png" alt="Back btn" style={{width: '50px', height: '50px', position: 'absolute', margin: '10px 20px 0px 20px'}}/>
                     </Link>
                     <img src={image} alt={recipeName} style={{width: '100%', height: '100%', objectFit: 'cover'}}/>
-                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                        <Typography variant="h6" className='poppins-font' style={{fontSize: '18px', marginRight: '10px', fontWeight: '700'}}>
-                            Recipe rate 
-                        </Typography>
-
-                        <Rating
-                            name="user-rating"
-                            value={userRating}
-                            onChange={handleRatingChange}
-                        />
-                        <Button variant="text" onClick={handleRatingSubmit}>
-                            Save
-                        </Button>
-                    </div>
+                    
                 </div>
                 
-                <div style={{width: '55%', display: 'flex', flexDirection: 'column', marginTop: '10px'}}>
+                <div style={{width: '55%', display: 'flex', flexDirection: 'column', marginTop: '10px', overflowY: 'auto', maxHeight: '100vh'}}>
                     <div className='poppins-font' style={{display: 'flex', flexDirection: 'row', marginLeft: '20px'}}>
                             <Box sx={{display: 'flex', alignItems: 'center'}}
                                  onClick={() => {
@@ -196,6 +183,21 @@ const RecipeDetailPage = () => {
                                      style={{width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px'}}/>
                                 <Typography variant="h5">{recipeData.user?.username}</Typography>
                             </Box>
+                    </div>
+
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: '30px'}}>
+                        <Typography variant="h6" className='poppins-font' style={{fontSize: '18px', marginRight: '10px', fontWeight: '700'}}>
+                            Recipe rate 
+                        </Typography>
+
+                        <Rating
+                            name="user-rating"
+                            value={userRating}
+                            onChange={handleRatingChange}
+                        />
+                        <Button variant="outlined" onClick={handleRatingSubmit} style={{marginLeft: '10px', border: '2px solid #064635'}}>
+                            <h3 className='poppins-font'>Save</h3>
+                        </Button>
                     </div>
 
                     <div className='poppins-font' style={{display: 'flex', flexDirection: 'row', fontSize: '14px', justifyContent: 'center', marginTop: '20px'}}>
@@ -237,11 +239,52 @@ const RecipeDetailPage = () => {
                             <img src="../src/assets/icons8-save-96.png" alt="Save icon" style={{width: '40px', height: '40px', borderRadius: '15px'}}/>
                         </Button>
                     </div>
+
+                    <div style={{marginLeft: '30px'}}>
+                        <Typography variant="h6" className='poppins-font' style={{fontWeight: '800'}}>
+                            COMMENTS
+                        </Typography>
+
+                        <TextField
+                            label="Your comment"
+                            multiline
+                            rows={4}
+                            value={userComment}
+                            onChange={handleCommentChange}
+                            // fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            style={{width: '90%'}}
+                            InputProps={{style: {border: '2px solid #064635', borderRadius: '10px'}}}
+                        />
+
+                        <div style={{display: 'flex', justifyContent: 'flex-end', width: '90%'}}>
+                            <Button variant="contained" onClick={() => handleCommentSubmit()} style={{backgroundColor: '#FF7F3F', borderRadius: '10px'}}>
+                                submit Comment
+                            </Button>
+                        </div>
+                        
+
+                        {comments.map((comment) => (
+                            <Comment key={comment.id} comment={comment} onReply={handleReply}
+                                    onConfirmReply={handleCommentSubmit}/>
+                        ))}
+                    </div>
+                        
+                    <FavoriteModal
+                        open={openModal}
+                        onClose={handleCloseModal}
+                        collections={collections}
+                        selectedCollection={selectedCollection}
+                        onCollectionSelect={handleSelectCollection}
+                        onConfirmFavorite={handleConfirmFavorite}
+                        onCreateCollection={handleCreateCollection}
+                    />
                 </div>
             </div>
 
             {/* OG CODE */}
-            <Box m={3} style={{marginTop: '50px'}}>
+            {/* <Box m={3} style={{marginTop: '50px'}}> */}
                 {/* <Grid container spacing={3}> */}
                     {/* <Grid item xs={12} md={6}>
                         <Paper>
@@ -281,7 +324,7 @@ const RecipeDetailPage = () => {
                         submit Rating
                     </Button>
                 </Box> */}
-                <Box mt={2}>
+                {/* <Box mt={2}>
                     <Typography variant="h6">Comments:</Typography>
                     <TextField
                         label="Your comment"
@@ -301,9 +344,9 @@ const RecipeDetailPage = () => {
                         <Comment key={comment.id} comment={comment} onReply={handleReply}
                                  onConfirmReply={handleCommentSubmit}/>
                     ))}
-                </Box>
-            </Box>
-            <FavoriteModal
+                </Box> */}
+            {/* </Box> */}
+            {/* <FavoriteModal
                 open={openModal}
                 onClose={handleCloseModal}
                 collections={collections}
@@ -311,7 +354,7 @@ const RecipeDetailPage = () => {
                 onCollectionSelect={handleSelectCollection}
                 onConfirmFavorite={handleConfirmFavorite}
                 onCreateCollection={handleCreateCollection}
-            />
+            /> */}
         </>
     );
 };
