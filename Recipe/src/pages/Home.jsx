@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import {Link as RouterLink} from "react-router-dom";
 import {useState} from "react";
+import Footer from "../components/Footer";
 
 const pages = ["Home", "+Create Recipe", "Recipes", "About"];
 const settings = ["Edit Profile", "History", "Favourite", "Logout"];
@@ -144,6 +145,7 @@ export default function Home() {
 					</Toolbar>
 				</Container>
 			</AppBar>
+			<Footer/>
 		</>
 	);
 }

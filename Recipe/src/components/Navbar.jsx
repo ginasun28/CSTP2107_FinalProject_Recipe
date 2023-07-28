@@ -15,10 +15,11 @@ import useLocalStorage from "@/hooks/useLocalStorage.js";
 import {Link as RouterLink} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import './styles/Header.css'
 
 const pages = ["+Create Recipe", "Recipes", "About Us"];
 const settings = ["Profile", "History", "Favorite", "Logout"];
-const link = ["/", "/create_recipe", "/recipes", "/about_us"];
+const link = ["/create_recipe", "/recipes", "/about_us"];
 
 function ResponsiveAppBar() {
 	const [user, setUser] = useLocalStorage("user", null);
@@ -78,7 +79,7 @@ function ResponsiveAppBar() {
 							<Typography
 								noWrap
 								component={RouterLink}
-								to={link[0]}
+								to={"/"}
 								sx={{
 									// mt: 1,
 									display: {xs: "none", md: "flex"},
@@ -122,7 +123,7 @@ function ResponsiveAppBar() {
 						>
 							{pages.map((page, index) => (
 								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<RouterLink to={link[index]} className="nav-link">
+									<RouterLink to={link[index]} className="nav-link" >
 										{page}
 									</RouterLink>
 								</MenuItem>
@@ -137,7 +138,7 @@ function ResponsiveAppBar() {
 								width: "100%",
 							}}
 						>
-							{pages.map((page, index) => (
+							{pages.map((page, index = 1) => (
 								<Button
 									key={page}
 									component={RouterLink}
@@ -171,7 +172,21 @@ function ResponsiveAppBar() {
 								handleSettingClick("logout");
 							}}
 						>
-							<Typography sx={{fontFamily:'Poppins', fontWeight: '700',padding: '5px 8px 5px 8px', '&:hover': {backgroundColor:'#FDEEDC', color: '#F1A661', borderRadius: '20px', padding: '5px 8px 5px 8px'}}}>Login</Typography>
+							<Typography
+								sx={{
+									fontFamily: "Poppins",
+									fontWeight: "700",
+									padding: "5px 8px 5px 8px",
+									"&:hover": {
+										backgroundColor: "#FDEEDC",
+										color: "#F1A661",
+										borderRadius: "20px",
+										padding: "5px 8px 5px 8px",
+									},
+								}}
+							>
+								Login
+							</Typography>
 						</Box>
 					) : (
 						<Box sx={{flexGrow: 0}}>
@@ -184,9 +199,12 @@ function ResponsiveAppBar() {
 											backgroundColor: "transparent",
 										},
 									}}
+									disableRipple
 								>
 									<Avatar alt="Remy Sharp" src={user?.avatar} />
-									<Typography sx={{padding: "10px"}}>UserName</Typography>
+									<Typography sx={{padding: "10px"}}>
+										{user?.username}
+									</Typography>
 								</IconButton>
 							</Tooltip>
 							<Menu

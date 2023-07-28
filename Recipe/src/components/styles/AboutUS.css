@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;1,700&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Mulish:wght@400;500;600&family=Noto+Sans:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+
+.about-container {
+    padding: 0px 0px !important;
+}
+
+.about-title {
+    color: #E38B29 !important;
+    font-family: 'Roboto' !important;
+    font-weight: 700 !important;
+    font-size: 35px !important;
+    padding: 30px 40px 0px 40px;
+}
+
+
+.content-trapezoid {
+    position: relative;
+    top: -30px;
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
+    background-color: #FDEEDC;
+    padding-top: 20px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.info-grid {
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
+    background-color: rgba(217, 217, 217, 0.5);
+    padding-top: 20px !important;
+    border-radius: 30px !important;
+    background-color: rgba(217, 217, 217, 0.3) !important;
+    border: 2px solid rgba(217, 217, 217, 0.5) !important;
+}
+
+.box-shadow-card {
+    box-shadow: rgba(0,0,0, 0.5) 30px 40px 30px 60px, rgba(0,0,0, 0.5) 30px 40px 30px 50px;
+}
+
+.info-content {
+    padding: 40px 40px 40px 40px;
+}
+
+/* .flex-container {
+    display: flex;
+    align-items: center;
+} */
+
+.card-media {
+    /* flex: 0 0 140px; */
+    border-radius: 50%; /* Display as a circle */
+    margin-right: 16px;
+}
+
+.info-name {
+    color: #E38B29;
+    font-weight: 700 !important;
+    font-size: 30px !important;
+}
+
+.responsible {
+    color: #F1A661;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+}
+
+.intro {
+    text-align: justify !important;
+    color: #E86A33 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    padding: 0px 40px 0px 5px !important;
+}
+
+.info-item {
+    padding: 2px 5px;
+    font-family: 'Roboto' !important;
+}
+
+.about-content {
+    padding: 10px 20px 0px 20px;
+}
+
+.mobile-intro {
+    text-align: justify !important;
+    word-spacing: -3px !important;
+    color: #E86A33 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    padding: 0px 0px 0px 5px !important;
+}
+
+.mobile-name {
+    color: #E38B29 !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+}
+
+.mobile-responsible {
+    color: #F1A661;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+}
