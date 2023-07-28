@@ -164,8 +164,8 @@ const RecipeDetailPage = () => {
 
     return (<>
             <Navbar/>
-            <div style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
-                <div style={{width: '45%', height: '100vh'}}>
+            <div className='detail-structure-resize' style={{width: '100%'}}>
+                <div className='recipe-pic-resize'>
                     <Link to={'/recipes'}>
                         <img src="../src/assets/icons8-back-96 (1).png" alt="Back btn" style={{width: '50px', height: '50px', position: 'absolute', margin: '10px 20px 0px 20px'}}/>
                     </Link>
@@ -173,8 +173,8 @@ const RecipeDetailPage = () => {
                     
                 </div>
                 
-                <div style={{width: '55%', display: 'flex', flexDirection: 'column', marginTop: '10px', overflowY: 'auto', maxHeight: '100vh'}}>
-                    <div className='poppins-font' style={{display: 'flex', flexDirection: 'row', marginLeft: '20px'}}>
+                <div className='recipe-info-resize' style={{display: 'flex', flexDirection: 'column', marginTop: '20px', overflowY: 'auto', maxHeight: '100vh'}}>
+                    <div className='poppins-font avatar-position-change' style={{display: 'flex', flexDirection: 'row'}}>
                             <Box sx={{display: 'flex', alignItems: 'center'}}
                                  onClick={() => {
                                      navigate('/history?id=' + recipeData.user.id)
@@ -185,9 +185,9 @@ const RecipeDetailPage = () => {
                             </Box>
                     </div>
 
-                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: '30px'}}>
+                    <div className='average-rate-position' style={{display: 'flex', alignItems: 'center', marginLeft: '30px'}}>
                         <Typography variant="h6" className='poppins-font' style={{fontSize: '18px', marginRight: '10px', fontWeight: '700'}}>
-                            Recipe rate 
+                            Average rate 
                         </Typography>
 
                         <Rating
@@ -195,12 +195,12 @@ const RecipeDetailPage = () => {
                             value={userRating}
                             onChange={handleRatingChange}
                         />
-                        <Button variant="outlined" onClick={handleRatingSubmit} style={{marginLeft: '10px', border: '2px solid #064635'}}>
+                        {/* <Button variant="outlined" onClick={handleRatingSubmit} style={{marginLeft: '10px', border: '2px solid #064635'}}>
                             <h3 className='poppins-font'>Save</h3>
-                        </Button>
+                        </Button> */}
                     </div>
 
-                    <div className='poppins-font' style={{display: 'flex', flexDirection: 'row', fontSize: '14px', justifyContent: 'center', marginTop: '20px'}}>
+                    <div className='poppins-font recipe-info-position' style={{display: 'flex', fontSize: '14px', justifyContent: 'center', marginTop: '20px'}}>
                         <div className='preparation-style'>
                             <h3 className='txt-center'>Recipe Name</h3>
                             <h4 className='body-font txt-center'>{recipeName}</h4>
@@ -222,48 +222,67 @@ const RecipeDetailPage = () => {
                         </div>
                     </div>
 
-                    <div style={{marginLeft: '30px', marginTop: '20px'}}>
+                    <div className='ingredient-table-position' style={{ marginTop: '20px'}}>
                         <h3 className='poppins-font'>INGREDIENTS</h3>
                         <RecipeDetailTable ingredients={ingredients}/>
                     </div>
                     
-                    <div style={{marginLeft: '30px', marginTop: '20px'}}>
+                    <div className='instructions-position' style={{ marginTop: '20px'}}>
                         <h3 className='poppins-font'>INSTRUCTIONS</h3>
-                        <h4 className='body-font'>
+                        <h4 className='body-font instructions-body-position'>
                             {instructions}
                         </h4>
                     </div>
+                    
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: '20px', marginTop: '20px', justifyContent: 'space-between'}}>
+                        <div className='rate-recipe-resize' style={{ alignItems: 'center'}}>
+                            <Typography variant="h6" className='poppins-font' style={{fontSize: '18px', marginRight: '10px', fontWeight: '700'}}>
+                                Rate the recipe: 
+                            </Typography>
 
-                    <div style={{marginLeft: '30px', marginTop: '20px', display: 'flex', justifyContent: 'flex-end', marginRight: '20px', height: '100%', alignItems: 'flex-end'}}>
-                        <Button onClick={handleFavoriteClick} sx={{'&:hover': {backgroundColor: 'transparent'}}} disableRipple>
-                            <img src="../src/assets/icons8-save-96.png" alt="Save icon" style={{width: '40px', height: '40px', borderRadius: '15px'}}/>
-                        </Button>
-                    </div>
-
-                    <div style={{marginLeft: '30px'}}>
-                        <Typography variant="h6" className='poppins-font' style={{fontWeight: '800'}}>
-                            COMMENTS
-                        </Typography>
-
-                        <TextField
-                            label="Your comment"
-                            multiline
-                            rows={4}
-                            value={userComment}
-                            onChange={handleCommentChange}
-                            // fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            style={{width: '90%'}}
-                            InputProps={{style: {border: '2px solid #064635', borderRadius: '10px'}}}
-                        />
-
-                        <div style={{display: 'flex', justifyContent: 'flex-end', width: '90%'}}>
-                            <Button variant="contained" onClick={() => handleCommentSubmit()} style={{backgroundColor: '#FF7F3F', borderRadius: '10px'}}>
-                                submit Comment
+                            <Rating
+                                name="user-rating"
+                                value={userRating}
+                                onChange={handleRatingChange}
+                            />
+                            <Button variant="outlined" onClick={handleRatingSubmit} className='recipe-save-btn' style={{ border: '2px solid #064635'}}>
+                                <h3 className='poppins-font'>Save</h3>
                             </Button>
                         </div>
                         
+                        <div style={{marginLeft: '30px', display: 'flex', justifyContent: 'flex-end', marginRight: '20px'}}>
+                            <Button onClick={handleFavoriteClick} sx={{'&:hover': {backgroundColor: 'transparent'}}} disableRipple>
+                                <img src="../src/assets/icons8-save-96.png" alt="Save icon" style={{width: '40px', height: '40px', borderRadius: '15px'}}/>
+                            </Button>
+                        </div>
+                    </div>
+                    
+
+                    <div style={{ marginTop: '20px'}}>
+                        <div className='comments-position-change'> 
+                            <Typography variant="h6" className='poppins-font' style={{fontWeight: '800'}}>
+                                COMMENTS
+                            </Typography>
+
+                            <TextField
+                                label="Your comment"
+                                multiline
+                                rows={4}
+                                value={userComment}
+                                onChange={handleCommentChange}
+                                // fullWidth
+                                margin="normal"
+                                variant="outlined"
+                                style={{width: '90%'}}
+                                InputProps={{style: {border: '2px solid #064635', borderRadius: '10px'}}}
+                            />
+
+                            <div style={{display: 'flex', justifyContent: 'flex-end', width: '90%'}}>
+                                <Button variant="contained" onClick={() => handleCommentSubmit()} style={{backgroundColor: '#FF7F3F', borderRadius: '10px'}}>
+                                    submit Comment
+                                </Button>
+                            </div>
+                        </div>
 
                         {comments.map((comment) => (
                             <Comment key={comment.id} comment={comment} onReply={handleReply}

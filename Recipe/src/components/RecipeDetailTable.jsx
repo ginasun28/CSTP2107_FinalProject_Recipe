@@ -23,7 +23,7 @@ const RecipeDetailTable = ({ ingredients }) => {
     ]
 
     return (
-        <TableContainer component={Paper} sx={{ width: '90%', overflow: 'hidden', backgroundColor: '#F9F3DF', maxHeight: 350}}>
+        <TableContainer component={Paper} sx={{ width: '90%', overflow: 'hidden', backgroundColor: '#F9F3DF', maxHeight: 350, overflowX: 'auto', marginTop: '10px'}}>
             <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                     <TableRow>
