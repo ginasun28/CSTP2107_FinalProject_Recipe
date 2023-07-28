@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {useState} from 'react';
 import {Box, Button, IconButton, Modal, Typography, TextField} from '@mui/material';
 import {Close, Folder} from '@mui/icons-material';

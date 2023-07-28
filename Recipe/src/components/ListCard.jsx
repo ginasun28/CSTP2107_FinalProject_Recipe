@@ -12,11 +12,35 @@ import {
 	CardMedia,
 	Button,
 	IconButton,
+	Rating,
+	Grid,
 } from "@mui/material";
-import {Delete as DeleteIcon, Edit as EditIcon} from "@mui/icons-material";
+import {
+	Delete as DeleteIcon,
+	Edit as EditIcon,
+	Star,
+	StarBorder,
+} from "@mui/icons-material";
 import "../components/styles/ListCard.css";
 
-export default function ListCard({product, isUser, load}) {
+// Import the truncateTextAfterWords function or define it here
+// function truncateTextAfterWords(text, numWords) {
+// 	const words = text.split(" ");
+// 	if (words.length > numWords) {
+// 		return words.slice(0, numWords).join(" ") + "....";
+// 	}
+// 	return text;
+// }
+
+// Function to truncate the text after 26 characters
+function truncateTextAfterCharacters(text, numCharacters) {
+	if (text.length > numCharacters) {
+		return text.slice(0, numCharacters) + "....";
+	}
+	return text;
+}
+
+export default function ListCard({product, isUser, load, mobileView }) {
 	const [user, setUser] = useLocalStorage("user", null);
 
 	const navigate = useNavigate();
@@ -67,6 +91,7 @@ export default function ListCard({product, isUser, load}) {
 			alert("Failed to add favorite. Please try again later.");
 		}
 	};
+
 	const handleCreateCollection = newCollectionName => {
 		// Submits the new favorite name to the backend for creation
 		api
@@ -79,6 +104,7 @@ export default function ListCard({product, isUser, load}) {
 				console.error("Error creating collection:", error);
 			});
 	};
+
 	const handleFavorite = () => {
 		if (!user) {
 			navigate("/signin");
@@ -96,6 +122,7 @@ export default function ListCard({product, isUser, load}) {
 				}
 			});
 	};
+
 	const handleDeleteRecipe = async () => {
 		try {
 			// Call the api to delete the recipe
@@ -108,102 +135,299 @@ export default function ListCard({product, isUser, load}) {
 	};
 
 	const handleEditRecipe = () => {
-		// 编辑菜谱的逻辑，跳转到编辑菜谱的页面，需要根据具体的路由来实现
 		//The logic of editing recipes, jumping to the page of editing recipes, needs to be implemented according to specific routes
 		navigate(`/createRecipe?id=${product.id}`);
 	};
 
+	// Function to check if the screen is small (mobile view)
+	// const isMobileView = () => window.innerWidth <= 599;
+
+	// // Call the isMobileView() function and store the result in a variable
+	// const mobileView = isMobileView();
+
 	return (
 		<>
-			<Card
-				sx={{
-					display: "flex",
-					width: 600,
-					background: "rgba(255, 217, 102, 0.5)",
-				}}
-			>
-				<Box sx={{position: "relative"}}>
-					<Typography
-						component="div"
-						variant="h5"
-						sx={{
-							position: "absolute",
-							top: 0,
-							left: 0,
-							zIndex: 1,
-							padding: "10px",
-							color: "#E38B29",
-							background:
-								"linear-gradient(to left, rgba(253, 245, 202, 0.5), rgba(253, 245, 202, 4), rgba(253, 245, 202, 1))",
-						}}
-					>
-						{product.type}
-					</Typography>
-					<CardMedia
-						component="img"
-						sx={{width: 250, height: 250, flexShrink: 0}}
-						src={product.image}
-						alt={product.name}
-					/>
-				</Box>
-				<Box sx={{display: "flex", flexDirection: "column", width: "100%"}}>
-					<CardContent sx={{flex: "1 0 auto"}}>
-						<Box className="card-save-container">
-							<IconButton
-								onClick={handleFavorite}
-								sx={{position: "absolute", top: "0px", right: "10px"}}
-							>
-								<img
-									src="/src/assets/icons8-save-96.png"
-									alt=""
-									className="card-icon"
+			{/* Desktop view */}
+			{!mobileView && (
+				<Card
+					sx={{
+						display: "flex",
+						background: "rgba(255, 217, 102, 0.5)",
+						borderRadius: "20px",
+					}}
+				>
+					<Grid container>
+						<Grid item xs={12} sm={12} md={6}>
+							<Box sx={{position: "relative"}}>
+								<Typography
+									component="div"
+									variant="h5"
+									sx={{
+										position: "absolute",
+										top: 0,
+										left: 0,
+										zIndex: 1,
+										padding: "10px",
+										color: "#E38B29",
+										background:
+											"linear-gradient(to left, rgba(253, 245, 202, 0.5), rgba(253, 245, 202, 4), rgba(253, 245, 202, 1))",
+									}}
+								>
+									{product.type}
+								</Typography>
+								<CardMedia
+									component="img"
+									sx={{
+										width: "100%",
+										height: "250px", // Set a fixed height or adjust as needed
+									}}
+									src={product.image}
+									alt={product.name}
 								/>
-							</IconButton>
-						</Box>
-						<Typography component="div" variant="h5">
-							{product.recipeName}
-						</Typography>
-						<Typography
-							variant="subtitle1"
-							color="text.secondary"
-							component="div"
-						>
-							{product.user?.username}
-						</Typography>
-						<Typography sx={{fontSize: "16px"}} className="card-desc">
-							{product.instructions}
-						</Typography>
-					</CardContent>
-					{isUser && (
-						<Box>
-							<IconButton
-								color="primary"
-								onClick={handleDeleteRecipe}
-								style={{position: "absolute", bottom: "10px", right: "50px"}}
+							</Box>
+						</Grid>
+						<Grid item xs={12} sm={12} md={6}>
+							<Box
+								sx={{
+									display: "flex",
+									flexDirection: "column",
+									height: "100%",
+									justifyContent: "space-between",
+								}}
 							>
-								<DeleteIcon />
-							</IconButton>
-							<IconButton
-								color="primary"
-								onClick={handleEditRecipe}
-								style={{position: "absolute", bottom: "10px", right: "10px"}}
+								<CardContent>
+									<Box className="card-save-container">
+										<IconButton
+											onClick={handleFavorite}
+											sx={{position: "absolute", top: "0px", right: "10px"}}
+										>
+											<img
+												src="/src/assets/icons8-save-96.png"
+												alt=""
+												className="card-icon"
+											/>
+										</IconButton>
+									</Box>
+									<Typography
+										component="div"
+										variant="h5"
+										className="recipe-name"
+									>
+										{/* {truncateTextAfterWords(product.recipeName, 3)} */}
+										{truncateTextAfterCharacters(product.recipeName, 20)}
+									</Typography>
+									<Typography
+										variant="subtitle1"
+										color="text.secondary"
+										component="div"
+									>
+										{product.user?.username}
+									</Typography>
+									<Typography
+										sx={{fontSize: "13px", margin: "5px", width: "250px"}}
+										className="card-desc"
+									>
+										{product.instructions}
+									</Typography>
+									<Typography
+										variant="subtitle1"
+										color="textSecondary"
+										sx={{padding: "10px 5px"}}
+									>
+										{" "}
+										<Rating
+											name="user-rating"
+											readOnly
+											value={product.averageRating}
+											emptyIcon={<StarBorder sx={{color: "#E38B29"}} />}
+											icon={<Star sx={{color: "#E38B29"}} />}
+										/>
+									</Typography>
+								</CardContent>
+								{isUser && (
+									<Box>
+										<IconButton
+											color="primary"
+											onClick={handleDeleteRecipe}
+											style={{
+												position: "absolute",
+												bottom: "10px",
+												right: "50px",
+											}}
+										>
+											<DeleteIcon />
+										</IconButton>
+										<IconButton
+											color="primary"
+											onClick={handleEditRecipe}
+											style={{
+												position: "absolute",
+												bottom: "10px",
+												right: "10px",
+											}}
+										>
+											<EditIcon />
+										</IconButton>
+									</Box>
+								)}
+								<Box
+									sx={{
+										textAlign: "right",
+										position: "relative",
+										padding: "5px 10px",
+									}}
+								>
+									<Button
+										onClick={() => {
+											navigate(`/recipes/${product.id}`);
+										}}
+										className="read-more"
+									>
+										Read More
+									</Button>
+								</Box>
+							</Box>
+						</Grid>
+					</Grid>
+				</Card>
+			)}
+			{/* Mobile view */}
+			{mobileView && (
+				<Grid container spacing={1}>
+					<Grid item xs={12}>
+						<Card>
+							<Box sx={{position: "relative"}}>
+								<Typography
+									component="div"
+									variant="h5"
+									sx={{
+										position: "absolute",
+										top: 0,
+										left: 0,
+										zIndex: 1,
+										padding: "10px",
+										color: "#E38B29",
+										background:
+											"linear-gradient(to left, rgba(253, 245, 202, 0.5), rgba(253, 245, 202, 4), rgba(253, 245, 202, 1))",
+									}}
+								>
+									{product.type}
+								</Typography>
+								<CardMedia
+									component="img"
+									sx={{
+										width: "100%",
+										height: "200px", // Set a fixed height or adjust as needed
+									}}
+									src={product.image}
+									alt={product.name}
+								/>
+							</Box>
+							<Box
+								sx={{
+									display: "flex",
+									flexDirection: "column",
+									height: "100%",
+									justifyContent: "space-between",
+								}}
 							>
-								<EditIcon />
-							</IconButton>
-						</Box>
-					)}
-					<Box sx={{textAlign: "center", position: "relative", top: "-20px"}}>
-						<Button
-							onClick={() => {
-								navigate(`/recipes/${product.id}`);
-							}}
-							className="read-more"
-						>
-							Read More
-						</Button>
-					</Box>
-				</Box>
-			</Card>
+								<CardContent>
+									<Box className="card-save-container">
+										<IconButton
+											onClick={handleFavorite}
+											sx={{position: "absolute", top: "0px", right: "10px"}}
+										>
+											<img
+												src="/src/assets/icons8-save-96.png"
+												alt=""
+												className="card-icon"
+											/>
+										</IconButton>
+									</Box>
+									<Typography
+										component="div"
+										variant="h5"
+										className="recipe-name"
+									>
+										{/* {truncateTextAfterWords(product.recipeName, 3)} */}
+										{truncateTextAfterCharacters(product.recipeName, 20)}
+									</Typography>
+									<Typography
+										variant="subtitle1"
+										color="text.secondary"
+										component="div"
+									>
+										{product.user?.username}
+									</Typography>
+									<Typography
+										sx={{fontSize: "13px", margin: "5px", width: "250px"}}
+										className="card-desc"
+									>
+										{product.instructions}
+									</Typography>
+									<Typography
+										variant="subtitle1"
+										color="textSecondary"
+										sx={{padding: "10px 5px"}}
+									>
+										{" "}
+										<Rating
+											name="user-rating"
+											readOnly
+											value={product.averageRating}
+											emptyIcon={<StarBorder sx={{color: "#E38B29"}} />}
+											icon={<Star sx={{color: "#E38B29"}} />}
+										/>
+									</Typography>
+								</CardContent>
+								{isUser && (
+									<Box>
+										<IconButton
+											color="primary"
+											onClick={handleDeleteRecipe}
+											style={{
+												position: "absolute",
+												bottom: "10px",
+												right: "50px",
+											}}
+										>
+											<DeleteIcon />
+										</IconButton>
+										<IconButton
+											color="primary"
+											onClick={handleEditRecipe}
+											style={{
+												position: "absolute",
+												bottom: "10px",
+												right: "10px",
+											}}
+										>
+											<EditIcon />
+										</IconButton>
+									</Box>
+								)}
+								<Box
+									sx={{
+										textAlign: "right",
+										position: "relative",
+										padding: "5px 10px",
+									}}
+								>
+									<Button
+										onClick={() => {
+											navigate(`/recipes/${product.id}`);
+										}}
+										className="read-more"
+									>
+										Read More
+									</Button>
+								</Box>
+							</Box>
+						</Card>
+					</Grid>
+				</Grid>
+			)}
+
 			<FavoriteModal
 				open={openModal}
 				onClose={handleCloseModal}
