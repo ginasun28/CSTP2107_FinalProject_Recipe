@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;1,700&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Mulish:wght@400;500;600&family=Noto+Sans:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap');
 
+
+.recipe-name {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    font-family: 'Open Sans' !important;
+}
+
 .card-desc {
     overflow: hidden;
     text-overflow: ellipsis !important;
-    -webkit-line-clamp: 4 !important;
+    -webkit-line-clamp: 2 !important;
     display: -webkit-box !important;
     -webkit-box-orient: vertical !important;
     text-align: justify;
@@ -13,17 +20,16 @@
 }
 
 .card-save-container {
-	position: relative;
+    position: relative;
 }
 
 .card-icon {
-	position: absolute;
-	top: 0;
-	right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 30px;
     height: 30px;
 }
-
 
 .read-more {
     color: #EA5C2B !important;
