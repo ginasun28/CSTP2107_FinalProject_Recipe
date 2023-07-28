@@ -88,16 +88,8 @@ const ProfilePage = () => {
                 </div>
 
                 <form onSubmit={handleSaveProfile}>
-                    <div style={{
-                        height: '150px',
-                        backgroundColor: '#F1A661',
-                        marginTop: '20px',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                    }}>
-                        <div style={{backgroundColor: 'white', borderRadius: '50%', width: '200px', height: '200px', marginLeft: '20%'}}>
+                    <div className='avatar-resize'>
+                        <div className='picture-resize' style={{backgroundColor: 'white', borderRadius: '50%'}}>
                             <Avatar src={profileData.avatar} alt="Profile Avatar" style={{objectFit: 'cover', width: '100%', height: '100%', borderRadius: '50%'}}/>
                         </div>
 
@@ -127,8 +119,9 @@ const ProfilePage = () => {
                         />
                         <input type="file" accept="image/*" onChange={handleAvatarChange}/>
                     </Grid> */}
-                    <div style={{display: 'flex', flexDirection: 'row', width: '100%', marginTop: '35px'}}>
-                        <div style={{width: '50%', margin: ' 0px 5%', display: 'flex', flexDirection: 'column'}}>
+
+                    <div className='form-resize' style={{display: 'flex', width: '100%', marginTop: '35px'}}>
+                        <div className='first-part-resize' style={{display: 'flex', flexDirection: 'column'}}>
 
                             <div style={{display: 'flex', flexDirection: 'column', marginTop: '20px'}}>
                                 <label style={{color: '#064635'}}>Username</label>
@@ -151,7 +144,7 @@ const ProfilePage = () => {
                                         }
                                     }}
                                     variant='outlined'
-                                    style={{width: '90%'}}
+                                    className='profile-txt'
                                     sx={{style: {borderRadius: '20px'}}}
                                     size='small'
                                     required
@@ -179,7 +172,7 @@ const ProfilePage = () => {
                                         }
                                     }}
                                     variant='outlined'
-                                    style={{width: '90%'}}
+                                    className='profile-txt'
                                     size='small'
                                     disabled= {true}
                                 />
@@ -207,7 +200,7 @@ const ProfilePage = () => {
                                         }
                                     }}
                                     variant='outlined'
-                                    style={{width: '90%'}}
+                                    className='profile-txt'
                                     size='small'
                                 />
                             </div>
@@ -236,14 +229,14 @@ const ProfilePage = () => {
                                         }
                                     }}
                                     variant='outlined'
-                                    style={{width: '90%'}}
+                                    className='profile-txt'
                                     size='small'
                                 />
                             </div>
 
                         </div>
 
-                        <div style={{width: '50%', margin: ' 0px 5%', display: 'flex', flexDirection: 'column'}}>
+                        <div className='second-part-resize' style={{margin: ' 0px 5%', display: 'flex', flexDirection: 'column'}}>
                             <div style={{display: 'flex', flexDirection: 'column', marginTop: '20px'}}>
                                 <label style={{color: '#064635'}}>First Name</label>
                                 <TextField 
@@ -265,7 +258,7 @@ const ProfilePage = () => {
                                         }
                                     }}
                                     variant='outlined'
-                                    style={{width: '90%'}}
+                                    className='profile-txt'
                                     sx={{style: {borderRadius: '20px'}}}
                                     size='small'
                                 />
@@ -292,7 +285,7 @@ const ProfilePage = () => {
                                         }
                                     }}
                                     variant='outlined'
-                                    style={{width: '90%'}}
+                                    className='profile-txt'
                                     sx={{style: {borderRadius: '20px'}}}
                                     size='small'
                                 />
@@ -314,7 +307,7 @@ const ProfilePage = () => {
                                                 backgroundColor: 'rgba(255, 216, 169, 0.26)',
                                                 border: '1px solid rgba(0, 0, 0, 0.50)'
                                             }}} 
-                                            style={{width: '90%'}}
+                                            className='profile-txt'
                                 />
                             </div>
                         </div>

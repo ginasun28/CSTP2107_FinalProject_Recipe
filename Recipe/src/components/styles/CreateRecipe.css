@@ -18,3 +18,69 @@
     color: #EA5C2B;
 }
 
+.photo-btn-resize {
+    display: flex;
+    flex-direction: row; 
+    width: 100%; 
+    margin-top: 40px;
+}
+
+.submit-btns {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.form-resize {
+    display: flex; 
+    flex-direction: row;
+}
+
+.first-part-resize {
+    width: 50%; 
+}
+
+.second-part-resize {
+    width: 50%;
+}
+
+.recipe-txt {
+    width: 90%;
+}
+
+@media (max-width: 840px) {
+    .photo-btn-resize {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .photo-resize {
+        align-items: center;
+    }
+
+    .submit-btns {
+        justify-content: center;
+    }
+}
+
+/* Small screen size */
+@media (max-width: 600px) {
+    .form-resize {
+        flex-direction: column;
+    }
+
+    .first-part-resize {
+        width: 100%; 
+    }
+
+    .second-part-resize {
+        width: 100%;
+    }
+
+    .recipe-txt {
+        width: 100%;
+    }
+}

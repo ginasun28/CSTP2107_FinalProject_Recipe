@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Avatar, Box, Button, TextField, Typography} from '@mui/material';
+import './styles/RecipeDetailsPage.css'
 
 const Comment = ({comment, onReply, onConfirmReply}) => {
     const {id, user, content, children, target, parentCommentId, createdAt} = comment;
@@ -23,45 +24,93 @@ const Comment = ({comment, onReply, onConfirmReply}) => {
     };
 
     return (
-        <Box mt={2}>
-            <Typography variant="subtitle2">
-                <Avatar src={user.avatar}/>
-                {user.username}
-                {target && <span>: Reply to {<span style={{color: '#008ac5'}}>@{target.username}</span>}</span>}
-            </Typography>
-            <Typography>{content}</Typography>
-            <Typography variant="caption">Created at: {createdAt}</Typography> {/* Display the creation time */}
-            <Button variant="text" onClick={handleReply} style={{textTransform: "none"}}>
-                reply
-            </Button>
+        <>
+            <div className='all-comments-position' style={{display: 'flex', flexDirection: 'row', marginTop: '20px'}}>
+                <Avatar src={user.avatar} style={{height: '50px', width: '50px'}}/>
+                <div style={{display: 'flex', flexDirection: 'column', marginLeft: '10px'}}>
 
-            {replyToCommentId === id && (
-                <Box mt={2}>
-                    <TextField
-                        label="Your reply"
-                        multiline
-                        rows={3}
-                        value={userReply}
-                        onChange={handleReplyChange}
-                        fullWidth
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <Button variant="contained" onClick={handleConfirmReply}>
-                        Confirm Reply
-                    </Button>
-                </Box>
-            )}
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <h4 className='poppins-font' style={{marginRight: '10px'}}>{user.username}</h4>
+                        <Typography variant="caption" className='body-font'>
+                            created at: {createdAt}
+                        </Typography> {/* Display the creation time */}
+                        
+                        {target && <span>: Reply to {<span style={{color: '#008ac5'}}>@{target.username}</span>}</span>}
+                    </div>
 
-            {children.length ? (
-                <div className="reply" style={{marginLeft: 40, background: '#f7f8fa', padding: 10}}>
-                    {children.map((childComment) => (
-                        <Comment key={childComment.id} comment={childComment} onReply={onReply}
-                                 onConfirmReply={onConfirmReply}/>
-                    ))}
+                    <div>
+                        <Typography>{content}</Typography>
+
+                        <Button variant="text" onClick={handleReply} style={{textTransform: "none"}}>
+                            <h4 className='poppins-font-orange'>Reply</h4>
+                        </Button>
+
+                        {replyToCommentId === id && (
+                            <div>
+                                <TextField
+                                    label="Your reply"
+                                    multiline
+                                    rows={3}
+                                    value={userReply}
+                                    onChange={handleReplyChange}
+                                    fullWidth
+                                    margin="normal"
+                                    variant="outlined"
+                                    InputProps={{style: {border: '1px solid #064635', borderRadius: '10px'}}}
+                                />
+                                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                                    <Button variant="contained" onClick={handleConfirmReply} style={{borderRadius: '10px', backgroundColor: '#FF7F3F'}}>
+                                        Confirm Reply
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            ) : null}
-        </Box>
+                
+            </div>
+
+            {/* OG CODE */}
+            {/* {/* <Box mt={2}> */}
+                {/* <Typography variant="subtitle2">
+                    <Avatar src={user.avatar}/>  */}
+                    {/* {user.username}
+                    {target && <span>: Reply to {<span style={{color: '#008ac5'}}>@{target.username}</span>}</span>} */}
+                {/* </Typography> */}
+                {/* <Typography>{content}</Typography> */}
+                {/* <Typography variant="caption">Created at: {createdAt}</Typography> Display the creation time */}
+                {/* <Button variant="text" onClick={handleReply} style={{textTransform: "none"}}>
+                    reply
+                </Button> */}
+
+                {/* {replyToCommentId === id && (
+                    <Box mt={2}>
+                        <TextField
+                            label="Your reply"
+                            multiline
+                            rows={3}
+                            value={userReply}
+                            onChange={handleReplyChange}
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <Button variant="contained" onClick={handleConfirmReply}>
+                            Confirm Reply
+                        </Button>
+                    </Box>
+                )} */}
+
+                {children.length ? (
+                    <div className="reply" style={{marginLeft: 40, background: '#F9F3DF'}}>
+                        {children.map((childComment) => (
+                            <Comment key={childComment.id} comment={childComment} onReply={onReply}
+                                    onConfirmReply={onConfirmReply}/>
+                        ))}
+                    </div>
+                ) : null}
+            {/* </Box> */}
+        </>
     );
 };
 
