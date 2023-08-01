@@ -1,0 +1,5 @@
+.folder-divider {
+    background: linear-gradient(90deg, rgba(227,139,41,1) 27%, rgba(229,171,107,1) 54%, rgba(237,208,177,1) 93%);
+    /* -webkit-background-clip: text !important; */
+    -webkit-text-fill-color: transparent !important;
+}

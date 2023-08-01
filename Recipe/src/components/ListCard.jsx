@@ -40,13 +40,19 @@ function truncateTextAfterCharacters(text, numCharacters) {
 	return text;
 }
 
-export default function ListCard({product, isUser, load, mobileView }) {
+export default function ListCard({product, isUser, load, mobileView}) {
 	const [user, setUser] = useLocalStorage("user", null);
 
 	const navigate = useNavigate();
 	const [openModal, setOpenModal] = useState(false);
 	const [collections, setCollections] = useState([]);
 	const [selectedCollection, setSelectedCollection] = useState("");
+	// State to manage the IconButton image URL based on favorite status
+	const [favoriteIcon, setFavoriteIcon] = useState(
+		product.isFavorite
+			? "/src/assets/icons8-bookmark-96.png"
+			: "/src/assets/icons8-save-96.png"
+	);
 
 	useEffect(() => {
 		fetchCollections();
@@ -73,8 +79,23 @@ export default function ListCard({product, isUser, load, mobileView }) {
 		setSelectedCollection(collectionId);
 	};
 
-	// Function that handles confirming favorites
+	// Function that handles confirming favorites and saving the recipe to the selected collection
 	const handleConfirmFavorite = async () => {
+		// try {
+		// 	// Add recipe to favorites
+		// 	let {message} = await api.addFavorite({
+		// 		userId: user.id,
+		// 		collectionId: selectedCollection,
+		// 		recipeId: product.id,
+		// 	});
+		// 	// close the popup
+		// 	handleCloseModal();
+		// 	// Prompt the user to save successfully
+		// 	alert(message);
+		// } catch (error) {
+		// 	console.error("Failed to add favorite:", error);
+		// 	alert("Failed to add favorite. Please try again later.");
+		// }
 		try {
 			// Add recipe to favorites
 			let {message} = await api.addFavorite({
@@ -82,9 +103,11 @@ export default function ListCard({product, isUser, load, mobileView }) {
 				collectionId: selectedCollection,
 				recipeId: product.id,
 			});
-			// close the popup
+			// Update the IconButton image to display bookmark icon
+			setFavoriteIcon("/src/assets/icons8-bookmark-96.png");
+			// Close the FavoriteModal
 			handleCloseModal();
-			// Prompt the user to save successfully
+			// Prompt the user with a success message
 			alert(message);
 		} catch (error) {
 			console.error("Failed to add favorite:", error);
@@ -105,22 +128,46 @@ export default function ListCard({product, isUser, load, mobileView }) {
 			});
 	};
 
+	// Function to handle clicking the favorite icon
 	const handleFavorite = () => {
+		// if (!user) {
+		// 	navigate("/signin");
+		// }
+		// api
+		// 	.checkFavorite({
+		// 		userId: user.id,
+		// 		recipeId: product.id,
+		// 	})
+		// 	.then(async res => {
+		// 		if (res.isFavorite) {
+		// 			await api.removeFavorite(product.id, user.id);
+		// 		} else {
+		// 			setOpenModal(true);
+		// 		}
+		// 	});
+
 		if (!user) {
+			// If user is not logged in, navigate to the sign-in page
 			navigate("/signin");
+		} else {
+			// If user is logged in, check if the recipe is already a favorite
+			api
+				.checkFavorite({
+					userId: user.id,
+					recipeId: product.id,
+				})
+				.then(async res => {
+					if (res.isFavorite) {
+						// If the recipe is a favorite, remove it from favorites
+						await api.removeFavorite(product.id, user.id);
+						// Update the IconButton image to display the save icon
+						setFavoriteIcon("/src/assets/icons8-save-96.png");
+					} else {
+						// If the recipe is not a favorite, open the FavoriteModal for selecting the collection to save
+						setOpenModal(true);
+					}
+				});
 		}
-		api
-			.checkFavorite({
-				userId: user.id,
-				recipeId: product.id,
-			})
-			.then(async res => {
-				if (res.isFavorite) {
-					await api.removeFavorite(product.id, user.id);
-				} else {
-					setOpenModal(true);
-				}
-			});
 	};
 
 	const handleDeleteRecipe = async () => {
@@ -200,12 +247,14 @@ export default function ListCard({product, isUser, load, mobileView }) {
 										<IconButton
 											onClick={handleFavorite}
 											sx={{position: "absolute", top: "0px", right: "10px"}}
+											disableRipple
 										>
-											<img
+											{/* <img
 												src="/src/assets/icons8-save-96.png"
 												alt=""
 												className="card-icon"
-											/>
+											/> */}
+											<img src={favoriteIcon} alt="" className="card-icon" />
 										</IconButton>
 									</Box>
 									<Typography
@@ -337,11 +386,12 @@ export default function ListCard({product, isUser, load, mobileView }) {
 											onClick={handleFavorite}
 											sx={{position: "absolute", top: "0px", right: "10px"}}
 										>
-											<img
+											{/* <img
 												src="/src/assets/icons8-save-96.png"
 												alt=""
 												className="card-icon"
-											/>
+											/> */}
+											<img src={favoriteIcon} alt="" className="card-icon" />
 										</IconButton>
 									</Box>
 									<Typography
@@ -427,7 +477,7 @@ export default function ListCard({product, isUser, load, mobileView }) {
 					</Grid>
 				</Grid>
 			)}
-
+			{/* Render the FavoriteModal component */}
 			<FavoriteModal
 				open={openModal}
 				onClose={handleCloseModal}

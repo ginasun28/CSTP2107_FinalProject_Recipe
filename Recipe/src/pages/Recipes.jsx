@@ -32,7 +32,7 @@ const types = [
 	"Soup",
 ];
 
-const Recipes = ({}) => {
+const Recipes = () => {
 	const [products, setProducts] = useState([]);
 	const [searchText, setSearchText] = useState("");
 	const [filterType, setFilterType] = useState("All");
