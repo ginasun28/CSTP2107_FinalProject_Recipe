@@ -21,7 +21,7 @@ const AboutInfo = ({info, isMobileView}) => {
 						<Grid sx={{position: "relative"}} spacing={2}>
 							<CardMedia
 								component="img"
-								className="card-media"
+								className={`card-media ${info.firstname.toLowerCase()}-avatar`}
 								src={info.avatar}
 								alt={info.firstName}
 								sx={{

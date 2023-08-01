@@ -9,7 +9,7 @@ export const informations = [
         "In our group, she is a UI, UX, and front-end developer, has Her responsible for designing an intuitive and visually appealing interface that enhances the overall user experience. we will prioritize user-friendly navigation, clear and concise instructions, and aesthetically pleasing visuals to engage and guide our website visitors.",
     },
     {
-        avatar:'src/assets/avatar/test.jpg',
+        avatar:'src/assets/avatar/Nicole.png',
         firstname: "Clarissa Nicole",
         lastname: "Taswin",
         responsible: "Middle developer",

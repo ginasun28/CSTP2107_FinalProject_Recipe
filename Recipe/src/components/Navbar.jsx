@@ -203,8 +203,17 @@ function ResponsiveAppBar() {
 									disableRipple
 								>
 									<Avatar alt="Remy Sharp" src={user?.avatar} />
-									<Typography sx={{padding: "10px"}}>
+									<Typography
+										sx={{
+											padding: "10px",
+											color: "#064635",
+											fontFamily: "Montserrat",
+											fontWeight: "700",
+											fontSize: "13px",
+										}}
+									>
 										{user?.username}
+										<img src="src/assets/icons8-down-96.png" alt="" width='8' height='8' style={{padding: '0px 3px'}}/>
 									</Typography>
 								</IconButton>
 							</Tooltip>
