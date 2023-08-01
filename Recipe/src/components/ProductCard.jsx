@@ -100,7 +100,7 @@ const ProductCard = ({product, isUser, load}) => {
     const handleEditRecipe = () => {
         // 编辑菜谱的逻辑，跳转到编辑菜谱的页面，需要根据具体的路由来实现
         //The logic of editing recipes, jumping to the page of editing recipes, needs to be implemented according to specific routes
-        navigate(`/createRecipe?id=${product.id}`);
+        navigate(`/create_recipe?id=${product.id}`);
     };
 
     return (<>

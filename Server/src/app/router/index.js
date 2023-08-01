@@ -3,7 +3,7 @@ const router = express.Router();
 const userController = require("../controllers/userController");
 const multer = require("multer");
 const recipesController = require("../controllers/recipesController");
-// const collectionsController = require("../controllers/collectionsController");
+const collectionsController = require("../controllers/collectionsController");
 const commentsController = require('../controllers/commentsController');
 const cloudinary = require('cloudinary').v2;
 const upload = multer({dest: 'uploads/'});
@@ -29,19 +29,19 @@ let routes = app => {
     app.post('/search', recipesController.search)
     app.delete('/recipes/:id', recipesController.deleteRecipe);
 
-    // app.post('/collections', collectionsController.createCollection);
+    app.post('/collections', collectionsController.createCollection);
 
-    // app.get('/collections/:userId', collectionsController.getUserCollections);
+    app.get('/collections/:userId', collectionsController.getUserCollections);
 
-    // app.get('/collections/:collectionId/recipes', collectionsController.getCollectionRecipes);
+    app.get('/collections/:collectionId/recipes', collectionsController.getCollectionRecipes);
 
-    // app.delete('/collections/:collectionId', collectionsController.deleteCollection);
+    app.delete('/collections/:collectionId', collectionsController.deleteCollection);
 
-    // app.post('/favorites', collectionsController.addFavorite);
+    app.post('/favorites', collectionsController.addFavorite);
 
-    // app.delete('/favorites/:recipeId/:userId', collectionsController.removeFavorite);
+    app.delete('/favorites/:recipeId/:userId', collectionsController.removeFavorite);
 
-    // app.post('/checkFavorite', collectionsController.checkFavorite);
+    app.post('/checkFavorite', collectionsController.checkFavorite);
 
 
     router.post('/comment/:recipeId/comments', commentsController.addComment);
