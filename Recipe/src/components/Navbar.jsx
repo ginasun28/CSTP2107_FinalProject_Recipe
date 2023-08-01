@@ -10,12 +10,13 @@ import {
 	Box,
 	Avatar,
 	Tooltip,
+	Divider,
 } from "@mui/material";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 import {Link as RouterLink} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
-import './styles/Header.css'
+import {useState, Fragment} from "react";
+import "./styles/Header.css";
 
 const pages = ["+Create Recipe", "Recipes", "About Us"];
 const settings = ["Profile", "History", "Favorite", "Logout"];
@@ -123,7 +124,7 @@ function ResponsiveAppBar() {
 						>
 							{pages.map((page, index) => (
 								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<RouterLink to={link[index]} className="nav-link" >
+									<RouterLink to={link[index]} className="nav-link">
 										{page}
 									</RouterLink>
 								</MenuItem>
@@ -223,13 +224,19 @@ function ResponsiveAppBar() {
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
 							>
-								{settings.map(setting => (
-									<MenuItem
-										key={setting}
-										onClick={() => handleSettingClick(setting)}
-									>
-										<Typography textAlign="center">{setting}</Typography>
-									</MenuItem>
+								{settings.map((setting, index) => (
+									// <MenuItem
+									// 	key={setting}
+									// 	onClick={() => handleSettingClick(setting)}
+									// >
+									// 	<Typography textAlign="center">{setting}</Typography>
+									// </MenuItem>
+									<Fragment key={setting}>
+										{index === settings.indexOf("Logout") && <Divider />}
+										<MenuItem onClick={() => handleSettingClick(setting)}>
+											<Typography textAlign="center">{setting}</Typography>
+										</MenuItem>
+									</Fragment>
 								))}
 							</Menu>
 						</Box>
