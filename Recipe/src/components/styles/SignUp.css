@@ -1,0 +1,74 @@
+.register-container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    height: '100vh' !important;
+}
+
+.register-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.register-box {
+    background-color: rgba(253, 238, 220, 60%) !important;
+    width: 350px !important;
+    height: 580px !important;
+    border-radius: 20px !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 5px 6px 12px 3px, rgba(0, 0, 0, 0.3) 5px 3px 7px 2px !important;
+}
+
+.signup-textfield-title {
+    color: #064635;
+    font-family: 'Montserrat' !important;
+    font-weight: 700 !important;
+    text-align: left;
+}
+
+.signup-btn {
+    width: 100px !important;
+    background-color: #FFD8A9 !important;
+    color: #064635 !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 600 !important;
+    text-transform: capitalize !important;
+    font-size: 15px !important;
+    border: 1px solid #CCC7C7 !important;
+    border-radius: 10px !important;
+}
+
+.google-login {
+    background-color: #FFD8A9 !important;
+    color: #064635 !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 600 !important;
+    text-transform: capitalize !important;
+    font-size: 16px !important;
+    border: 1px solid #CCC7C7 !important;
+    border-radius: 10px !important;
+}
+
+.member {
+    background: linear-gradient(90deg, rgba(0, 121, 101, 1) 100%, rgba(255, 255, 255, 1) 60%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 600 !important;
+
+}
+
+.login{
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 600 !important;
+}
+
+.login:hover {
+    background: linear-gradient(0deg, rgba(23,89,74,1) 26%, rgba(59,222,148,1) 72%, rgba(255,255,255,1) 91%);
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
