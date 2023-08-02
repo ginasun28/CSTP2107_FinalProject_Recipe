@@ -72,7 +72,7 @@ const History = () => {
                         {/* Edited Filter version */}
                         <IconButton
                             onClick={handleFilterClick}
-                            
+                            disableRipple
                         >
                             <img 
                                 src="src/assets/icons8-filter-96 (2).png" 

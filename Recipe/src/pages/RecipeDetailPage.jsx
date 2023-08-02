@@ -173,22 +173,28 @@ const RecipeDetailPage = () => {
                     
                 </div>
                 
-                <div className='recipe-info-resize' style={{display: 'flex', flexDirection: 'column', marginTop: '20px', overflowY: 'auto', maxHeight: '100vh'}}>
-                    <div className='poppins-font avatar-position-change' style={{display: 'flex', flexDirection: 'row'}}>
-                            <Box sx={{display: 'flex', alignItems: 'center'}}
+                <div className='recipe-info-resize' style={{display: 'flex', flexDirection: 'column', overflowY: 'auto', maxHeight: '100vh'}}>
+                    <div className='poppins-font avatar-position-change' style={{ paddingTop: '20px'}}>
+                            <div className='recipe-name-edit'>
+                                <h3 className='recipe-txt'>Recipe Name</h3>
+                                <h4 className='body-font txt-center'>{recipeName}</h4>
+                            </div>
+
+                            <Box sx={{display: 'flex', alignItems: 'center', paddingRight: '30px'}}
                                  onClick={() => {
                                      navigate('/history?id=' + recipeData.user.id)
                                  }}>
                                 <img src={recipeData.user?.avatar} alt={recipeData.user?.username}
-                                     style={{width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px'}}/>
-                                <Typography variant="h5">{recipeData.user?.username}</Typography>
+                                     style={{width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px'}}/>
+                                <Typography variant="h5" style={{fontSize: '1.25rem'}}>{recipeData.user?.username}</Typography>
                             </Box>
+                            
                     </div>
 
-                    <div className='average-rate-position' style={{display: 'flex', alignItems: 'center', marginLeft: '30px'}}>
-                        <Typography variant="h6" className='poppins-font' style={{fontSize: '18px', marginRight: '10px', fontWeight: '700'}}>
+                    <div className='average-rate-position' style={{display: 'flex', alignItems: 'center', marginLeft: '30px', paddingTop: '5px'}}>
+                        {/* <Typography variant="h6" className='poppins-font' style={{fontSize: '18px', marginRight: '10px', fontWeight: '700'}}>
                             Average rate 
-                        </Typography>
+                        </Typography> */}
 
                         <Rating
                             name="user-rating"
@@ -200,11 +206,8 @@ const RecipeDetailPage = () => {
                         </Button> */}
                     </div>
 
-                    <div className='poppins-font recipe-info-position' style={{display: 'flex', fontSize: '14px', justifyContent: 'center', marginTop: '20px'}}>
-                        <div className='preparation-style'>
-                            <h3 className='txt-center'>Recipe Name</h3>
-                            <h4 className='body-font txt-center'>{recipeName}</h4>
-                        </div>
+                    <div className='poppins-font recipe-info-position' style={{display: 'flex', fontSize: '14px', justifyContent: 'center', paddingTop: '20px'}}>
+                        
 
                         <div className='preparation-style'>
                             <h3 className='txt-center'>Servings</h3>
@@ -222,19 +225,19 @@ const RecipeDetailPage = () => {
                         </div>
                     </div>
 
-                    <div className='ingredient-table-position' style={{ marginTop: '20px'}}>
+                    <div className='ingredient-table-position' style={{ paddingTop: '20px'}}>
                         <h3 className='poppins-font'>INGREDIENTS</h3>
                         <RecipeDetailTable ingredients={ingredients}/>
                     </div>
                     
-                    <div className='instructions-position' style={{ marginTop: '20px'}}>
+                    <div className='instructions-position' style={{ paddingTop: '20px'}}>
                         <h3 className='poppins-font'>INSTRUCTIONS</h3>
                         <h4 className='body-font instructions-body-position'>
                             {instructions}
                         </h4>
                     </div>
                     
-                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: '20px', marginTop: '20px', justifyContent: 'space-between'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: '20px', paddingTop: '20px', justifyContent: 'space-between'}}>
                         <div className='rate-recipe-resize' style={{ alignItems: 'center'}}>
                             <Typography variant="h6" className='poppins-font' style={{fontSize: '18px', marginRight: '10px', fontWeight: '700'}}>
                                 Rate the recipe: 
@@ -258,7 +261,7 @@ const RecipeDetailPage = () => {
                     </div>
                     
 
-                    <div style={{ marginTop: '20px'}}>
+                    <div style={{ paddingTop: '20px'}}>
                         <div className='comments-position-change'> 
                             <Typography variant="h6" className='poppins-font' style={{fontWeight: '800'}}>
                                 COMMENTS
