@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {
-    Button,
+  Button,
 	Card,
 	CardActions,
 	CardContent,
@@ -27,7 +27,6 @@ import './styles/RecentRecipe.css'
 
 const ProductCard = ({product, isUser, load}) => {
 	const [user, setUser] = useLocalStorage("user", null);
-
 	const navigate = useNavigate();
 	const [openModal, setOpenModal] = useState(false);
 	const [collections, setCollections] = useState([]);
@@ -175,7 +174,6 @@ const ProductCard = ({product, isUser, load}) => {
 		//The logic of editing recipes, jumping to the page of editing recipes, needs to be implemented according to specific routes
 		navigate(`/create_recipe?id=${product.id}`);
 	};
-
     return (<>
             <Card sx={{maxWidth: 300, height: '100%', borderRadius: '15px', backgroundColor: 'rgba(255, 217, 102, 0.50)'}}>
                 <CardHeader

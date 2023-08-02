@@ -21,6 +21,10 @@ const History = () => {
 	}, []);
 
     useEffect(() => {
+		document.title = "History";
+	}, []);
+
+    useEffect(() => {
         load()
     }, []);
 
