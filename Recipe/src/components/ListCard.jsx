@@ -48,15 +48,35 @@ export default function ListCard({product, isUser, load, mobileView}) {
 	const [collections, setCollections] = useState([]);
 	const [selectedCollection, setSelectedCollection] = useState("");
 	// State to manage the IconButton image URL based on favorite status
+	// const [favoriteIcon, setFavoriteIcon] = useState(
+	// 	product.isFavorite
+	// 		? "/src/assets/icons8-bookmark-96.png"
+	// 		: "/src/assets/icons8-save-96.png"
+	// );
+	const [isFavorite, setIsFavorite] = useState(false);
 	const [favoriteIcon, setFavoriteIcon] = useState(
-		product.isFavorite
-			? "/src/assets/icons8-bookmark-96.png"
-			: "/src/assets/icons8-save-96.png"
+		"/src/assets/icons8-save-96.png"
 	);
 
+	// First useEffect hook to fetch collections when the component mounts
 	useEffect(() => {
 		fetchCollections();
 	}, []);
+
+	// Second useEffect hook to load the initial favorite status from localStorage
+	useEffect(() => {
+		const favoriteStatusFromLocalStorage = localStorage.getItem(
+			`favorite_${product.id}`
+		);
+		if (favoriteStatusFromLocalStorage !== null) {
+			setIsFavorite(favoriteStatusFromLocalStorage === "true");
+			setFavoriteIcon(
+				favoriteStatusFromLocalStorage === "true"
+					? "/src/assets/icons8-bookmark-96.png"
+					: "/src/assets/icons8-save-96.png"
+			);
+		}
+	}, [product.id]);
 
 	const fetchCollections = async () => {
 		if (user) {
@@ -129,7 +149,7 @@ export default function ListCard({product, isUser, load, mobileView}) {
 	};
 
 	// Function to handle clicking the favorite icon
-	const handleFavorite = () => {
+	const handleFavorite = async () => {
 		// if (!user) {
 		// 	navigate("/signin");
 		// }
@@ -151,22 +171,35 @@ export default function ListCard({product, isUser, load, mobileView}) {
 			navigate("/signin");
 		} else {
 			// If user is logged in, check if the recipe is already a favorite
-			api
-				.checkFavorite({
+			try {
+				const res = await api.checkFavorite({
 					userId: user.id,
 					recipeId: product.id,
-				})
-				.then(async res => {
-					if (res.isFavorite) {
-						// If the recipe is a favorite, remove it from favorites
-						await api.removeFavorite(product.id, user.id);
-						// Update the IconButton image to display the save icon
-						setFavoriteIcon("/src/assets/icons8-save-96.png");
-					} else {
-						// If the recipe is not a favorite, open the FavoriteModal for selecting the collection to save
-						setOpenModal(true);
-					}
 				});
+				if (res.isFavorite) {
+					// If the recipe is a favorite, remove it from favorites
+					await api.removeFavorite(product.id, user.id);
+				} else {
+					// If the recipe is not a favorite, open the FavoriteModal for selecting the collection to save
+					setOpenModal(true);
+				}
+
+				// Update the isFavorite status and favoriteIcon state
+				setIsFavorite(!res.isFavorite);
+
+				// Update the IconButton image based on the isFavorite status
+				setFavoriteIcon(
+					!res.isFavorite
+						? "/src/assets/icons8-bookmark-96.png"
+						: "/src/assets/icons8-save-96.png"
+				);
+
+				// Store the favorite status in localStorage
+				localStorage.setItem(`favorite_${product.id}`, !res.isFavorite);
+			} catch (error) {
+				console.error("Failed to add favorite:", error);
+				alert("Failed to add favorite. Please try again later.");
+			}
 		}
 	};
 

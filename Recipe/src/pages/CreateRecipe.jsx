@@ -10,6 +10,7 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import '../components/styles/CreateRecipe.css'
 
 const PublishProductPage = () => {
+    
     const [productInfo, setProductInfo] = useState({
         recipeName: '',
         type: '',
@@ -27,6 +28,11 @@ const PublishProductPage = () => {
     const id = new URLSearchParams(location.search).get('id');
     const inputRef = useRef(null);
     const navigate = useNavigate();
+    
+    // Call the custom hook to update the page title
+	useEffect(() => {
+		document.title = "Create Recipe";
+	}, []);
 
     useEffect(() => {
         if (!user) {

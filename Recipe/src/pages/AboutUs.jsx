@@ -14,6 +14,10 @@ const AboutUs = () => {
 	useEffect(() => {
 		getInfosData();
 	}, []);
+	// Call the custom hook to update the page title
+	useEffect(() => {
+		document.title = "About";
+	}, []);
 
 	const getInfosData = () => {
 		const requiredData = informations.map(data => ({
