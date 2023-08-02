@@ -1,6 +1,21 @@
 /* eslint-disable react/prop-types */
-import {Button, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Link, Rating, Typography} from '@mui/material';
-import {BookmarkBorder, Delete as DeleteIcon, Edit as EditIcon} from '@mui/icons-material';
+import {
+    Button,
+	Card,
+	CardActions,
+	CardContent,
+	CardHeader,
+	CardMedia,
+	IconButton,
+	Link,
+	Rating,
+	Typography,
+} from "@mui/material";
+import {
+	BookmarkBorder,
+	Delete as DeleteIcon,
+	Edit as EditIcon,
+} from "@mui/icons-material";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 import {useNavigate} from "react-router-dom";
 import api from "@/api/index.js";
@@ -11,99 +26,155 @@ import Box from "@mui/material/Box";
 import './styles/RecentRecipe.css'
 
 const ProductCard = ({product, isUser, load}) => {
+	const [user, setUser] = useLocalStorage("user", null);
 
-    const [user, setUser] = useLocalStorage('user', null);
+	const navigate = useNavigate();
+	const [openModal, setOpenModal] = useState(false);
+	const [collections, setCollections] = useState([]);
+	const [selectedCollection, setSelectedCollection] = useState("");
+	const [isFavorite, setIsFavorite] = useState(false); // New state for favorite status
+	const [favoriteIcon, setFavoriteIcon] = useState(
+		"/src/assets/icons8-save-96.png"
+	); // New state for favorite icon
 
-    const navigate = useNavigate();
-    const [openModal, setOpenModal] = useState(false);
-    const [collections, setCollections] = useState([]);
-    const [selectedCollection, setSelectedCollection] = useState('');
+	useEffect(() => {
+		fetchCollections();
+		checkInitialFavoriteStatus();
+	}, []);
 
-    useEffect(() => {
-        fetchCollections();
-    }, []);
+	const fetchCollections = async () => {
+		if (user) {
+			try {
+				const res = await api.getUserCollections(user.id);
+				setCollections(res.collections);
+			} catch (error) {
+				console.error("Failed to get user collections:", error);
+			}
+		}
+	};
 
-    const fetchCollections = async () => {
-        if (user) {
-            try {
-                const res = await api.getUserCollections(user.id);
-                setCollections(res.collections);
-            } catch (error) {
-                console.error('Failed to get user collections:', error);
-            }
-        }
-    };
+	// New function to check the initial favorite status from localStorage
+	const checkInitialFavoriteStatus = () => {
+		const favoriteStatusFromLocalStorage = localStorage.getItem(
+			`favorite_${product.id}`
+		);
+		if (favoriteStatusFromLocalStorage !== null) {
+			setIsFavorite(favoriteStatusFromLocalStorage === "true");
+			setFavoriteIcon(
+				favoriteStatusFromLocalStorage === "true"
+					? "/src/assets/icons8-bookmark-96.png"
+					: "/src/assets/icons8-save-96.png"
+			);
+		}
+	};
 
-    // Function to handle closing the popup window
-    const handleCloseModal = () => {
-        setOpenModal(false);
-    };
+	// Function to handle closing the popup window
+	const handleCloseModal = () => {
+		setOpenModal(false);
+	};
 
-    // Function to handle selecting favorites
-    const handleSelectCollection = (collectionId) => {
-        setSelectedCollection(collectionId);
-    };
+	// Function to handle selecting favorites
+	const handleSelectCollection = collectionId => {
+		setSelectedCollection(collectionId);
+	};
 
-    // Function that handles confirming favorites
-    const handleConfirmFavorite = async () => {
-        try {
-            // Add recipe to favorites
-            let {message} = await api.addFavorite({
-                userId: user.id,
-                collectionId: selectedCollection,
-                recipeId: product.id
-            });
-            // close the popup
-            handleCloseModal();
-            // Prompt the user to save successfully
-            alert(message);
-        } catch (error) {
-            console.error('Failed to add favorite:', error);
-            alert('Failed to add favorite. Please try again later.');
-        }
-    };
-    const handleCreateCollection = (newCollectionName) => {
-        // Submits the new favorite name to the backend for creation
-        api.createCollection({userId: user.id, name: newCollectionName})
-            .then(() => {
-                // After the creation is successful, reacquire the user's favorites list and refresh the favorites list
-                fetchCollections();
-            })
-            .catch((error) => {
-                console.error('Error creating collection:', error);
-            });
-    };
-    const handleFavorite = () => {
+	// Function that handles confirming favorites
+	const handleConfirmFavorite = async () => {
+		try {
+			// Add recipe to favorites
+			let {message} = await api.addFavorite({
+				userId: user.id,
+				collectionId: selectedCollection,
+				recipeId: product.id,
+			});
+			// close the popup
+			handleCloseModal();
+			// Prompt the user to save successfully
+			alert(message);
+		} catch (error) {
+			console.error("Failed to add favorite:", error);
+			alert("Failed to add favorite. Please try again later.");
+		}
+	};
+	const handleCreateCollection = newCollectionName => {
+		// Submits the new favorite name to the backend for creation
+		api
+			.createCollection({userId: user.id, name: newCollectionName})
+			.then(() => {
+				// After the creation is successful, reacquire the user's favorites list and refresh the favorites list
+				fetchCollections();
+			})
+			.catch(error => {
+				console.error("Error creating collection:", error);
+			});
+	};
+    
+	const handleFavorite = async () => {
+		// if (!user) {
+		// 	navigate("/signin");
+		// }
+		// api
+		// 	.checkFavorite({
+		// 		userId: user.id,
+		// 		recipeId: product.id,
+		// 	})
+		// 	.then(async res => {
+		// 		if (res.isFavorite) {
+		// 			await api.removeFavorite(product.id, user.id);
+		// 		} else {
+		// 			setOpenModal(true);
+		// 		}
+		// 	});
         if (!user) {
-            navigate("/signin")
-        }
-        api.checkFavorite({
-            userId: user.id,
-            recipeId: product.id
-        }).then(async res => {
-            if (res.isFavorite) {
-                await api.removeFavorite(product.id, user.id)
-            } else {
+            navigate('/signin');
+          } else {
+            try {
+              const res = await api.checkFavorite({
+                userId: user.id,
+                recipeId: product.id,
+              });
+              if (res.isFavorite) {
+                // If the recipe is a favorite, remove it from favorites
+                await api.removeFavorite(product.id, user.id);
+              } else {
+                // If the recipe is not a favorite, open the FavoriteModal for selecting the collection to save
                 setOpenModal(true);
+              }
+      
+              // Update the isFavorite status and favoriteIcon state
+              setIsFavorite(!res.isFavorite);
+      
+              // Update the IconButton image based on the isFavorite status
+              setFavoriteIcon(
+                !res.isFavorite
+                  ? '/src/assets/icons8-bookmark-96.png'
+                  : '/src/assets/icons8-save-96.png'
+              );
+      
+              // Store the favorite status in localStorage
+              localStorage.setItem(`favorite_${product.id}`, !res.isFavorite);
+            } catch (error) {
+              console.error('Failed to add favorite:', error);
+              alert('Failed to add favorite. Please try again later.');
             }
-        })
-    };
-    const handleDeleteRecipe = async () => {
-        try {
-            // Call the api to delete the recipe
-            await api.deleteRecipes(product.id);
-            load()
-        } catch (error) {
-            console.error('Error deleting recipe:', error);
-            alert('Failed to delete recipe. Please try again later.');
-        }
-    };
+          }
+	};
+	const handleDeleteRecipe = async () => {
+		try {
+			// Call the api to delete the recipe
+			await api.deleteRecipes(product.id);
+			load();
+		} catch (error) {
+			console.error("Error deleting recipe:", error);
+			alert("Failed to delete recipe. Please try again later.");
+		}
+	};
 
-    const handleEditRecipe = () => {
-        // 编辑菜谱的逻辑，跳转到编辑菜谱的页面，需要根据具体的路由来实现
-        //The logic of editing recipes, jumping to the page of editing recipes, needs to be implemented according to specific routes
-        navigate(`/create_recipe?id=${product.id}`);
-    };
+	const handleEditRecipe = () => {
+		// 编辑菜谱的逻辑，跳转到编辑菜谱的页面，需要根据具体的路由来实现
+		//The logic of editing recipes, jumping to the page of editing recipes, needs to be implemented according to specific routes
+		navigate(`/create_recipe?id=${product.id}`);
+	};
 
     return (<>
             <Card sx={{maxWidth: 300, height: '100%', borderRadius: '15px', backgroundColor: 'rgba(255, 217, 102, 0.50)'}}>
@@ -133,16 +204,18 @@ const ProductCard = ({product, isUser, load}) => {
                                         >
                                             <EditIcon sx={{fontSize: 25}}/>
                                         </IconButton>
+                                        <IconButton
+                                            onClick={handleFavorite}
+                                            style={{color: '#E38B29', padding: '8px'}}
+                                            sx={{'&:hover': {backgroundColor: '#FBCF5F', borderRadius: '50%'}}}
+                                        >
+                                            <img src={favoriteIcon} alt="" style={{width: '25px', height: '25px'}}/>
+                                            {/* <BookmarkBorder sx={{fontSize: 25}}/> */}
+                                        </IconButton>
                                     </div>
                                 </Box>
                             )}
-                            <IconButton
-                                onClick={handleFavorite}
-                                style={{color: '#E38B29'}}
-                                sx={{'&:hover': {backgroundColor: '#FBCF5F', borderRadius: '50%'}}}
-                            >
-                                <BookmarkBorder sx={{fontSize: 25}}/>
-                            </IconButton>
+                            
                         </div>
                     }
                     subheader={

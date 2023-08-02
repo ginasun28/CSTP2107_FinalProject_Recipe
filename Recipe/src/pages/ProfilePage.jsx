@@ -30,6 +30,10 @@ const ProfilePage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+		document.title = "Profile";
+	}, []);
+
+    useEffect(() => {
         api.getUser({id: user.id}).then(res => {
             console.log(res)
             delete res.password

@@ -23,6 +23,10 @@ const MyCollectionsPage = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		document.title = "Favorite";
+	}, []);
+
+	useEffect(() => {
 		if (!user) {
 			navigate("/signin");
 		}

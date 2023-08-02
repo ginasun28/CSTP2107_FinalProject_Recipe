@@ -17,6 +17,10 @@ const History = () => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     useEffect(() => {
+		document.title = "History";
+	}, []);
+
+    useEffect(() => {
         load()
     }, []);
 
