@@ -14,6 +14,10 @@ const History = () => {
     const id = new URLSearchParams(location.search).get('id');
 
     useEffect(() => {
+		document.title = "History";
+	}, []);
+
+    useEffect(() => {
         load()
     }, []);
 

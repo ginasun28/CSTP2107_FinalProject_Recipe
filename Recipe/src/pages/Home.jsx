@@ -13,7 +13,7 @@ import {
 	Tooltip,
 } from "@mui/material";
 import {Link as RouterLink} from "react-router-dom";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Footer from "../components/Footer";
 
 const pages = ["Home", "+Create Recipe", "Recipes", "About"];
@@ -23,6 +23,11 @@ const link = ["/", "/create_recipe", "/recipes", "/about_us"];
 export default function Home() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const [anchorElUser, setAnchorElUser] = useState(null);
+
+	// Call the custom hook to update the page title
+	useEffect(() => {
+		document.title = "Epicurean Eats";
+	}, []);
 
 	const handleOpenNavMenu = event => {
 		setAnchorElNav(event.currentTarget);

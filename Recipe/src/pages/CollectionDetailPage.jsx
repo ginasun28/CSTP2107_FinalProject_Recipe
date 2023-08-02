@@ -11,6 +11,10 @@ const CollectionDetailPage = () => {
     const {id} = useParams();
 
     useEffect(() => {
+		document.title = "Collection Detail";
+	}, []);
+
+    useEffect(() => {
         // Get the latest recipe list
         api.getCollectionRecipes(id).then((res) => {
             setProducts(res.recipes);

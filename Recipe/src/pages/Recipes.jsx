@@ -45,6 +45,11 @@ const Recipes = () => {
 		});
 	}, []);
 
+	// Call the custom hook to update the page title
+	useEffect(() => {
+		document.title = "Recipes";
+	}, []);
+
 	// Handle the search box text change event
 	const handleSearchTextChange = event => {
 		setSearchText(event.target.value);
