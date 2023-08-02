@@ -25,7 +25,7 @@ const Comment = ({comment, onReply, onConfirmReply}) => {
 
     return (
         <>
-            <div className='all-comments-position' style={{display: 'flex', flexDirection: 'row', marginTop: '20px'}}>
+            <div className='all-comments-position' style={{display: 'flex', flexDirection: 'row', paddingTop: '20px'}}>
                 <Avatar src={user.avatar} style={{height: '50px', width: '50px'}}/>
                 <div style={{display: 'flex', flexDirection: 'column', marginLeft: '10px'}}>
 
