@@ -158,7 +158,7 @@ const PublishProductPage = () => {
     return (<>
             <Navbar/>
             <div style={{width: '100%', paddingBottom: '5%'}}>
-                <div style={{marginLeft: '30px', marginRight: '30px'}}>
+                <div style={{marginLeft: '30px', marginRight: '30px', marginTop: '20px'}}>
                     <h3 className='recipe-title'>
 						Create Recipe
 					</h3>
@@ -376,7 +376,7 @@ const PublishProductPage = () => {
                                                     <div style={{width: '200px', height: '200px', backgroundColor: 'white'}}>
                                                         <img
                                                             style={{border: "1px solid #efefef", padding: 50}}
-                                                            src="../../public/plus.png"
+                                                            src="./src/assets/icons8-add-96.png"
                                                             loading="lazy"
                                                             alt=""
                                                             width="100"

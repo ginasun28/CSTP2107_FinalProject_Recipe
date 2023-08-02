@@ -79,6 +79,8 @@ const MyCollectionsPage = () => {
             });
     };
 
+    console.log("collections: ", collections)
+
     return (
         <>
             <Navbar/>

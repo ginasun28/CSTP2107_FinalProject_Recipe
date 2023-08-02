@@ -84,7 +84,7 @@ const ProfilePage = () => {
                         </Link>
                     </div>
 
-                    <h2 style={{color: '#E38B29'}}>Edit Profile</h2>
+                    <h2 style={{color: '#E38B29', paddingBottom: '20px'}}>Edit Profile</h2>
                 </div>
 
                 <form onSubmit={handleSaveProfile}>

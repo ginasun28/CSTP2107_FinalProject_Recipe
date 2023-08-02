@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import {Card, CardContent, CardMedia, IconButton, Link, Rating, Typography} from '@mui/material';
+import {Button, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Link, Rating, Typography} from '@mui/material';
 import {BookmarkBorder, Delete as DeleteIcon, Edit as EditIcon} from '@mui/icons-material';
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 import {useNavigate} from "react-router-dom";
@@ -7,6 +7,8 @@ import api from "@/api/index.js";
 import {useEffect, useState} from "react";
 import FavoriteModal from "@/components/FavoriteModa.jsx";
 import Box from "@mui/material/Box";
+
+import './styles/RecentRecipe.css'
 
 const ProductCard = ({product, isUser, load}) => {
 
@@ -104,31 +106,147 @@ const ProductCard = ({product, isUser, load}) => {
     };
 
     return (<>
-            <Card style={{position: "relative", height: "420px"}}>
-                <CardMedia
+            <Card sx={{maxWidth: 300, height: '100%', borderRadius: '15px', backgroundColor: 'rgba(255, 217, 102, 0.50)'}}>
+                <CardHeader
+                    title={
+                        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                            <div className='opensans-font' style={{color: '#E38B29', fontSize: '16px'}}>
+                                {product.recipeName}
+                            </div>
+
+                            {isUser && (
+                                <Box>
+                                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                                        <IconButton
+                                            color="primary"
+                                            onClick={handleDeleteRecipe}
+                                            style={{color: '#EA5C2B'}}
+                                            sx={{'&:hover': {backgroundColor: '#FBCF5F', borderRadius: '50%'}}}
+                                        >
+                                            <DeleteIcon sx={{fontSize: 25}}/>
+                                        </IconButton>
+                                        <IconButton
+                                            color="primary"
+                                            onClick={handleEditRecipe}
+                                            style={{color: '#064635'}}
+                                            sx={{'&:hover': {backgroundColor: '#FBCF5F', borderRadius: '50%'}}}
+                                        >
+                                            <EditIcon sx={{fontSize: 25}}/>
+                                        </IconButton>
+                                    </div>
+                                </Box>
+                            )}
+                            <IconButton
+                                onClick={handleFavorite}
+                                style={{color: '#E38B29'}}
+                                sx={{'&:hover': {backgroundColor: '#FBCF5F', borderRadius: '50%'}}}
+                            >
+                                <BookmarkBorder sx={{fontSize: 25}}/>
+                            </IconButton>
+                        </div>
+                    }
+                    subheader={
+                        <>
+                            <Typography variant="subtitle1" color="textSecondary">
+                                <Rating
+                                name="user-rating"
+                                readOnly
+                                value={product.averageRating}
+                                style={{fontSize: '1.25rem'}}
+                            />
+                            </Typography>
+                            <div style={{color: '#CCC7C7', fontWeight: '800'}}>
+                                {product.user?.username}
+                            </div>
+                        </>
+                        
+                    }
+                />
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                    <CardMedia
+                        component="img"
+                        alt={product.recipeName}
+                        image={product.image}
+                        style={{width: '280px', height: '170px', borderRadius: '20px'}}
+                    />
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <h3 style={{
+                            position: 'absolute', 
+                            backgroundColor: '#FDF5CA', 
+                            color: '#E38B29',
+                            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+                            padding: '8px 18px',
+                            borderRadius: '20px'
+                        }}>
+                            {product.type}
+                        </h3>
+                    </div>
+
+                    <CardContent style={{paddingBottom: '0px', marginTop: '10px'}}>
+                        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
+                            <img src="src/assets/icons8-time-96.png" alt="Time icon" style={{height: '20px', width: '20px'}}/>
+                            <Typography variant='subtitle2' style={{textAlign: 'right', color: 'lightgray', fontWeight: '800'}}>
+                                {product.cookingTime} minutes
+                            </Typography>
+                        </div>
+
+                        <Typography variant='body2' color="text.secondary">
+                            <div 
+                                className='typhography-font'
+                                style={{
+                                    width: '250px', // Set a fixed width container
+                                    display: '-webkit-box',
+                                    WebkitLineClamp: 3, // Display up to four lines of text
+                                    WebkitBoxOrient: 'vertical',
+                                    overflow: 'hidden',
+                                }}
+                            >
+                                {product.instructions}
+                            </div>
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Link onClick={() => {navigate(`/recipes/${product.id}`)}} style={{cursor: "pointer"}}>
+                            <Button variant='text' sx={{"&:hover": {backgroundColor: '#FBCF5F'}}} disableRipple>
+                                <div className='recipe-title' style={{fontSize: '15px', fontWeight: '700'}}>
+                                    Read More
+                                </div>
+                            </Button>
+                        </Link>
+                    </CardActions>
+                </div>
+
+                {/* OG CODE */}
+                {/* <CardMedia
                     component="img"
                     alt={product.recipeName}
                     height="200"
                     image={product.image}
-                />
-                <CardContent>
-                    <Typography variant="h6" component="div">
+                /> */}
+                {/* <CardContent> */}
+                    {/* <Typography variant="h6" component="div">
                         {product.recipeName}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    </Typography> */}
+                    {/* <Typography variant="subtitle1" color="textSecondary">
                         Type: {product.type}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    </Typography> */}
+
+                    {/* RATING */}
+                    {/* <Typography variant="subtitle1" color="textSecondary">
                         Average Rating: <Rating
                         name="user-rating"
                         readOnly
                         value={product.averageRating}
                     />
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    </Typography> */}
+
+                    {/* COOKING TIME */}
+                    {/* <Typography variant="subtitle1" color="textSecondary">
                         Cooking Time: {product.cookingTime} minutes
-                    </Typography>
-                    <div style={{
+                    </Typography> */}
+
+                    {/* INSTRUCTIONS */}
+                    {/* <div style={{
                         width: '200px', // Set a fixed width container
                         display: '-webkit-box',
                         WebkitLineClamp: 2, // Display up to four lines of text
@@ -138,24 +256,32 @@ const ProductCard = ({product, isUser, load}) => {
                         <Typography variant="body2" color="textSecondary">
                             {product.instructions}
                         </Typography>
-                    </div>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    </div> */}
+
+                    {/* AUTHOR */}
+                    {/* <Typography variant="subtitle1" color="textSecondary">
                         Author: {product.user?.username}
-                    </Typography>
-                    <Link onClick={() => {
+                    </Typography> */}
+
+                    {/* READ MORE */}
+                    {/* <Link onClick={() => {
                         navigate(`/recipes/${product.id}`)
                     }} style={{cursor: "pointer"}}>
                         Read more
-                    </Link>
-                    <IconButton
+                    </Link> */}
+
+                    {/* FAVOURITE BUTTON */}
+                    {/* <IconButton
                         color="primary"
                         onClick={handleFavorite}
                         style={{position: 'absolute', top: '10px', right: '10px'}}
                     >
                         <BookmarkBorder/>
-                    </IconButton>
-                </CardContent>
-                {isUser && (
+                    </IconButton> */}
+                {/* </CardContent> */}
+
+                {/* EDIT AND DELETE BTN */}
+                {/* {isUser && (
                     <Box>
                         <IconButton
                             color="primary"
@@ -172,7 +298,7 @@ const ProductCard = ({product, isUser, load}) => {
                             <EditIcon/>
                         </IconButton>
                     </Box>
-                )}
+                )} */}
             </Card>
             <FavoriteModal
                 open={openModal}

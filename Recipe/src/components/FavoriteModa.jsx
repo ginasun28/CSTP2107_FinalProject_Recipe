@@ -86,10 +86,10 @@ const FavoriteModal = ({open, onClose, collections, selectedCollection, onCollec
                         mt: 2,
                     }}
                 >
-                    <Button variant="contained" onClick={handleCreateCollection}>
+                    <Button variant="contained" onClick={handleCreateCollection} style={{backgroundColor: '#EA5C2B', borderRadius: '10px'}}>
                         Create Collection
                     </Button>
-                    <Button variant="contained" onClick={handleConfirmFavorite} disabled={!selectedCollection}>
+                    <Button variant="contained" onClick={handleConfirmFavorite} disabled={!selectedCollection} style={{backgroundColor: '#064635', borderRadius: '10px'}}>
                         Confirm
                     </Button>
                 </Box>
