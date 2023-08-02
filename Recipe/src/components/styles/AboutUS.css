@@ -13,7 +13,6 @@
     padding: 30px 40px 0px 40px;
 }
 
-
 .content-trapezoid {
     position: relative;
     top: -30px;
@@ -100,4 +99,8 @@
     color: #F1A661;
     font-weight: 500 !important;
     font-size: 13px !important;
+}
+
+.nicole-avatar {
+    transform: rotate(25deg); /* Adjust the degree value as per your requirement */
 }
