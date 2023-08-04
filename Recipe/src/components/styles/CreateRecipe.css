@@ -5,6 +5,11 @@
     color: #EA5C2B;
 }
 
+.ingredient-title {
+    font-family: 'Poppins', sans-serif;
+    color: #EA5C2B;
+}
+
 .form-font {
     font-family: 'Poppins', sans-serif;
     color: #064635;
@@ -50,6 +55,14 @@
     width: 90%;
 }
 
+/* img[src*="./src/assets/icons8-add-96.png"]{
+    padding: 75px;
+    width: 50px;
+    height: 50px;
+} */
+
+
+
 @media (max-width: 840px) {
     .photo-btn-resize {
         display: flex;
@@ -74,13 +87,19 @@
 
     .first-part-resize {
         width: 100%; 
+        margin: 0px;
     }
 
     .second-part-resize {
         width: 100%;
+        padding-top: 20px;
     }
 
     .recipe-txt {
         width: 100%;
+    }
+
+    .recipe-title {
+        text-align: center;
     }
 }

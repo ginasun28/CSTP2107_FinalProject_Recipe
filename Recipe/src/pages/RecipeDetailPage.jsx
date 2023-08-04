@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import {Box, Button, Grid, Paper, Rating, TextField, Typography} from '@mui/material';
+import {Box, Button, Grid, IconButton, Paper, Rating, TextField, Typography} from '@mui/material';
 import api from "@/api/index.js";
 import RecipeDetailTable from "@/components/RecipeDetailTable.jsx";
 import Navbar from "@/components/Navbar";
@@ -22,6 +22,8 @@ const RecipeDetailPage = () => {
     const [comments, setComments] = useState([]);
     const [replyToCommentId, setReplyToCommentId] = useState(null);
 
+    const [averageRating, setAverageRating] = useState(0);
+
     useEffect(() => {
         load()
     }, [recipeId]);
@@ -35,8 +37,13 @@ const RecipeDetailPage = () => {
             setRecipeData(recipeRes.recipe);
             setComments(commentsRes.comments);
             setUserRating(ratingRes.userRating.rating)
+            setAverageRating(recipeRes.recipe.averageRating)
         });
     }
+    console.log('recipe data:', recipeData)
+    console.log('avg rating: ', averageRating)
+
+
     const handleRatingChange = (event, newValue) => {
         setUserRating(newValue);
     };
@@ -160,24 +167,33 @@ const RecipeDetailPage = () => {
         return <Typography>Loading...</Typography>;
     }
 
-    const {image, recipeName, type, cookingTime, servings, cuisine, ingredients, instructions,} = recipeData;
+    const {image, recipeName, type, cookingTime, servings, cuisine, ingredients, instructions} = recipeData;
+    // console.log('rating: ', averageRating)
 
     return (<>
             <Navbar/>
             <div className='detail-structure-resize' style={{width: '100%'}}>
                 <div className='recipe-pic-resize'>
-                    <Link to={'/recipes'}>
+                    <IconButton onClick={() => navigate(-1)} 
+                            sx={{'&:hover': {backgroundColor: '#FBCF5F', borderRadius: '50%'}}} 
+                            style={{ position: 'absolute', margin: '10px 20px 0px 20px'}}
+                            disableRipple
+                    >
+                        <img src="../src/assets/icons8-back-96 (1).png" alt="Back btn" style={{width: '50px', height: '50px', borderRadius: '50%'}}/>
+                    </IconButton>
+                    {/* <Link to={'/recipes'}>
                         <img src="../src/assets/icons8-back-96 (1).png" alt="Back btn" style={{width: '50px', height: '50px', position: 'absolute', margin: '10px 20px 0px 20px'}}/>
-                    </Link>
+                    </Link> */}
                     <img src={image} alt={recipeName} style={{width: '100%', height: '100%', objectFit: 'cover'}}/>
                     
                 </div>
                 
-                <div className='recipe-info-resize' style={{display: 'flex', flexDirection: 'column', overflowY: 'auto', maxHeight: '100vh'}}>
+                <div id='scroll-side' className='recipe-info-resize' style={{display: 'flex', flexDirection: 'column', overflowY: 'scroll', height: '100vh'}}>
+
                     <div className='poppins-font avatar-position-change' style={{ paddingTop: '20px'}}>
                             <div className='recipe-name-edit'>
-                                <h3 className='recipe-txt'>Recipe Name</h3>
-                                <h4 className='body-font txt-center'>{recipeName}</h4>
+                                {/* <h3 className='recipe-txt'>Recipe Name</h3> */}
+                                <h2 className='poppins-font txt-center'>{recipeName}</h2>
                             </div>
 
                             <Box sx={{display: 'flex', alignItems: 'center', paddingRight: '30px'}}
@@ -198,8 +214,9 @@ const RecipeDetailPage = () => {
 
                         <Rating
                             name="user-rating"
-                            value={userRating}
-                            onChange={handleRatingChange}
+                            value={averageRating}
+                            // onChange={handleRatingChange}
+                            readOnly
                         />
                         {/* <Button variant="outlined" onClick={handleRatingSubmit} style={{marginLeft: '10px', border: '2px solid #064635'}}>
                             <h3 className='poppins-font'>Save</h3>

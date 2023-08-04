@@ -84,7 +84,7 @@ const ProfilePage = () => {
                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: '20px'}}>
                     <div style={{position: 'absolute', left: '0'}}>
                         <Link to={'/'}>
-                            <img src="./src/assets/icons8-home-96.png" alt="Home icon" style={{height: '40px', width: '40px', padding: '10px 30px'}}/>
+                            <img src="./src/assets/icons8-home-96.png" alt="Home icon" style={{height: '30px', width: '30px', padding: '10px 30px'}}/>
                         </Link>
                     </div>
 
@@ -326,14 +326,14 @@ const ProfilePage = () => {
                         />
                         </Button>
 
-                        <Link to={'/recipes'}>
-                            <Button  sx={{'&:hover': {backgroundColor: '#FFBFA9', borderRadius: '50%'}}} style={{borderRadius: '50%'}}>
-                                <img src="./src/assets/icons8-cancel-96.png" 
-                                    alt="Cancel icon" 
-                                    style={{width: '40px', height: '40px', backgroundColor: '#FFBFA9', padding: '10px', borderRadius: '50%'}}
-                                />
-                            </Button>
-                        </Link>
+                        
+                        <Button onClick={() => navigate(-1)} sx={{'&:hover': {backgroundColor: '#FFBFA9', borderRadius: '50%'}}} style={{borderRadius: '50%'}}>
+                            <img src="./src/assets/icons8-cancel-96.png" 
+                                alt="Cancel icon" 
+                                style={{width: '40px', height: '40px', backgroundColor: '#FFBFA9', padding: '10px', borderRadius: '50%'}}
+                            />
+                        </Button>
+                    
                         
                     </div>
                     

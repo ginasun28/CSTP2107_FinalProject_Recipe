@@ -189,7 +189,7 @@ const ProductCard = ({product, isUser, load}) => {
                                         <IconButton
                                             color="primary"
                                             onClick={handleDeleteRecipe}
-                                            style={{color: '#EA5C2B'}}
+                                            style={{color: '#E38B29'}}
                                             sx={{'&:hover': {backgroundColor: '#FBCF5F', borderRadius: '50%'}}}
                                         >
                                             <DeleteIcon sx={{fontSize: 25}}/>
@@ -197,7 +197,7 @@ const ProductCard = ({product, isUser, load}) => {
                                         <IconButton
                                             color="primary"
                                             onClick={handleEditRecipe}
-                                            style={{color: '#064635'}}
+                                            style={{color: '#E38B29'}}
                                             sx={{'&:hover': {backgroundColor: '#FBCF5F', borderRadius: '50%'}}}
                                         >
                                             <EditIcon sx={{fontSize: 25}}/>
@@ -233,12 +233,12 @@ const ProductCard = ({product, isUser, load}) => {
                         
                     }
                 />
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0px 15px'}}>
                     <CardMedia
                         component="img"
                         alt={product.recipeName}
                         image={product.image}
-                        style={{width: '280px', height: '170px', borderRadius: '20px'}}
+                        style={{width: '100%', height: '170px', borderRadius: '20px'}}
                     />
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                         <h3 style={{
@@ -255,7 +255,7 @@ const ProductCard = ({product, isUser, load}) => {
 
                     <CardContent style={{paddingBottom: '0px', marginTop: '10px'}}>
                         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
-                            <img src="src/assets/icons8-time-96.png" alt="Time icon" style={{height: '20px', width: '20px'}}/>
+                            <img src="../src/assets/icons8-time-96.png" alt="Time icon" style={{height: '20px', width: '20px'}}/>
                             <Typography variant='subtitle2' style={{textAlign: 'right', color: 'lightgray', fontWeight: '800'}}>
                                 {product.cookingTime} minutes
                             </Typography>
