@@ -9,6 +9,8 @@ const corsOptions = {
     origin: "*"
 };
 
+// app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(express.static("dist"));
 
 
 app.use(cors(corsOptions));
@@ -24,6 +26,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 const PORT = process.env.PORT || 8080;
 
 initRoutes(app);
+
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "../Recipe", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
     console.log(`Backend interface address： http://localhost:${PORT}`);
