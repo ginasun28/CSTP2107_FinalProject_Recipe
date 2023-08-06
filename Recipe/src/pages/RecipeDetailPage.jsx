@@ -175,8 +175,8 @@ const RecipeDetailPage = () => {
             <div className='detail-structure-resize' style={{width: '100%'}}>
                 <div className='recipe-pic-resize'>
                     <IconButton onClick={() => navigate(-1)} 
-                            sx={{'&:hover': {backgroundColor: '#FBCF5F', borderRadius: '50%'}}} 
-                            style={{ position: 'absolute', margin: '10px 20px 0px 20px'}}
+                            sx={{'&:hover': { borderRadius: '50%'}}} 
+                            style={{ position: 'absolute', margin: '10px 20px 0px 20px', backgroundColor: '#FBCF5F'}}
                             disableRipple
                     >
                         <img src="../src/assets/icons8-back-96 (1).png" alt="Back btn" style={{width: '50px', height: '50px', borderRadius: '50%'}}/>
@@ -188,7 +188,7 @@ const RecipeDetailPage = () => {
                     
                 </div>
                 
-                <div id='scroll-side' className='recipe-info-resize' style={{display: 'flex', flexDirection: 'column', overflowY: 'scroll', height: '100vh'}}>
+                <div className='recipe-info-resize scroll-side' style={{display: 'flex', flexDirection: 'column'}}>
 
                     <div className='poppins-font avatar-position-change' style={{ paddingTop: '20px'}}>
                             <div className='recipe-name-edit'>
