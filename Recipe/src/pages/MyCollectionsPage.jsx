@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 import {useNavigate} from "react-router-dom";
-import Navbar from "@/components/Navbar";
 import "../components/styles/MyCollectionsPage.css";
 
 const MyCollectionsPage = () => {
@@ -96,7 +95,6 @@ const MyCollectionsPage = () => {
 
 	return (
 		<>
-			<Navbar />
 			<Box m={3}>
 				<Typography
 					variant="h5"
@@ -151,19 +149,25 @@ const MyCollectionsPage = () => {
 									alignItems: "center",
 								}}
 							>
-								<img
-									src="src/assets/icons8-cook-96.png"
-									alt=""
-									width="40"
-									height="40"
-								/>
 								<Typography
 									variant="h6"
 									onClick={() => {
 										navigate("/collectionDetail/" + collection.id);
 									}}
-									sx={{color: "#E38B29"}}
+									sx={{
+										color: "#E38B29",
+										display: "flex",
+										flexDirection: "column",
+										justifyContent: "center",
+										alignItems: "center",
+									}}
 								>
+									<img
+										src="src/assets/icons8-cook-96.png"
+										alt=""
+										width="40"
+										height="40"
+									/>
 									{collection.name}
 								</Typography>
 								<Box sx={{padding: "15px 10px 0px 10px"}}>
@@ -220,7 +224,7 @@ const MyCollectionsPage = () => {
 							fullWidth
 						/>
 						<Box sx={{display: "flex", justifyContent: "flex-end", mt: 2}}>
-							<Box sx={{padding: '0px 5px 0px 0px'}}>
+							<Box sx={{padding: "0px 5px 0px 0px"}}>
 								<Button
 									variant="contained"
 									onClick={handleCloseModal}

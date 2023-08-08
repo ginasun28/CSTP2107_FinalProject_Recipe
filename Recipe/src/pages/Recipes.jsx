@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import Navbar from "@/components/Navbar";
 import RecipesList from "@/components/RecipesList.jsx";
 import "../components/styles/RecipesList.css";
 import {
@@ -94,8 +93,6 @@ const Recipes = () => {
 
 	return (
 		<>
-			<Navbar />
-
 			<Container maxWidth="xl">
 				{/* Search bar and filter for desktop view */}
 				{!isMobileView && (

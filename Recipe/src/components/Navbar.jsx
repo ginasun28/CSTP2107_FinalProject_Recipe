@@ -122,6 +122,13 @@ function ResponsiveAppBar() {
 								display: {xs: "block", md: "none"},
 							}}
 						>
+							<MenuItem>
+								<Typography textAlign="center">
+									<RouterLink to="/" className="nav-link">
+										Home
+									</RouterLink>
+								</Typography>
+							</MenuItem>
 							{pages.map((page, index) => (
 								<MenuItem key={page} onClick={handleCloseNavMenu}>
 									<RouterLink to={link[index]} className="nav-link">
@@ -213,7 +220,13 @@ function ResponsiveAppBar() {
 										}}
 									>
 										{user?.username}
-										<img src="src/assets/icons8-down-96.png" alt="" width='8' height='8' style={{padding: '0px 3px'}}/>
+										<img
+											src="src/assets/icons8-down-96.png"
+											alt=""
+											width="8"
+											height="8"
+											style={{padding: "0px 3px"}}
+										/>
 									</Typography>
 								</IconButton>
 							</Tooltip>
@@ -234,12 +247,6 @@ function ResponsiveAppBar() {
 								onClose={handleCloseUserMenu}
 							>
 								{settings.map((setting, index) => (
-									// <MenuItem
-									// 	key={setting}
-									// 	onClick={() => handleSettingClick(setting)}
-									// >
-									// 	<Typography textAlign="center">{setting}</Typography>
-									// </MenuItem>
 									<Fragment key={setting}>
 										{index === settings.indexOf("Logout") && <Divider />}
 										<MenuItem onClick={() => handleSettingClick(setting)}>

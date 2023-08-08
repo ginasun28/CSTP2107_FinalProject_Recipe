@@ -1,0 +1,17 @@
+
+.banner-container {
+    clip-path: polygon(0 0, 100% 0, 100% 72%, 0% 100%);
+    /* padding: 50px 0px 200px 0px; */
+}
+
+.avatar-1 {
+    z-index: 1 !important;
+    position: relative !important;
+    left: -45px !important;
+}
+
+.avatar-2 {
+    z-index: 1 !important;
+    position: relative !important;
+    left: -85px !important;
+}

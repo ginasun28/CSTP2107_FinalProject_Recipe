@@ -1,4 +1,3 @@
-import NavBar from "../components/Navbar";
 import {Container, Typography, Box, Grid, useMediaQuery} from "@mui/material";
 import AboutInfo from "../components/AboutInfo";
 import Footer from "../components/Footer";
@@ -32,7 +31,6 @@ const AboutUs = () => {
 	};
 	return (
 		<>
-			<NavBar />
 			{!isMobileView && (
 				<Container maxWidth="xl" className="about-container">
 					<Box>

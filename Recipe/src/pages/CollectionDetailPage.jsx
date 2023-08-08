@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
-import Navbar from "@/components/Navbar";
 import ProductList from "@/components/ProductList.jsx";
-import {FormControl, IconButton, Menu, MenuItem, Select, Typography} from "@mui/material";
+import {IconButton, Menu, MenuItem, Typography} from "@mui/material";
 import api from "@/api/index.js";
 import {useParams} from "react-router-dom";
 
@@ -61,7 +60,6 @@ const CollectionDetailPage = () => {
 
     return (
         <div>
-            <Navbar/>
             {/* Edited Filter */}
             <div>
                 <IconButton
