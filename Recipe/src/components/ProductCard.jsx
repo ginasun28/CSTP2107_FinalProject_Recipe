@@ -10,7 +10,7 @@ import {
 	Link,
 	Rating,
 	Typography,
-	useMediaQuery,
+    useMediaQuery,
 } from "@mui/material";
 import {Delete as DeleteIcon, Edit as EditIcon} from "@mui/icons-material";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
@@ -164,7 +164,6 @@ const ProductCard = ({product, isUser, load}) => {
 		//The logic of editing recipes, jumping to the page of editing recipes, needs to be implemented according to specific routes
 		navigate(`/create_recipe?id=${product.id}`);
 	};
-
 	return (
 		<>
 			<Card
@@ -187,7 +186,7 @@ const ProductCard = ({product, isUser, load}) => {
 						>
 							<div
 								className="opensans-font"
-								style={{color: "#E38B29", fontSize: "16px"}}
+								style={{color: "#E38B29", fontSize: "1rem"}}
 							>
 								{isMobileView
 									? truncateTextAfterCharacters(product.recipeName, 20)
@@ -200,7 +199,7 @@ const ProductCard = ({product, isUser, load}) => {
 										<IconButton
 											color="primary"
 											onClick={handleDeleteRecipe}
-											style={{color: "#EA5C2B"}}
+											style={{color: "#E38B29"}}
 											sx={{
 												"&:hover": {
 													backgroundColor: "#FBCF5F",
@@ -213,7 +212,7 @@ const ProductCard = ({product, isUser, load}) => {
 										<IconButton
 											color="primary"
 											onClick={handleEditRecipe}
-											style={{color: "#064635"}}
+											style={{color: "#E38B29"}}
 											sx={{
 												"&:hover": {
 													backgroundColor: "#FBCF5F",
@@ -265,13 +264,14 @@ const ProductCard = ({product, isUser, load}) => {
 						display: "flex",
 						flexDirection: "column",
 						alignItems: "center",
+						padding: "0px 15px",
 					}}
 				>
 					<CardMedia
 						component="img"
 						alt={product.recipeName}
 						image={product.image}
-						style={{width: "280px", height: "170px", borderRadius: "20px"}}
+						style={{width: "100%", height: "170px", borderRadius: "20px"}}
 					/>
 					<div
 						style={{
@@ -304,7 +304,7 @@ const ProductCard = ({product, isUser, load}) => {
 							}}
 						>
 							<img
-								src="src/assets/icons8-time-96.png"
+								src="../src/assets/icons8-time-96.png"
 								alt="Time icon"
 								style={{height: "20px", width: "20px"}}
 							/>
@@ -349,7 +349,7 @@ const ProductCard = ({product, isUser, load}) => {
 							>
 								<div
 									className="recipe-title"
-									style={{fontSize: "15px", fontWeight: "700"}}
+									style={{fontSize: "0.938rem", fontWeight: "700"}}
 								>
 									Read More
 								</div>
@@ -372,3 +372,4 @@ const ProductCard = ({product, isUser, load}) => {
 };
 
 export default ProductCard;
+

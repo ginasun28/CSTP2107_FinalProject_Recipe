@@ -5,6 +5,15 @@ h2, h3, h4 {
     margin: 0
 }
 
+.scroll-side {
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.scroll-side::-webkit-scrollbar {
+  display: none;
+}
+
 .preparation-style {
     display: flex; 
     flex-direction: column; 

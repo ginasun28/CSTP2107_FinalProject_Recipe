@@ -152,7 +152,7 @@ const MyCollectionsPage = () => {
 								<Typography
 									variant="h6"
 									onClick={() => {
-										navigate("/collectionDetail/" + collection.id);
+										navigate("/collectionDetail/" + collection.id ,{state:{name: collection.name}});
 									}}
 									sx={{
 										color: "#E38B29",

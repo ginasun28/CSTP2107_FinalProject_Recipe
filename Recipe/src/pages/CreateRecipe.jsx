@@ -14,12 +14,12 @@ import {
 	TableRow,
 	TextField,
 } from "@mui/material";
+import Navbar from "@/components/Navbar";
 import FormControl from "@mui/material/FormControl";
 import api from "@/api/index.js";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 import Notification from "@/components/Notification.jsx";
-import {Link, useLocation, useNavigate} from "react-router-dom";
-
+import {useLocation, useNavigate} from "react-router-dom";
 import "../components/styles/CreateRecipe.css";
 
 const PublishProductPage = () => {
@@ -56,6 +56,7 @@ const PublishProductPage = () => {
 			});
 		}
 	}, [id]);
+
 	const handleInputChange = e => {
 		const {name, value} = e.target;
 		setProductInfo(prevState => ({
@@ -184,8 +185,13 @@ const PublishProductPage = () => {
 					style={{marginLeft: "30px", marginRight: "30px", marginTop: "20px"}}
 				>
 					<h3 className="recipe-title">Create Recipe</h3>
-					<Divider sx={{borderBottomWidth: 3, backgroundColor: "#E38B29"}} />
-
+					<Divider
+						sx={{
+							height: "2px",
+							background:
+								"linear-gradient(90deg, rgba(229,171,107,1) 35%, rgba(249,248,247,1) 69%)",
+						}}
+					/>
 					<form onSubmit={handlePublishProduct} style={{marginTop: "20px"}}>
 						<div className="form-font form-resize">
 							<div
@@ -222,7 +228,6 @@ const PublishProductPage = () => {
 										variant="standard"
 									/>
 								</div>
-
 								<div
 									style={{
 										display: "flex",
@@ -240,7 +245,6 @@ const PublishProductPage = () => {
 										variant="standard"
 									/>
 								</div>
-
 								<div
 									style={{
 										display: "flex",
@@ -260,7 +264,6 @@ const PublishProductPage = () => {
 										style={{backgroundColor: "white"}}
 									/>
 								</div>
-
 								<div
 									style={{
 										display: "flex",
@@ -306,7 +309,6 @@ const PublishProductPage = () => {
 									/>
 								</div>
 							</div>
-
 							<div
 								className="second-part-resize"
 								style={{display: "flex", flexDirection: "column"}}
@@ -458,7 +460,12 @@ const PublishProductPage = () => {
 											justifyContent: "flex-end",
 										}}
 									>
-										<Button variant="text" onClick={handleAddIngredient}>
+										<Button
+											variant="text"
+											onClick={handleAddIngredient}
+											sx={{"&:hover": {backgroundColor: "transparent"}}}
+											disableRipple
+										>
 											<div
 												style={{
 													display: "flex",
@@ -467,7 +474,7 @@ const PublishProductPage = () => {
 												}}
 											>
 												<img
-													src="./src/assets/icons8-add-96 (1).png"
+													src="./src/assets/icons8-add.png"
 													alt="Add Icon"
 													style={{
 														width: "20px",
@@ -475,7 +482,7 @@ const PublishProductPage = () => {
 														marginRight: "5px",
 													}}
 												/>
-												<p className="recipe-title"> Add Ingredient </p>
+												<p className="ingredient-title"> Add Ingredient </p>
 											</div>
 										</Button>
 									</div>
@@ -500,7 +507,8 @@ const PublishProductPage = () => {
 													style={{
 														width: "200px",
 														height: "200px",
-														backgroundColor: "white",
+														border: "3px solid #064635",
+														overflow: "hidden",
 													}}
 												>
 													<img
@@ -520,15 +528,17 @@ const PublishProductPage = () => {
 													style={{
 														width: "200px",
 														height: "200px",
-														backgroundColor: "white",
+														border: "3px solid #064635",
 													}}
 												>
-													<img
-														style={{border: "1px solid #efefef", padding: 50}}
-														src="./src/assets/icons8-add-96.png"
-														loading="lazy"
-														alt=""
-														width="100"
+													<div
+														style={{
+															background:
+																"url('./src/assets/icons8-add-96.png') center/contain no-repeat",
+															width: "50px",
+															height: "50px",
+															margin: "75px",
+														}}
 														onClick={handleImageClick}
 													/>
 												</div>
@@ -542,7 +552,6 @@ const PublishProductPage = () => {
 											/>
 										</div>
 									</div>
-
 									<div className="submit-btns" style={{width: "50%"}}>
 										<Button
 											type="submit"
@@ -566,193 +575,32 @@ const PublishProductPage = () => {
 												}}
 											/>
 										</Button>
-
-										<Link to={"/recipes"}>
-											<Button
-												sx={{
-													"&:hover": {
-														backgroundColor: "#FFBFA9",
-														borderRadius: "50%",
-													},
+										<Button
+											onClick={() => navigate(-1)}
+											sx={{
+												"&:hover": {
+													backgroundColor: "#FFBFA9",
+													borderRadius: "50%",
+												},
+											}}
+											style={{borderRadius: "50%"}}
+										>
+											<img
+												src="./src/assets/icons8-cancel-96.png"
+												alt="Cancel icon"
+												style={{
+													width: "40px",
+													height: "40px",
+													backgroundColor: "#FFBFA9",
+													padding: "10px",
+													borderRadius: "50%",
 												}}
-												style={{borderRadius: "50%"}}
-											>
-												<img
-													src="./src/assets/icons8-cancel-96.png"
-													alt="Cancel icon"
-													style={{
-														width: "40px",
-														height: "40px",
-														backgroundColor: "#FFBFA9",
-														padding: "10px",
-														borderRadius: "50%",
-													}}
-												/>
-											</Button>
-										</Link>
+											/>
+										</Button>
 									</div>
 								</div>
 							</div>
 						</div>
-
-						{/* OG CODE */}
-						{/* <Grid container spacing={2}> */}
-						{/* <Grid item xs={6}> */}
-
-						{/* RECIPE NAME */}
-						{/* <TextField
-                                    label="Recipe Name"
-                                    name="recipeName"
-                                    value={productInfo.recipeName}
-                                    onChange={handleInputChange}
-                                    required
-                                    fullWidth
-                                    sx={{mb: 2}}
-                                /> */}
-
-						{/* TYPE */}
-						{/* <Select
-                                    label="Type"
-                                    name="type"
-                                    value={productInfo.type}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    sx={{mb: 2}}
-                                >
-                                    <MenuItem value="Breakfast">Appetizers</MenuItem>
-                                    <MenuItem value="Lunch">Mains</MenuItem>
-                                    <MenuItem value="Dinner">Side Dishes</MenuItem>
-                                    <MenuItem value="Dessert">Desserts</MenuItem>
-                                    <MenuItem value="Snack">Beverages</MenuItem>
-                                </Select> */}
-
-						{/* COOKING TIME */}
-						{/* <TextField
-                                    label="Cooking Time (minutes)"
-                                    name="cookingTime"
-                                    value={productInfo.cookingTime}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    sx={{mb: 2}}
-                                /> */}
-
-						{/* SERVINGS */}
-						{/* <TextField
-                                    label="Servings"
-                                    name="servings"
-                                    value={productInfo.servings}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    sx={{mb: 2}}
-                                /> */}
-
-						{/* INSTRUCTIONS */}
-						{/* <TextField
-                                    label="Instructions"
-                                    name="instructions"
-                                    value={productInfo.instructions}
-                                    onChange={handleInputChange}
-                                    multiline
-                                    rows={4}
-                                    fullWidth
-                                    sx={{mt: 2}}
-                                /> */}
-						{/* </Grid> */}
-
-						{/* <Grid item xs={6}> */}
-
-						{/* CUISINE */}
-						{/* <TextField
-                                    label="Cuisine"
-                                    name="cuisine"
-                                    value={productInfo.cuisine}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    sx={{mb: 2}}
-                                /> */}
-
-						{/* INGREDIENT TABLE */}
-						{/* <Typography variant="subtitle1">Ingredients</Typography>
-                                <div style={{maxHeight: 300, overflowY: 'auto'}}>
-                                    <table>
-                                        {productInfo.ingredients.length ? <thead>
-                                        <tr>
-                                            <th>QT</th>
-                                            <th>Measurement</th>
-                                            <th>Ingredient</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead> : ''}
-                                        <tbody>
-                                        {productInfo.ingredients.map((ingredient, index) => (
-                                            <tr key={index}>
-                                                <td>
-                                                    <TextField
-                                                        value={ingredient.qt}
-                                                        onChange={(e) => handleIngredientChange(index, 'qt', e.target.value)}
-                                                        fullWidth
-                                                    />
-                                                </td>
-                                                <td>
-                                                    <FormControl fullWidth>
-                                                        <Select
-                                                            value={ingredient.measurement}
-                                                            onChange={(e) => handleIngredientChange(index, 'measurement', e.target.value)}
-                                                            fullWidth
-                                                        >
-                                                            <MenuItem value="cup">Cup</MenuItem>
-                                                            <MenuItem value="teaspoon">Teaspoon</MenuItem>
-                                                            <MenuItem value="tablespoon">Tablespoon</MenuItem>
-                                                            <MenuItem value="gram">Gram</MenuItem>
-                                                        </Select>
-                                                    </FormControl>
-                                                </td>
-                                                <td>
-                                                    <TextField
-                                                        value={ingredient.ingredient}
-                                                        onChange={(e) => handleIngredientChange(index, 'ingredient', e.target.value)}
-                                                        fullWidth
-                                                    />
-                                                </td>
-                                                <td>
-                                                    <Button variant="outlined"
-                                                            onClick={() => handleRemoveIngredient(index)}>
-                                                        Remove
-                                                    </Button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <Button variant="outlined" onClick={handleAddIngredient} sx={{mt: 2}}>
-                                    Add Ingredient
-                                </Button> */}
-
-						{/* <div style={{marginTop: 20}}>
-                                    {productInfo.image ? <img
-                                        src={productInfo.image}
-                                        loading="lazy"
-                                        alt=""
-                                        width="200px"
-                                        onClick={handleImageClick}
-                                    /> : <img
-                                        style={{border: "1px solid #efefef", padding: 50}}
-                                        src="../../public/plus.png"
-                                        loading="lazy"
-                                        alt=""
-                                        width="100"
-                                        onClick={handleImageClick}
-                                    />
-                                    }
-                                    <input type="file" accept="image/*" onChange={handleAvatarChange}
-                                            style={{display: "none"}} ref={inputRef}/>
-                                </div> */}
-						{/* </Grid> */}
-						{/* </Grid> */}
-						{/* <Button variant="contained" type="submit">
-                            Publish
-                        </Button> */}
 					</form>
 					<Notification message={notificationMessage} />
 				</div>

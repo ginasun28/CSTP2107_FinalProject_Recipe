@@ -72,7 +72,18 @@ const History = () => {
         <div style={{paddingBottom: '40px'}}>
             <div style={{padding: '0px 30px', display: 'flex', flexDirection: 'column'}}>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingRight: '50px'}}>
-                    <h3 className='recipe-title' style={{margin: '0px 0px'}}>Recent</h3>
+                    {/* <h3 className='recipe-title' style={{margin: '0px 0px'}}>Recent</h3> */}
+                    <Typography
+                        variant="h5"
+                        className="recipe-title"
+                        sx={{
+                            fontSize: "25px",
+                            fontWeight: "700",
+                            padding: "5px 0px 10px 0px",
+                        }}
+                    >
+                        Recent
+                    </Typography>
 
                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                         {/* Edited Filter version */}
@@ -125,11 +136,11 @@ const History = () => {
                 </div>
             </div>
             <Divider sx={{
-                borderBottomWidth: 3, 
+                height: '2px', 
                 width: '90%',
                 marginLeft: '30px',
                 // Error..might have to customize and change the inner props
-                background: "conic-gradient(from 180deg at 50% 50.00%, #E38B29 76.87deg, rgba(227, 139, 41, 0.00) 195.0deg)"
+                background: "linear-gradient(90deg, rgba(229,171,107,1) 35%, rgba(249,248,247,1) 69%)"
             }}
             />
             
