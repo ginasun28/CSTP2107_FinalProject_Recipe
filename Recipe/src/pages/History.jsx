@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
-import Navbar from "@/components/Navbar";
+import {useEffect, useState} from "react";
 import ProductList from "@/components/ProductList.jsx";
-import {Divider, FormControl, IconButton, Menu, MenuItem, Select, Typography} from "@mui/material";
+import {Divider, IconButton, Menu, MenuItem, Typography} from "@mui/material";
 import api from "@/api/index.js";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 import {useLocation} from "react-router-dom";
@@ -71,7 +70,6 @@ const History = () => {
 
     return (
         <div style={{paddingBottom: '40px'}}>
-            <Navbar/>
             <div style={{padding: '0px 30px', display: 'flex', flexDirection: 'column'}}>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingRight: '50px'}}>
                     {/* <h3 className='recipe-title' style={{margin: '0px 0px'}}>Recent</h3> */}

@@ -253,7 +253,6 @@ const RecipeDetailPage = () => {
                             {instructions}
                         </h4>
                     </div>
-                    
                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: '20px', paddingTop: '20px', justifyContent: 'space-between'}}>
                         <div className='rate-recipe-resize' style={{ alignItems: 'center'}}>
                             <Typography variant="h6" className='poppins-font' style={{fontSize: '18px', marginRight: '10px', fontWeight: '700'}}>
@@ -276,8 +275,6 @@ const RecipeDetailPage = () => {
                             </Button>
                         </div>
                     </div>
-                    
-
                     <div style={{ paddingTop: '20px'}}>
                         <div className='comments-position-change'> 
                             <Typography variant="h6" className='poppins-font' style={{fontWeight: '800'}}>
@@ -321,79 +318,6 @@ const RecipeDetailPage = () => {
                     />
                 </div>
             </div>
-
-            {/* OG CODE */}
-            {/* <Box m={3} style={{marginTop: '50px'}}> */}
-                {/* <Grid container spacing={3}> */}
-                    {/* <Grid item xs={12} md={6}>
-                        <Paper>
-                            <img src={image} alt={recipeName} style={{width: '100%', height: 'auto'}}/>
-                        </Paper>
-                    </Grid> */}
-                    {/* <Grid item xs={12} md={6}> */}
-                        {/* <Paper> */}
-                            {/* <Box sx={{display: 'flex', alignItems: 'center'}}
-                                 onClick={() => {
-                                     navigate('/history?id=' + recipeData.user.id)
-                                 }}>
-                                <img src={recipeData.user?.avatar} alt={recipeData.user?.username}
-                                     style={{width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px'}}/>
-                                <Typography variant="h5">{recipeData.user?.username}</Typography>
-                            </Box> */}
-                            {/* <Typography variant="subtitle1">{recipeName}</Typography>
-                            <Typography variant="subtitle1">Type: {type}</Typography>
-                            <Typography variant="subtitle1">Cooking Time: {cookingTime} minutes</Typography>
-                            <Typography variant="subtitle1">Servings: {servings}</Typography>
-                            <Typography variant="subtitle1">Cuisine: {cuisine}</Typography> */}
-                            {/* <RecipeDetailTable ingredients={ingredients}/> */}
-                            {/* <Typography variant="h6">Instructions:</Typography>
-                            <Typography>{instructions}</Typography> */}
-                            {/* <Button variant="contained" onClick={handleFavoriteClick}>Favorite</Button> */}
-                        {/* </Paper> */}
-                    {/* </Grid> */}
-                {/* </Grid> */}
-                {/* <Box mt={2}>
-                    <Typography variant="h6">Rating：</Typography>
-                    <Rating
-                        name="user-rating"
-                        value={userRating}
-                        onChange={handleRatingChange}
-                    />
-                    <Button variant="contained" onClick={handleRatingSubmit}>
-                        submit Rating
-                    </Button>
-                </Box> */}
-                {/* <Box mt={2}>
-                    <Typography variant="h6">Comments:</Typography>
-                    <TextField
-                        label="Your comment"
-                        multiline
-                        rows={4}
-                        value={userComment}
-                        onChange={handleCommentChange}
-                        fullWidth
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <Button variant="contained" onClick={() => handleCommentSubmit()}>
-                        submit Comment
-                    </Button>
-
-                    {comments.map((comment) => (
-                        <Comment key={comment.id} comment={comment} onReply={handleReply}
-                                 onConfirmReply={handleCommentSubmit}/>
-                    ))}
-                </Box> */}
-            {/* </Box> */}
-            {/* <FavoriteModal
-                open={openModal}
-                onClose={handleCloseModal}
-                collections={collections}
-                selectedCollection={selectedCollection}
-                onCollectionSelect={handleSelectCollection}
-                onConfirmFavorite={handleConfirmFavorite}
-                onCreateCollection={handleCreateCollection}
-            /> */}
         </>
     );
 };

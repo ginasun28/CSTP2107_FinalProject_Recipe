@@ -7,11 +7,18 @@ import {
 	Card,
 	CardMedia,
 	CardContent,
+	Button,
 } from "@mui/material";
+import { useState} from "react";
 import "../components/styles/AboutUs.css";
 
 const AboutInfo = ({info, isMobileView}) => {
 	// console.log(info);
+	const [showFullText, setShowFullText] = useState(false);
+	const toggleShowFullText = () => {
+		setShowFullText(!showFullText);
+	};
+
 	return (
 		<>
 			{/* Desktop View */}
@@ -90,14 +97,51 @@ const AboutInfo = ({info, isMobileView}) => {
 										sx={{height: 280}}
 									/>
 									<CardContent>
-										<Typography variant="h5" component="div" className="mobile-name info-item">
+										<Typography
+											variant="h5"
+											component="div"
+											className="mobile-name info-item"
+										>
 											{info.firstname} {info.lastname}
 										</Typography>
-										<Typography className="mobile-responsible info-item">{info.responsible}</Typography>
-										<Typography variant="body2" className="mobile-intro info-item">
+										<Typography className="mobile-responsible info-item">
+											{info.responsible}
+										</Typography>
+										<Typography
+											variant="body2"
+											className="mobile-intro info-item"
+											sx={{
+												display: "-webkit-box",
+												WebkitLineClamp: showFullText ? "none" : 5, // Display up to four lines of text
+												WebkitBoxOrient: "vertical",
+												overflow: "hidden",
+											}}
+										>
 											{info.intro}
 										</Typography>
 									</CardContent>
+									<Box
+										sx={{
+											display: "flex",
+											justifyContent: "flex-end",
+											padding: "10px 20px",
+										}}
+									>
+										{isMobileView && (
+											<Button
+												onClick={toggleShowFullText}
+												sx={{
+													color: "#F0997D",
+													bgcolor: "#FFD8A9",
+													fontWeight: 600,
+													fontFamily: "Poppins",
+													textTransform: "capitalize",
+												}}
+											>
+												{showFullText ? "View Less" : "View More"}
+											</Button>
+										)}
+									</Box>
 								</Card>
 							</Grid>
 						</Grid>

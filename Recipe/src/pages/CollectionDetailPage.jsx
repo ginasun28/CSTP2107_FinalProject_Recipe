@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
-import Navbar from "@/components/Navbar";
 import ProductList from "@/components/ProductList.jsx";
-import {Divider, FormControl, IconButton, Menu, MenuItem, Select, Typography} from "@mui/material";
+import {Divider, IconButton, Menu, MenuItem, Typography, } from "@mui/material";
 import api from "@/api/index.js";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
@@ -63,7 +62,6 @@ const CollectionDetailPage = () => {
 
     return (
         <div>
-            <Navbar/>
             {/* Edited Filter */}
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                 <IconButton
@@ -124,20 +122,6 @@ const CollectionDetailPage = () => {
                     }
                 </Menu>
             </div>
-
-
-            {/* filter dropdown list */}
-            {/* <FormControl variant="outlined" style={{minWidth: 100,display:"flex",justifyContent:"flex-end", margin: "10px"}}>
-                <Select value={filterType} onChange={handleFilterTypeChange}>
-                    <MenuItem value="">All Types</MenuItem>
-                    <MenuItem value="Breakfast">Breakfast</MenuItem>
-                    <MenuItem value="Lunch">Lunch</MenuItem>
-                    <MenuItem value="Dinner">Dinner</MenuItem>
-                    <MenuItem value="Dessert">Dessert</MenuItem>
-                    <MenuItem value="Snack">Snack</MenuItem>
-                </Select>
-            </FormControl> */}
-
             {/* recipe list */}
             <div style={{padding: '0px 30px'}}>
                 <ProductList products={filteredProducts}/>
