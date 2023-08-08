@@ -5,7 +5,7 @@ import FormControl from "@mui/material/FormControl";
 import api from "@/api/index.js";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 import Notification from "@/components/Notification.jsx";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 
 import '../components/styles/CreateRecipe.css'
 
@@ -168,7 +168,11 @@ const PublishProductPage = () => {
                     <h3 className='recipe-title'>
 						Create Recipe
 					</h3>
-                    <Divider sx={{ borderBottomWidth: 3, backgroundColor: '#E38B29'}}/>
+                    <Divider sx={{ 
+                        height: '2px', 
+                        background: 'linear-gradient(90deg, rgba(229,171,107,1) 35%, rgba(249,248,247,1) 69%)'
+                        }}
+                    />
 
                     <form onSubmit={handlePublishProduct} style={{marginTop: '20px'}}>
                         <div className='form-font form-resize'>
@@ -354,10 +358,15 @@ const PublishProductPage = () => {
                                         </TableContainer>
                                     </Paper>
                                     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                                        <Button variant="text" onClick={handleAddIngredient}>
+                                        <Button 
+                                            variant="text" 
+                                            onClick={handleAddIngredient} 
+                                            sx={{'&:hover': {backgroundColor: 'transparent'}}} 
+                                            disableRipple
+                                        >
                                             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
-                                                <img src="./src/assets/icons8-add-96 (1).png" alt="Add Icon" style={{width: '20px', height: '20px', marginRight: '5px'}}/>
-                                                <p className='recipe-title'> Add Ingredient </p>
+                                                <img src="./src/assets/icons8-add.png" alt="Add Icon" style={{width: '20px', height: '20px', marginRight: '5px'}}/>
+                                                <p className='ingredient-title'> Add Ingredient </p>
                                             </div>
                                         </Button>
                                     </div>
@@ -369,25 +378,37 @@ const PublishProductPage = () => {
 
                                         <div style={{marginTop: 20, width: '200px', height: '200px'}}>
                                             {productInfo.image ? (
-                                                    <div style={{width: '200px', height: '200px', backgroundColor: 'white', }}>
+                                                    <div style={{width: '200px', height: '200px', border: "3px solid #064635", overflow: 'hidden'}}>
                                                         <img
                                                             src={productInfo.image}
                                                             loading="lazy"
                                                             alt=""
                                                             onClick={handleImageClick}
-                                                            style={{objectFit: 'cover', width: '100%', height: '100%'}}
+                                                            style={{
+                                                                objectFit: 'cover', 
+                                                                width: '100%', 
+                                                                height: '100%'
+                                                            }}
                                                         />
                                                     </div>
                                                 ) : (
-                                                    <div style={{width: '200px', height: '200px', backgroundColor: 'white'}}>
-                                                        <img
-                                                            style={{border: "1px solid #efefef", padding: 50}}
+                                                    <div style={{width: '200px', height: '200px', border: "3px solid #064635"}}>
+                                                        <div style={{
+                                                            background: "url('./src/assets/icons8-add-96.png') center/contain no-repeat",
+                                                            width: '50px',
+                                                            height: '50px',
+                                                            margin: '75px'
+                                                        }} onClick={handleImageClick}/>
+                                                        
+                                                        {/* <img
+                                                            style={{ padding: 75}}
                                                             src="./src/assets/icons8-add-96.png"
                                                             loading="lazy"
                                                             alt=""
-                                                            width="100"
+                                                            width="50"
+                                                            height="50"
                                                             onClick={handleImageClick}
-                                                        />
+                                                        /> */}
                                                     </div>
                                                    
                                                 )
@@ -405,14 +426,14 @@ const PublishProductPage = () => {
 											/>
 										</Button>
 
-                                        <Link to={'/recipes'}>
-                                            <Button sx={{'&:hover': {backgroundColor: '#FFBFA9', borderRadius: '50%'}}} style={{borderRadius: '50%'}}>
-                                                <img src="./src/assets/icons8-cancel-96.png" 
-                                                    alt="Cancel icon" 
-                                                    style={{width: '40px', height: '40px', backgroundColor: '#FFBFA9', padding: '10px', borderRadius: '50%'}}
-                                                />
-                                            </Button>
-                                        </Link>
+                                        
+                                        <Button onClick={() => navigate(-1)} sx={{'&:hover': {backgroundColor: '#FFBFA9', borderRadius: '50%'}}} style={{borderRadius: '50%'}}>
+                                            <img src="./src/assets/icons8-cancel-96.png" 
+                                                alt="Cancel icon" 
+                                                style={{width: '40px', height: '40px', backgroundColor: '#FFBFA9', padding: '10px', borderRadius: '50%'}}
+                                            />
+                                        </Button>
+                                       
 									</div>
                                 </div>
                             </div>

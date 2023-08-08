@@ -19,13 +19,13 @@
 }
 
 .productList-resize {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 
 @media (max-width: 992px) {
     .productList-resize {
-        flex-wrap: wrap;
+        
         justify-content: center;
     }    
 }
