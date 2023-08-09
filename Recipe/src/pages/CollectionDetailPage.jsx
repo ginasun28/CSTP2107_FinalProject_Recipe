@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import ProductList from "@/components/ProductList.jsx";
-import {Divider, IconButton, Menu, MenuItem, Typography} from "@mui/material";
+import {Divider, IconButton, Menu, MenuItem, Typography, Box} from "@mui/material";
 import api from "@/api/index.js";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
@@ -52,7 +52,7 @@ const CollectionDetailPage = () => {
 		"Appetizers",
 		"Beverages",
 		"Desserts",
-        "Mains",
+		"Mains",
 		"Side Dishes",
 	];
 
@@ -60,7 +60,7 @@ const CollectionDetailPage = () => {
 	console.log("Folder name: ", folderName);
 
 	return (
-		<div>
+		<Box m={1}>
 			{/* Edited Filter */}
 			<div
 				style={{display: "flex", flexDirection: "row", alignItems: "center"}}
@@ -69,7 +69,7 @@ const CollectionDetailPage = () => {
 					<img
 						src="../src/assets/icons8-back-96 (1).png"
 						alt="Back btn"
-						style={{width: "50px", height: "50px", borderRadius: "50%"}}
+						style={{width: "40px", height: "40px", borderRadius: "50%"}}
 					/>
 				</IconButton>
 
@@ -78,7 +78,7 @@ const CollectionDetailPage = () => {
 						variant="h5"
 						sx={{
 							color: "#EA5C2B",
-							fontSize: "25px",
+							fontSize: "1.25rem",
 							fontFamily: "Poppins",
 							fontWeight: "700",
 							padding: "5px 0px 10px 0px",
@@ -88,7 +88,7 @@ const CollectionDetailPage = () => {
 					</Typography>
 					<Divider
 						sx={{
-							height: "2px",
+							height: "0.5px",
 							background:
 								"linear-gradient(90deg, rgba(229,171,107,1) 35%, rgba(249,248,247,1) 69%)",
 						}}
@@ -124,7 +124,7 @@ const CollectionDetailPage = () => {
 			<div style={{padding: "0px 30px"}}>
 				<ProductList products={filteredProducts} />
 			</div>
-		</div>
+		</Box>
 	);
 };
 

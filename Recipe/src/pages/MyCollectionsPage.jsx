@@ -170,7 +170,7 @@ const MyCollectionsPage = () => {
 										}}
 									>
 										<img
-											src="src/assets/icons8-cook-96.png"
+											src="src/assets/icons8-cook-96.gif"
 											alt=""
 											width="40"
 											height="40"

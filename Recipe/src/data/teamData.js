@@ -17,7 +17,7 @@ export const informations = [
           "She is a middle developer in our group project and plays a crucial role in bridging the gap between front-end and back-end development. She is responsible for implementing interactive features, managing data flow, and optimizing performance. With a strong focus on functionality,  ensure that our recipe website runs smoothly, allowing users to search for recipes, filter results, and save their favourite recipes for future reference.",
     },
     {
-        avatar: 'src/assets/avatar/test2.jpg',
+        avatar: 'src/assets/avatar/Jessica.png',
         firstname: "Jing",
         lastname: "Jin",
         responsible: "Back-end and database developer",
