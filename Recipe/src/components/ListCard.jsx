@@ -42,8 +42,6 @@ function truncateTextAfterCharacters(text, numCharacters) {
 
 export default function ListCard({product, isUser, load, mobileView}) {
 	const [user, setUser] = useLocalStorage("user", null);
-
-	const navigate = useNavigate();
 	const [openModal, setOpenModal] = useState(false);
 	const [collections, setCollections] = useState([]);
 	const [selectedCollection, setSelectedCollection] = useState("");
@@ -57,6 +55,8 @@ export default function ListCard({product, isUser, load, mobileView}) {
 	const [favoriteIcon, setFavoriteIcon] = useState(
 		"/src/assets/icons8-save-96.png"
 	);
+
+	const navigate = useNavigate();
 
 	// First useEffect hook to fetch collections when the component mounts
 	useEffect(() => {

@@ -10,7 +10,7 @@ import {
 	Link,
 	Rating,
 	Typography,
-    useMediaQuery,
+	useMediaQuery,
 } from "@mui/material";
 import {Delete as DeleteIcon, Edit as EditIcon} from "@mui/icons-material";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
@@ -192,7 +192,24 @@ const ProductCard = ({product, isUser, load}) => {
 									? truncateTextAfterCharacters(product.recipeName, 20)
 									: product.recipeName}
 							</div>
-
+							{!isUser && (
+								<IconButton
+									onClick={handleFavorite}
+									style={{color: "#E38B29", padding: "8px"}}
+									sx={{
+										"&:hover": {
+											backgroundColor: "#FBCF5F",
+											borderRadius: "50%",
+										},
+									}}
+								>
+									<img
+										src={favoriteIcon}
+										alt=""
+										style={{width: "25px", height: "25px"}}
+									/>
+								</IconButton>
+							)}
 							{isUser && (
 								<Box>
 									<div style={{display: "flex", flexDirection: "row"}}>
@@ -319,7 +336,6 @@ const ProductCard = ({product, isUser, load}) => {
 								{product.cookingTime} minutes
 							</Typography>
 						</div>
-
 						<Typography variant="body2" color="text.secondary">
 							<div
 								className="typhography-font"
@@ -372,4 +388,3 @@ const ProductCard = ({product, isUser, load}) => {
 };
 
 export default ProductCard;
-

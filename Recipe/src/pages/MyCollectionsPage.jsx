@@ -9,6 +9,7 @@ import {
 	TextField,
 	Typography,
 	Grid,
+	useMediaQuery,
 } from "@mui/material";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 import {useNavigate} from "react-router-dom";
@@ -19,6 +20,10 @@ const MyCollectionsPage = () => {
 	const [user, setUser] = useLocalStorage("user", null);
 	const [newCollectionName, setNewCollectionName] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [currentPage, setCurrentPage] = useState(0);
+	const itemsPerPage = 3;
+
+	const isMobileView = useMediaQuery("(max-width:959px)");
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -100,7 +105,7 @@ const MyCollectionsPage = () => {
 					variant="h5"
 					sx={{
 						color: "#EA5C2B",
-						fontSize: "25px",
+						fontSize: "1.25rem",
 						fontFamily: "Poppins",
 						fontWeight: "700",
 						padding: "5px 0px 10px 0px",
@@ -131,65 +136,193 @@ const MyCollectionsPage = () => {
 						+ New Folder
 					</Button>
 				</Box>
-
-				<Grid container spacing={2}>
-					{/* Map over collections and render each one in a grid item */}
-					{collections.map(collection => (
-						<Grid item xs={4} sm={4} md={2} key={collection.id}>
-							<Paper
-								sx={{
-									p: 2,
-									mr: 2,
-									bgcolor: "rgba(217, 217, 217, 0.34)",
-									width: 150,
-									height: 150,
-									display: "flex",
-									flexDirection: "column",
-									justifyContent: "center",
-									alignItems: "center",
-								}}
-							>
-								<Typography
-									variant="h6"
-									onClick={() => {
-										navigate("/collectionDetail/" + collection.id ,{state:{name: collection.name}});
-									}}
+				{!isMobileView && (
+					<Grid container spacing={2}>
+						{/* Map over collections and render each one in a grid item */}
+						{collections.map(collection => (
+							<Grid item xs={4} sm={4} md={2} key={collection.id}>
+								<Paper
 									sx={{
-										color: "#E38B29",
+										p: 2,
+										mr: 2,
+										bgcolor: "rgba(217, 217, 217, 0.34)",
+										width: 150,
+										height: 150,
 										display: "flex",
 										flexDirection: "column",
 										justifyContent: "center",
 										alignItems: "center",
 									}}
 								>
-									<img
-										src="src/assets/icons8-cook-96.png"
-										alt=""
-										width="40"
-										height="40"
-									/>
-									{collection.name}
-								</Typography>
-								<Box sx={{padding: "15px 10px 0px 10px"}}>
-									<Button
-										variant="contained"
-										onClick={() => handleDeleteCollection(collection.id)}
+									<Typography
+										variant="h6"
+										onClick={() => {
+											navigate("/collectionDetail/" + collection.id, {
+												state: {name: collection.name},
+											});
+										}}
 										sx={{
-											bgcolor: "#FFE6E6",
-											color: "#EF4F4F",
-											fontFamily: "Poppins",
-											fontWeight: "600",
-											fontSize: "13px",
-											"&:hover": {bgcolor: "#EF4F4F", color: "#FFE6E6"},
+											color: "#E38B29",
+											display: "flex",
+											flexDirection: "column",
+											justifyContent: "center",
+											alignItems: "center",
 										}}
 									>
-										Delete
-									</Button>
-								</Box>
-							</Paper>
+										<img
+											src="src/assets/icons8-cook-96.png"
+											alt=""
+											width="40"
+											height="40"
+										/>
+										{collection.name}
+									</Typography>
+									<Box sx={{padding: "15px 10px 0px 10px"}}>
+										<Button
+											variant="contained"
+											onClick={() => handleDeleteCollection(collection.id)}
+											sx={{
+												bgcolor: "#FFE6E6",
+												color: "#EF4F4F",
+												fontFamily: "Poppins",
+												fontWeight: "600",
+												fontSize: "13px",
+												"&:hover": {bgcolor: "#EF4F4F", color: "#FFE6E6"},
+											}}
+										>
+											Delete
+										</Button>
+									</Box>
+								</Paper>
+							</Grid>
+						))}
+					</Grid>
+				)}
+				{/* Mobile view */}
+				{isMobileView && (
+					<>
+						<Grid container spacing={2}>
+							{/* Map over collections and render each one in a grid item */}
+							{collections
+								.slice(
+									currentPage * itemsPerPage,
+									(currentPage + 1) * itemsPerPage
+								)
+								.map(collection => (
+									<Grid
+										item
+										xs={12}
+										key={collection.id}
+										sx={{
+											justifyContent: "center",
+											display: "flex",
+											alignItems: "center",
+										}}
+									>
+										<Paper
+											sx={{
+												p: 2,
+												mr: 2,
+												bgcolor: "rgba(217, 217, 217, 0.34)",
+												width: 270,
+												height: 45,
+												display: "flex",
+												flexDirection: "column",
+												justifyContent: "center",
+												alignItems: "center",
+											}}
+										>
+											<Box
+												sx={{
+													display: "flex",
+													justifyContent: "center",
+													alignItems: "center",
+												}}
+											>
+												<Typography
+													variant="h6"
+													onClick={() => {
+														navigate("/collectionDetail/" + collection.id, {
+															state: {name: collection.name},
+														});
+													}}
+													sx={{
+														color: "#E38B29",
+														display: "flex",
+														// flexDirection: "column",
+														// justifyContent: "center",
+														alignItems: "center",
+														padding: "0px 0px",
+													}}
+												>
+													<img
+														src="src/assets/icons8-cook-96.png"
+														alt=""
+														width="40"
+														height="40"
+														style={{padding: "0px 10px"}}
+													/>
+													{collection.name}
+												</Typography>
+												<Box
+													sx={{
+														padding: "0px 0px 0px 30px",
+														justifyContent: "flex-end",
+													}}
+												>
+													<Button
+														variant="contained"
+														onClick={() =>
+															handleDeleteCollection(collection.id)
+														}
+														sx={{
+															bgcolor: "#FFE6E6",
+															color: "#EF4F4F",
+															fontFamily: "Poppins",
+															fontWeight: "600",
+															fontSize: "0.813rem",
+															"&:hover": {bgcolor: "#EF4F4F", color: "#FFE6E6"},
+														}}
+													>
+														Delete
+													</Button>
+												</Box>
+											</Box>
+										</Paper>
+									</Grid>
+								))}
 						</Grid>
-					))}
-				</Grid>
+						{/* Conditionally render pagination controls if there are more than two collections */}
+						{collections.length > 2 && (
+							<Box
+								sx={{
+									display: "flex",
+									justifyContent: "center",
+									marginTop: "20px",
+								}}
+							>
+								<Button
+									variant="outlined"
+									disabled={currentPage === 0}
+									onClick={() => setCurrentPage(currentPage - 1)}
+									sx={{color: '#F0997D' ,border: 'solid 1px #F0997D', fontWeight: '600', fontFamily: 'Poppins', "&:hover": {bgcolor: '#FFD8A9'}}}
+								>
+									Previous
+								</Button>
+								<Button
+									variant="outlined"
+									disabled={
+										(currentPage + 1) * itemsPerPage >= collections.length
+									}
+									onClick={() => setCurrentPage(currentPage + 1)}
+									sx={{marginLeft: "10px", color: '#F0997D' ,border: 'solid 1px #F0997D', fontWeight: '600', fontFamily: 'Poppins', "&:hover": {bgcolor: '#FFD8A9'}}}
+								>
+									Next
+								</Button>
+							</Box>
+						)}
+					</>
+				)}
 
 				<Modal open={isModalOpen} onClose={handleCloseModal}>
 					<Box
