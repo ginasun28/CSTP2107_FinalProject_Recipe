@@ -56,6 +56,7 @@ const RecipeDetailPage = () => {
 	// console.log("avg rating: ", averageRating);
 
     useEffect(() => {
+		fetchCollections();
 		checkInitialFavoriteStatus();
 	}, []);
 
