@@ -171,7 +171,7 @@ const RecipeDetailPage = () => {
     // console.log('rating: ', averageRating)
 
     return (<>
-            <Navbar/>
+            {/* <Navbar/> */}
             <div className='detail-structure-resize' style={{width: '100%'}}>
                 <div className='recipe-pic-resize'>
                     <IconButton onClick={() => navigate(-1)} 
