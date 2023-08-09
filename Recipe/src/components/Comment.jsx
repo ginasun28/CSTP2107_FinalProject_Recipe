@@ -23,6 +23,13 @@ const Comment = ({comment, onReply, onConfirmReply}) => {
         setUserReply(event.target.value);
     };
 
+    
+    const handleCloseReply = () => {
+        setReplyToCommentId(null);
+        setUserReply(''); // Clear reply content
+        
+    }
+
     return (
         <>
             <div className='all-comments-position' style={{display: 'flex', flexDirection: 'row', paddingTop: '20px'}}>
@@ -41,7 +48,7 @@ const Comment = ({comment, onReply, onConfirmReply}) => {
                     <div>
                         <Typography>{content}</Typography>
 
-                        <Button variant="text" onClick={handleReply} style={{textTransform: "none"}}>
+                        <Button variant="text" onClick={handleReply} sx={{'&:hover': {backgroundColor: 'transparent'}}} style={{textTransform: "none"}} disableRipple>
                             <h4 className='poppins-font-orange'>Reply</h4>
                         </Button>
 
@@ -58,9 +65,12 @@ const Comment = ({comment, onReply, onConfirmReply}) => {
                                     variant="outlined"
                                     InputProps={{style: {border: '1px solid #064635', borderRadius: '10px'}}}
                                 />
-                                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                                <div style={{display: 'flex', justifyContent: 'flex-end', flexDirection: 'row', gap: '5px'}}>
                                     <Button variant="contained" onClick={handleConfirmReply} style={{borderRadius: '10px', backgroundColor: '#FF7F3F'}}>
                                         Confirm Reply
+                                    </Button>
+                                    <Button variant='contained' onClick={handleCloseReply} style={{borderRadius: '10px', backgroundColor: '#FF7F3F'}}>
+                                        Cancel Reply
                                     </Button>
                                 </div>
                             </div>
