@@ -13,7 +13,8 @@ import "slick-carousel/slick/slick-theme.css";
 // Main Carousel component
 export default function ProductCardCarousel({products, isUser, load}) {
 	const [randomProducts, setRandomProducts] = useState([]);
-	const isMobileView = useMediaQuery("(max-width:959px)");
+	const isMobileView = useMediaQuery("(max-width:660px)");
+	const isTabletView = useMediaQuery("(max-width: 820px)");
 
 	// Function to shuffle an array
 	const shuffleArray = array => {
@@ -42,7 +43,7 @@ const PrevArrow = props => {
 	return (
 		<IconButton
 			onClick={onClick}
-			style={{position: "absolute", left: '-20px', top: "50%", zIndex: 1, display: isMobileView ? 'none': 'flex'}}
+			style={{position: "absolute", left: isTabletView ? '-5px':'-20px', top: "50%", zIndex: 1, display: isMobileView ? 'none': 'flex'}}
 		>
 			{/* <ChevronLeft /> */}
 			<img src="src/assets/icons8-previous-96.png" alt="previous-icon" width="30" height="30"/>
@@ -56,7 +57,7 @@ const NextArrow = props => {
 	return (
 		<IconButton
 			onClick={onClick}
-			style={{position: "absolute", right: '-2px', top: "50%", zIndex: 1,display: isMobileView ? 'none': 'flex' }}
+			style={{position: "absolute", right: isTabletView ? '5px':'-2px', top: "50%", zIndex: 1, display: isMobileView ? 'none': 'flex' }}
 		>
 			{/* <ChevronRight /> */}
 			<img src="src/assets/icons8-next-96.png" alt="next-icon" width="30" height="30"/>
@@ -68,7 +69,7 @@ const NextArrow = props => {
 		dots: isMobileView ? true : false, // Uncomment this line to display dots for navigation
 		infinite: true,
 		speed: 500,
-		slidesToShow: isMobileView ? 1 : 4, // Number of slides to show at a time (adjust as needed)
+		slidesToShow: isMobileView ? 1 : (isTabletView ? 2 : 4),
 		slidesToScroll: 1, // Number of slides to scroll at a time (adjust as needed)
 		prevArrow: <PrevArrow />, // Custom previous button
 		nextArrow: <NextArrow />, // Custom next button
@@ -77,12 +78,12 @@ const NextArrow = props => {
 
 	return (
 		<>
-			<Box sx={{padding: "15px 40px"}}>
+			<Box sx={{padding: isTabletView ? "20px 55px":"15px 40px"}}>
 				{/* The Slider component with custom settings */}
-				<Slider {...settings}>
+				<Slider {...settings} sx={{padding: isTabletView ? "30px" : '0px'}}>
 					{/* Mapping through the randomly selected products */}
 					{randomProducts.map(product => (
-						<Grid item xs={4} md={4} key={product.id}>
+						<Grid item xs={4} md={4} key={product.id} sx={{ padding: '0px 20px'}}>
 							{/* Displaying the ProductCard component for each product */}
 							<ProductCard product={product} isUser={isUser} load={load} />
 						</Grid>

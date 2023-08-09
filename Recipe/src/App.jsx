@@ -14,6 +14,7 @@ import History from "./pages/History.jsx";
 import Header from "./components/Header";
 import NavBar from "./components/Navbar";
 import Footer from './components/Footer';
+import NotFound from './pages/NotFound';
 
 // Function to conditionally render the Header or NavBar based on the route
 function HeaderWrapper() {
@@ -47,10 +48,13 @@ function FooterWrapper() {
 }
 
 function App() {
+   // Check if the current route is the NotFound route
+   const isNotFoundPage = location.pathname === "/not-found";
+   
   return (
     <>
       {/* Conditionally render the Header or NavBar */}
-      <HeaderWrapper />
+      {!isNotFoundPage && <HeaderWrapper />}
       {useRoutes([
         {
           path: "/",
@@ -96,9 +100,13 @@ function App() {
           path: "/history",
           element: <History />,
         },
+        {
+          path: "*",
+          element: isNotFoundPage ? <NotFound /> : null, // Replace with your actual Not Found component
+        },
       ])}
       {/* Conditionally render the Footer component on the Home and AboutUs pages */}
-      <FooterWrapper />
+      {!isNotFoundPage && <FooterWrapper />}
     </>
   );
 }

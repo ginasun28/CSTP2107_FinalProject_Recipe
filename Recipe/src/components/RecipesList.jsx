@@ -38,14 +38,14 @@ const RecipesList = ({products, isUser, load}) => {
 					<Grid item xs={6} sm={3} md={11} className="content">
 						<Grid container spacing={2}>
 							{products.map(product => (
-								<Grid item xs={4} sm={6} md={6} key={product.id}>
+								<Grid item xs={4} sm={6} md={6} key={product.id} sx={{padding: '0px 30px'}}>
 									<ListCard product={product} isUser={isUser} load={load} />
 								</Grid>
 							))}
 						</Grid>
 					</Grid>
 					{/* Add the condition to render the half-trapezoid only in Desktop view */}
-					<Grid item xs={12} sm={6} className="half-trapezoid"></Grid>
+					<Grid item xs={12} sm={6} className="half-trapezoid" sx={{display: 'flex', position: 'fixed', top: 0}}></Grid>
 				</>
 			)}
 		</>

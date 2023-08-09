@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;1,700&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Mulish:wght@400;500;600&family=Noto+Sans:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap');
+
 .folder-divider {
     background: linear-gradient(90deg, rgba(227,139,41,1) 27%, rgba(229,171,107,1) 54%, rgba(237,208,177,1) 93%);
     /* -webkit-background-clip: text !important; */

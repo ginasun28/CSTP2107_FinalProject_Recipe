@@ -21,14 +21,11 @@ import api from "@/api/index.js";
 
 const types = [
 	"All",
-	"Breakfast",
-	"Lunch",
-	"Dinner",
+	"Appetizers",
+	"Beverages",
 	"Desserts",
-	"Salad",
-	"Snack",
+	"Mains",
 	"Side Dishes",
-	"Soup",
 ];
 
 const Recipes = () => {

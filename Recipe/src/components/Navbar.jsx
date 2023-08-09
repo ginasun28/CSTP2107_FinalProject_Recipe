@@ -159,7 +159,7 @@ function ResponsiveAppBar() {
 										width: `${50 / pages.length}%`,
 										// Set different background color for "+Create Recipe"
 										color: page === "+Create Recipe" ? "#FFDEDE" : "#FDF5CA",
-										fontSize: "18px",
+										fontSize: "0.938rem",
 										fontFamily: "Poppins",
 										fontWeight: 700,
 										"&:hover": {

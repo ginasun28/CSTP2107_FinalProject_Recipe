@@ -14,7 +14,6 @@ import {
 	TableRow,
 	TextField,
 } from "@mui/material";
-import Navbar from "@/components/Navbar";
 import FormControl from "@mui/material/FormControl";
 import api from "@/api/index.js";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
@@ -187,7 +186,7 @@ const PublishProductPage = () => {
 					<h3 className="recipe-title">Create Recipe</h3>
 					<Divider
 						sx={{
-							height: "2px",
+							height: "0.5px",
 							background:
 								"linear-gradient(90deg, rgba(229,171,107,1) 35%, rgba(249,248,247,1) 69%)",
 						}}
@@ -280,11 +279,11 @@ const PublishProductPage = () => {
 										sx={{mb: 2, backgroundColor: "white"}}
 										size="small"
 									>
-										<MenuItem value="Breakfast">Appetizers</MenuItem>
-										<MenuItem value="Lunch">Mains</MenuItem>
-										<MenuItem value="Dinner">Side Dishes</MenuItem>
-										<MenuItem value="Dessert">Desserts</MenuItem>
-										<MenuItem value="Snack">Beverages</MenuItem>
+										<MenuItem value="Appetizers">Appetizers</MenuItem>
+										<MenuItem value="Mains">Mains</MenuItem>
+										<MenuItem value="Side Dishes">Side Dishes</MenuItem>
+										<MenuItem value="Desserts">Desserts</MenuItem>
+										<MenuItem value="Beverages">Beverages</MenuItem>
 									</Select>
 								</div>
 

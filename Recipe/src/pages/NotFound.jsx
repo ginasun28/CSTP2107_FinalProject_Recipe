@@ -1,6 +1,6 @@
 import {Box, Grid, Typography, Paper} from "@mui/material";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import '../component/styles/notfound.css'
+import '../components/styles/NotFound.css';
 
 const NotFound = () => {
 	return (
