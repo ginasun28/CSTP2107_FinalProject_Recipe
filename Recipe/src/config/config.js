@@ -5,14 +5,14 @@ import { getFirestore } from "@firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBx1f7lmdlDdqhM8eP5BeDSOwJ0pTVNoaQ",
-  authDomain: "blogapplication-d2e4e.firebaseapp.com",
-  projectId: "blogapplication-d2e4e",
-  storageBucket: "blogapplication-d2e4e.appspot.com",
-  messagingSenderId: "11800389790",
-  appId: "1:11800389790:web:b40089015d20294b15338f",
-  measurementId: "G-LL1PWFVVJV",
-};
+  apiKey: "AIzaSyBZZQWBGBEukPk-opeZSnk7Ve1W_KqurG4",
+    authDomain: "blogapp-27792.firebaseapp.com",
+    projectId: "blogapp-27792",
+    storageBucket: "blogapp-27792.appspot.com",
+    messagingSenderId: "316556722651",
+    appId: "1:316556722651:web:bf7d938e83b9b4f01427fe",
+    measurementId: "G-KL1CWNP4H7"
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

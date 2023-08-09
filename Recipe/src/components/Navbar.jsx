@@ -71,8 +71,8 @@ function ResponsiveAppBar() {
 						}}
 					>
 						<img
-							src="src/assets/icon8-cook-header.png"
-							alt=""
+							src="src/assets/icon8-cook-header.gif"
+							alt="cook-header"
 							width="30"
 							height="30"
 						/>
@@ -221,7 +221,7 @@ function ResponsiveAppBar() {
 									>
 										{user?.username}
 										<img
-											src="src/assets/icons8-down-96.png"
+											src="src/assets/icons8-down-96.gif"
 											alt=""
 											width="8"
 											height="8"

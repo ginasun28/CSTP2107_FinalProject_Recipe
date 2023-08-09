@@ -45,12 +45,6 @@ export default function ListCard({product, isUser, load, mobileView}) {
 	const [openModal, setOpenModal] = useState(false);
 	const [collections, setCollections] = useState([]);
 	const [selectedCollection, setSelectedCollection] = useState("");
-	// State to manage the IconButton image URL based on favorite status
-	// const [favoriteIcon, setFavoriteIcon] = useState(
-	// 	product.isFavorite
-	// 		? "/src/assets/icons8-bookmark-96.png"
-	// 		: "/src/assets/icons8-save-96.png"
-	// );
 	const [isFavorite, setIsFavorite] = useState(false);
 	const [favoriteIcon, setFavoriteIcon] = useState(
 		"/src/assets/icons8-save-96.png"
@@ -101,21 +95,6 @@ export default function ListCard({product, isUser, load, mobileView}) {
 
 	// Function that handles confirming favorites and saving the recipe to the selected collection
 	const handleConfirmFavorite = async () => {
-		// try {
-		// 	// Add recipe to favorites
-		// 	let {message} = await api.addFavorite({
-		// 		userId: user.id,
-		// 		collectionId: selectedCollection,
-		// 		recipeId: product.id,
-		// 	});
-		// 	// close the popup
-		// 	handleCloseModal();
-		// 	// Prompt the user to save successfully
-		// 	alert(message);
-		// } catch (error) {
-		// 	console.error("Failed to add favorite:", error);
-		// 	alert("Failed to add favorite. Please try again later.");
-		// }
 		try {
 			// Add recipe to favorites
 			let {message} = await api.addFavorite({
@@ -150,22 +129,6 @@ export default function ListCard({product, isUser, load, mobileView}) {
 
 	// Function to handle clicking the favorite icon
 	const handleFavorite = async () => {
-		// if (!user) {
-		// 	navigate("/signin");
-		// }
-		// api
-		// 	.checkFavorite({
-		// 		userId: user.id,
-		// 		recipeId: product.id,
-		// 	})
-		// 	.then(async res => {
-		// 		if (res.isFavorite) {
-		// 			await api.removeFavorite(product.id, user.id);
-		// 		} else {
-		// 			setOpenModal(true);
-		// 		}
-		// 	});
-
 		if (!user) {
 			// If user is not logged in, navigate to the sign-in page
 			navigate("/signin");
