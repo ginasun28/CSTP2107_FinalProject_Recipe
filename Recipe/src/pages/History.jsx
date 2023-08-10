@@ -112,7 +112,7 @@ const History = () => {
 						{/* Edited Filter version */}
 						<IconButton onClick={handleFilterClick} disableRipple>
 							<img
-								src="src/assets/icons8-filter-96 (2).png"
+								src="https://lh3.googleusercontent.com/pw/AIL4fc-c7jqzAzpGDhUVlxRsv4KOFHwE0oQHqfZki6ul3rbyPrYNvklULCu9zOlq-kAH4ubYB6Dj7lSSKj1BNh2t9XzqjeQzckJaREARILizEzVu3qN2_UWlMpQB-GaIVNq70beezAroPOQ1QBQrck8AZ7bvJKJeFnKHrOWormsIKhzW4688K0CfHeKUftw2EPrvolPSLtbYohAkbWGkJSLNU2VZoErLVEAVo-1fHyp3K5SlgHFYSGQHLMRhFgnBiyyuSc8ARqrjOYYrD-vtRMy0UAUe0jbIDyPr349HiydCSo237ii-a8-H-nmT0-x1uixg0yD4drlW0621a8ECdoTiQKkibw6y8_dgVHuZeuJmYjxEeOXNwIlp8kmZ-Iwkc_jQ8Y4s5nFiBda2Y5m3YGNn_PYtqWtYmGKcVdIqVXNRmgwqmCymzSVMWeap-3hhhlDHLU4P_qYS9jjr_nmrM9L0bHfvaTV1kZYxdhHA1cG6wWKZRLSno8rMM5rc1zsEyEzhPJC8W1y9qkINWpTuq_D9rESAgzWLcKI9u7uFIxzsjcSOxEnsEdbJdaiKC71-ASBCoYAX38B8I4o7CJh_ZH7xHsyBV8BQYGeL-9i_57GDDnOEqrc70QwUDSD6PAuCZVsw2Xb2qydwKSNofnxfBBTc9fKBqwjOGQtYE4cEMwwmG1DrMp5ENupk1USOX_tBDu3jCVQhjS03u4x7N4FOQoEL9OCc7cuY29gadsmLveeNMD01IxhPvcDFnLCQRgqaPP5kjGcDraEj7rjBQ5lfZa9ja4G9JAJyHIXiVE7kFAqltCbOKT9uPspmrWT7_0ryX6qKF3kEhyeMhLWusMH1zkQjwlGGRo9f0lYUgIMROH-RnfuIj4-tEFIdwnbkB4jPEVPWYUMzuShoTB3KROUMviUXB15RVxfxkSevGUQ3iLFoB5Z-pA1ut8Nwtd8VkE0B=w96-h96-s-no?authuser=1"
 								alt="Filter icon"
 								style={{width: "35px", height: "35px"}}
 							/>

@@ -1,7 +1,8 @@
 import Axios from 'axios';
 
 const http = Axios.create({
-    baseURL: 'http://localhost:8080', // server interface baseUrl
+    // baseURL: 'http://localhost:8080', // server interface baseUrl
+    baseURL: "https://epicurean-eats-server.onrender.com",
     timeout: 30000
 });
 

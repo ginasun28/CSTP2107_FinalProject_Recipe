@@ -132,7 +132,7 @@ const FavoriteModal = ({
 									disableRipple
 								>
 									<img
-										src="/src/assets/icons8-add.png"
+										src="https://lh3.googleusercontent.com/pw/AIL4fc_yu4-GBwKlAnhsjLraJ_0qfncGbYKH1o3z5PmJcEYGlfMZlstzycopwYnpVcLliPGsCwByLYKR5ZFuKvdY714UnVdRrUGtOKJEaxrjrMNTb9IiJc9Fu0LJ1vsdQtoGDE9wBPeREeoMo8tabLZ1zHB1dRR7CznBPQu6xTVnTbXW4bCZsH_xtXX7buIns5eZL5-y06bHxLEu-JduWtCLt69uOviq6QESMwkJ1D6zchnN2BFUCx9zjmCcfbNo2Czoqqbh5Dod9xH0x048JxmHUMqTe90S7FIsbmz0aVQIr-WO44vtFCuLA0f85-KZAcrSVZVDls4EsMf2WZx3lY5caMUYb9YdizfBwKNCxrh8z0P1y6n7JLPOiD_oaY9w_4ruRoCj-ubV5mAx81uzEhqiQvEZfg4AWuC11sRaqKL_GCJWuQaGKNzeTfz2JxuX8OFCnzwPzjqPNy-6Mf26Z-hR5UJXe3DpVBBkPxFzx3ojIj5g9HBOWzzY1Fc7D-J5rAzXy0g84MInrQLy30MI2HYXL_Gk-esJMi0RvJbsa69m35sZzIphGfjoGUH0tM11BhtXn7M74yeBGNsCFF1rBH1UOKxLow5rNGkGpkD8T1pLydIhzznxhK15-4J8LHq9pVpsH3i-Pgc9eFTAC7DljJc0-hQp3CS0EFkm6f7dqDdw8uZEosvD18ZkKyRftMV2Kpfv3fBtihmT8R0hzTjVcv3sSTx1YnY7gN7mdrTdInMQI3731fOvq92EiQP6IESm2bCDvYIrIIvp7t2UQTUJt7kpHzRtS-GTJ-3eG4g2X3wzjUvwhA-aFNQYVgBQPLtp9zB1zNqVRMA_xOSFBCP_1HV6KuB9C13WNeyf5IoFfque0m-9KsdQryWcNmzZnspp57bUmMK9A4KWzAVftQGijjeQBaIhol-NOGjkKGMGiCoPqlc3TNI9XI_G7pOCAw-D=w96-h96-s-no?authuser=1"
 										alt=""
 										width="20"
 										height="20"
