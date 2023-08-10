@@ -1,7 +1,7 @@
 import {Container, Typography, Box, Grid, useMediaQuery} from "@mui/material";
 import AboutInfo from "../components/AboutInfo";
 import Footer from "../components/Footer";
-import "../components/styles/AboutUs.css";
+import '../components/styles/AboutUs.css';
 import {v4 as uuidv4} from "uuid";
 import {useEffect, useState} from "react";
 import {informations} from "../data/teamData"; // Import the informations array from teamData.js
