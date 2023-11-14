@@ -9,5 +9,5 @@ bookmark any recipe to any of your folder, and rate and comment other people's r
 ## Our Team:
 
  - [Jessica Jin](https://github.com/jingjinjessica)
- - [Gina Sun](https://github.com/ginasun28)
+ - [Tze-Ching Sun](https://github.com/ginasun28)
  - [Clarissa Nicole Taswin](https://github.com/Nicole308)
